@@ -1,0 +1,96 @@
+.payment
+{
+    border:1px solid rgba(0, 0, 0, 0.125);
+    height:280px;
+    border-radius:20px;
+    background:#fff;
+}
+.payment_header
+{
+   background:linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);;
+   padding:20px;
+   border-radius:20px 20px 0px 0px;
+   
+}
+
+.check
+{
+   margin:0px auto;
+   width:50px;
+   height:50px;
+   border-radius:100%;
+   background:#fff;
+   text-align:center;
+}
+
+.check i
+{
+   vertical-align:middle;
+   line-height:50px;
+   font-size:30px;
+}
+
+.content 
+{
+    text-align:center;
+}
+
+.content  h1
+{
+    font-size:25px;
+    padding-top:25px;
+}
+
+.content a
+{
+    width:200px;
+    height:35px;
+    color:#fff;
+    border-radius:30px;
+    padding:5px 10px;
+    background:linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);;
+    transition:all ease-in-out 0.3s;
+}
+
+.content a:hover
+{
+    text-decoration:none;
+    background:#000;
+}
+
+
+//payment failed css
+.payment_failed_header
+{
+   background:rgba(255,102,0,1);
+   padding:20px;
+   border-radius:20px 20px 0px 0px;
+}
+
+.c1 
+{
+    text-align:center;
+}
+
+.c1  h1
+{
+    font-size:25px;
+    padding-top:25px;
+}
+
+.c1 a
+{
+    width:200px;
+    height:35px;
+    color:#fff;
+    border-radius:30px;
+    padding:5px 10px;
+    background:rgba(255,102,0,1);
+    transition:all ease-in-out 0.3s;
+}
+
+.c1 a:hover
+{
+    text-decoration:none;
+    background:#000;
+}

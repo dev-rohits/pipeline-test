@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between bg-primary">
+    <div class="header-title">
+      <h4 class="card-title text-white">Screen Mapping</h4>
+    </div>
+  </div>
+  <div class="card-body">
+    <div *ngFor="let element of screenNames;let i=index">
+      <div class="ms-2">
+        <h5>{{element.name}}</h5>
+      </div>
+      <div class="form-check ms-2" *ngIf="element.url">
+        <input  (change)="addMappingIds(element.screenNameId)" [checked]="element.selected"
+          class="form-check-input" type="checkbox" value="" id="flexCheckDefault1{{i}}">
+        <label class="form-check-label" for="flexCheckDefault">
+          {{element.name}}
+        </label>
+      </div>
+      <!-- <div class="row">
+        <mat-chip-list  aria-label="Fish selection" *ngFor="let subMenu of element.subSections;let j=index">
+          <mat-chip>{{subMenu.name}}</mat-chip>
+        </mat-chip-list>
+      </div> -->
+      <span class="ms-2" *ngFor="let subMenu of element.subSections;let j=index">
+        <input (change)="addMappingIds(subMenu.screenNameId)" [checked]="subMenu.selected" class="form-check-input"
+          type="checkbox" value="" id="flexCheckDefault2{{j}}">
+        <label class="form-check-label ms-1" for="flexCheckDefault">
+          {{subMenu.name}}
+        </label>
+      </span>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+  </div>
+</div>

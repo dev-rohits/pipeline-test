@@ -1,0 +1,88 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Pricing Plan Listing</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div>
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <!-- <input class="form-control" type="text" placeholder="Search...."> -->
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+                        <a class="chat-icon-delete btn bg-soft-primary" (click)="showPlanForm()">
+                           + Add Pricing Plan
+                        </a>
+                        <button   class="chat-icon-delete btn bg-soft-secondary ms-2" (click)="next()">
+                           Continue To Batch
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+
+                        <th scope="col">No.</th>
+                        <th scope="col">Plan Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Discount Price</th>
+                        <th scope="col">Discount Offer Name</th>
+                        <th scope="col">Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="pricingPlans.length==0">
+                        <td colspan="8">
+                           No Plan Found.
+                        </td>
+                     </tr>
+                     <tr *ngFor="let plan of pricingPlans;let i=index">
+                        <td>{{i +1}}</td>
+                        <td>{{plan.pricingPlanName}}</td>
+                        <td>{{plan.price}}</td>
+                        <td>
+                           <div class="form-check form-switch">
+                              <input class="form-check-input" [(ngModel)]="plan.isPlanActive"
+                                 (change)="updateActiveFlag(plan,$event)" [checked]="plan.isPlanActive" type="checkbox"
+                                 id="flexSwitchCheckChecked">
+                              <label class="form-check-label" for="flexSwitchCheckChecked">{{plan.isPlanActive ?
+                                 'Active':'Inactive'}}</label>
+                           </div>
+                        </td>
+                        <td>{{plan.discountPrice ? plan.discountPrice : 'NA'}}</td>
+                        <td>{{plan.discountOfferName ? plan.discountOfferName : 'NA'}}</td>
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                 (click)="editPlanForm(plan)" title="Edit Course">
+                                 Edit Plan
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                 (click)="delete(plan.idPricingPlan,i)" title="Edit Course">
+                                 Delete Plan
+                              </button>
+                           </mat-menu>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

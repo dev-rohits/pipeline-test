@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Review</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" class="cta-fm cmn-box position-relative z-index-2">
+    <div class="stars">
+      <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+    </div>
+    <div *ngIf="isSubmit && controls['rating'].invalid">
+      <div class="text-danger">
+        <div class="alert-text">
+          Rating Is Required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a Review here" formControlName="review"></textarea>
+      <label for="floatingTextarea2">Enter Your Review</label>
+      <div *ngIf="isSubmit && controls['review'].errors">
+        <div *ngIf="controls['review'].errors['required']" class="text-danger">Review is required</div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button class="btn box-btn gradient-bg g-border-style" (click)="close()"><span
+      class="gradient-text">Cancel</span></button>&nbsp;&nbsp;
+  <button class="btn box-btn gradient-bg" (click)="submit()">Submit</button>
+</div>

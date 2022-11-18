@@ -1,0 +1,78 @@
+<div class="section-cover fix" id="hero-area">
+    <div>
+        <a class="logo" routerLink="/marketing/home">
+            <img style="margin-left:20px; margin-top:20px" src="assets/img/logo.png" alt="" class="img-fluid">
+        </a>
+    </div>
+    <div>
+        <img src="assets/img/g-1.svg" alt="" class="g-1 position-absolute">
+        <img src="assets/img/g-2.svg" alt="" class="g-2 position-absolute">
+    </div>
+
+    <div class="container cs-padding">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../../../assets/images/Login Image.png" style="height: 100%; width:100% ; " alt="">
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <div class="section-title">
+                        <h2>
+                            <span class="title-pole position-relative">Sign In</span>
+                        </h2>
+                    </div>
+
+                    <div *ngIf="!enterOtp">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1 " class="form-label text-dark">Enter Mobile
+                                    Number</label>
+                                <input type="text" #emailValue class="form-control" id="exampleFormControlInput1"
+                                    [(ngModel)]="mobileNo" placeholder="Mobile Number" (keydown)="onlyNumeric($event)">
+                            </div>
+                        </form>
+                        <div style="text-align: center;">
+                            <button type="button" style="width: 200px;" class="btn box-btn gradient-bg"
+                                (click)="sendOtp(emailValue.value);" [disabled]="!(mobileNo.length == 10)">
+                                Login With OTP
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="enterOtp" style="text-align: center;" class="mb-3">
+
+                        <label for="exampleInputEmail1" class="form-label text-dark">{{mobileNo}}</label>
+                        &nbsp;
+                        <a (click)="enterOtp = false" class="text-primary">Edit</a>
+                        <br>
+
+
+                        <label for="exampleInputEmail1" class="form-label text-dark">Enter OTP</label>
+                        <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:4}"></ng-otp-input>
+                        <br>
+                        <label class="text-primary" *ngIf="counter > 0">Resend OTP after {{transform(counter)}}</label>
+                        <label class="text-primary" *ngIf="counter == 0" (click)="resendOtp()">Resend
+                            OTP</label>
+                        <br><br>
+                        <button type="button" [disabled]="enableBtn" *ngIf="enterOtp" style="width: 200px;"
+                            class="btn box-btn gradient-bg" (click)="Login()">Submit OTP
+                        </button>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="d-flex justify-content-end">
+            <p style="margin-top: 10px;"> Register Your <span style="color: #008CE4;"> Institute/School </span>With Us!
+            </p>
+        </div> -->
+        <!-- <div class="d-flex justify-content-start"><a> <i></i> Go Back</a></div> -->
+        <img src="../assets/img/blocks-2.png" alt="" class="block-2 img-fluid position-absolute">
+        <img src="../assets/img/sq-2.png" alt="" class="sq-2 position-absolute">
+
+
+    </div>
+
+</div> <!-- ./hero-area -->

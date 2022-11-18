@@ -1,0 +1,92 @@
+<div class="course-item" *ngFor="let course of categoryCourses">
+  <div class="cmn-wrap educator">
+    <div class="edu-left">
+      <div class="thumb-part position-relative" [routerLink]="['/marketing/course-info']"
+        [queryParams]="{id: course.idCourse,name:course?.courseTitle}" style="height: 27vh;">
+        <img [src]="course?.courseImage" style="height:27vh;width:100%" alt="">
+        <a class="position-absolute play" tabindex="0">
+          <img src="assets/img/play.svg" alt="" class="img-fluid">
+        </a>
+      </div>
+    </div>
+    <div class="edu-right">
+      <h5>{{course?.courseName}}</h5>
+      <p style="
+          font-family: Manrope;
+          font-size: 10px;
+          font-weight: 400;
+          line-height: 14px;
+          letter-spacing: 0em;
+          text-align: left;
+        ">
+        {{course?.courseTitle}}
+      </p>
+      <div class="row">
+        <div class="col-lg-6">
+          <div style="margin-top: 10px">
+            <div class="row">
+              <div class="col-md-3">
+                <img [src]="course?.teacherImage" style="height:95%;width:144%; border-radius: 50%;" alt="">
+              </div>
+              <div class="col-md-9">
+                <span>
+                  <p>Instructor</p>
+                  <h6>{{course?.courseName}}</h6>
+                  <div>
+                    <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                    <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                    <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                    <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                    <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                    <span>
+                      <p>(123)</p>
+                    </span>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <a [routerLink]="['/marketing/course-info']" [queryParams]="{id: course.idCourse,name:course?.courseTitle}"
+            type="button" class="btn btn-outline-primary" style="margin-top: 10%;">
+            <img src="../assets/images/Vector (1).png" alt=""> Enroll Now
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <ul class="hightlight-list">
+            <li>
+              <p>
+                <img src="assets/img/h-1.png" alt="" /><span>Lectures</span>48
+              </p>
+            </li>
+
+            <li>
+              <p>
+                <img src="assets/img/h-2.png" alt="" /><span>Duration</span>458h
+              </p>
+            </li>
+            <li>
+              <p><img src="assets/img/h-4.png" alt=""><span>Language</span>English, Hindi
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+<p *ngIf="categoryCourses.length==0 && isCategoryLoaded">No Courses Found.</p>
+<div class="col-md-12" *ngIf="!isCategoryLoaded" style="text-align:center ;">
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<!-- <div class="pagination-align" *ngIf="categoryCourses.length > 2">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div> -->
+<br>
+<app-table-paginator [size]="size" [totalElements]="totalElement" (pageChange)="pageChange($event)"
+  [disableSize]="true"></app-table-paginator>

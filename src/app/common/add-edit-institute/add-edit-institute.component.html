@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Edit Institute Details</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="instituteForm">
+                    <div class="row mb-3">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 text-center">
+                                <div style="position: relative; left: 0; top: 0;">
+                                    <img [src]="imageSrc ? imageSrc :'../../../assets/images/profile.png'"
+                                        class="rounded-circle profilePos" width="150" height="150">
+                                    <a class="iq-icons-list" (click)="fileSelect.click()">
+                                        <i class="fa fa-camera Pos rounded-circle" style="color: #CBE2FF;"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                    <input style="display: none" #fileSelect type="file" accept=".jpg,.jpeg"
+                                        class="custom-file-input" (change)="onFileChange($event)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Institute Name<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="instituteName" autocomplete="off"
+                                placeholder="Institute Name" class="form-control ">
+                            <div
+                                *ngIf="(isSubmit && controls['instituteName'].invalid) || controls['instituteName']?.touched">
+                                <div *ngIf="controls['instituteName'].errors?.['required']" class="text-danger">
+                                    Institute Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Owner Name</label>
+                            <input type="text" formControlName="ownerName" autocomplete="off" placeholder="Owner Name"
+                                class="form-control ">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Email<span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" formControlName="email"
+                                [readonly]="disableField" placeholder="Email">
+                            <div *ngIf="isSubmit && controls['email'].invalid">
+                                <div *ngIf="controls['email'].errors?.['required']" class="text-danger">
+                                    Email is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Contact Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="XXXXXXXXXX"
+                                formControlName="mobileNumber" (keydown)="onlyNumeric($event)" autocomplete="off"
+                                [readonly]="disableField">
+                            <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+                                <div *ngIf="controls['mobileNumber'].errors?.['required']" class="text-danger">
+                                    Contact Number is required
+                                </div>
+                            </div>
+                            <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+                                <div class="text-danger"
+                                    *ngIf="controls['mobileNumber'].errors?.['maxlength'] || controls['mobileNumber'].errors?.['minlength']">
+                                    Contact Number should be of 10 numbers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-dark">Address<span
+                                    class="text-danger">*</span></label>
+                            <textarea class="form-control" id="address" rows="3" formControlName="address"></textarea>
+                            <div *ngIf="(isSubmit && controls['address'].invalid) || controls['address']?.touched">
+                                <div *ngIf="controls['address'].errors?.['required']" class="text-danger">
+                                    Address is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-dark">Country<span
+                                    class="text-danger">*</span></label>
+                            <select formControlName="country" class="form-control">
+                                <option *ngFor="let country of countryList" [value]="country">{{country}}
+                                </option>
+                            </select>
+                            <div *ngIf="(isSubmit && controls['country'].invalid) || controls['country']?.touched">
+                                <div *ngIf="controls['country'].errors?.['required']" class="text-danger">
+                                    Country is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-dark">State<span
+                                    class="text-danger">*</span></label>
+                            <select formControlName="state" class="form-control">
+                                <option *ngFor="let state of stateList" [value]="state">{{state}}
+                                </option>
+                            </select>
+                            <div *ngIf="(isSubmit && controls['state'].invalid) || controls['state']?.touched">
+                                <div *ngIf="controls['state'].errors?.['required']" class="text-danger">
+                                    State is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="exampleInputEmail1" class="form-label text-dark">Mark
+                                        your location<span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-primary btn-sm" style="height: 27px;"
+                                        (click)="getGeoLocation()">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Locate
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" formControlName="latitude" autocomplete="off"
+                                        placeholder="Latitude" class="form-control" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" formControlName="longitude" autocomplete="off"
+                                        placeholder="Longitude" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="(isSubmit && controls['latitude'].invalid)">
+                                <div *ngIf="controls['latitude'].errors?.['required']" class="text-danger">
+                                    Latitude & Longitude are required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-dark">About Institute</label>
+                            <textarea class="form-control" id="aboutUs" rows="3" formControlName="aboutUs"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button *ngIf="!disableField" type="button" style="margin-right: 5px;" type="submit"
+                            class="btn btn-primary active" (click)="onSubmit()">Submit</button>
+                        <!-- <button  mat-button type="button" class="btn btn-secondary active">Cancel</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

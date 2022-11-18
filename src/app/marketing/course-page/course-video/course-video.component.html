@@ -1,0 +1,44 @@
+<div class="helper-div position-relative">
+    <!-- <div class="v-type position-absolute">Recorded Only</div> -->
+    <img src="assets/img/move-1.png" alt="" class="position-absolute move-1">
+    <div class="cmn-box z-index-1">
+        <div class="video position-relative">
+            <video controls class="v-bg img-fluid w-100" [src]="courseDetails?.courseVideoPath"></video>
+            <!-- <img src="assets/img/v-bg.jpg" alt="" class="v-bg img-fluid w-100"> -->
+            <!-- <a href="https://www.youtube.com/watch?v=olboi3ttUi8&amp;ab_channel=4EverGreen"
+                class="play-video position-absolute top-50 start-50"><i class="fas fa-play"></i></a> -->
+        </div>
+        <div class="course-price-wrapper position-relative">
+            <!-- <span class="position-absolute badge cat-btn discount">₹10,500</span> -->
+            <div class="plan-price type-6">
+                <!-- <span class="sm-ttl">Course Price</span>
+                <h6><span class="g-text">₹{{courseDetails?.coursePrice}}/-</span>
+                
+                </h6> -->
+            </div>
+        </div>
+        <ul class="hightlight-list">
+            <li>
+                <p><img src="assets/img/h-1.png" alt=""><span>Assignments</span>{{courseDetails?.whetherAssignmentTestIncluded =='true'? 'Included':'Not Included'}} </p>
+            </li>
+
+            <li>
+                <p><img src="assets/img/h-2.png" alt=""><span>Duration</span>{{courseDetails?.timePeriodCourse}}</p>
+            </li>
+            <li>
+                <p><img src="assets/img/h-4.png" alt=""><span>Language</span>English, Hindi
+                </p>
+            </li>
+            <li>
+                <p><img src="assets/img/h-5.png" alt=""><span>Certificate</span>{{courseDetails?.certificateIncluded=='true'?'Included':'Not Included'}}
+                </p>
+            </li>
+            <li>
+                <p><img src="assets/img/h-1.png" alt=""><span>Test</span>{{courseDetails?.has_test=='true'?'Included':'Not Included'}}
+                </p>
+            </li>
+        </ul>
+
+        <a class="btn box-btn fill-blue w-100" (click)="addNewItem()">Enroll Now</a>
+    </div>
+</div>

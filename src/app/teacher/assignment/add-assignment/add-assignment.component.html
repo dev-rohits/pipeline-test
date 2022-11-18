@@ -1,0 +1,157 @@
+<!-- <h1 mat-dialog-title>Assignment</h1> -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <h3 class="card-label">Assignment</h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label class="form-label" for="exampleInputText1">Assignment Topic<span class="text-danger">*</span> </label>
+          <input type="text" formControlName="name" class="form-control" id="exampleInputText1">
+          <ng-container *ngIf="isSubmit && controls['name'].invalid">
+            <div class="text-danger">
+              <div class="alert-text" *ngIf="controls['name']?.errors?.['required']">
+                Above field is required.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label" for="exampleFormControlSelect1">Grade Type<span class="text-danger">*</span></label>
+          <select class="form-select" id="exampleFormControlSelect1" (change)="selectInput(gradeType.value)" #gradeType
+            formControlName="gradeType">
+
+            <option value="">Select Grade Type</option>
+            <option value="grade">Grade</option>
+            <option value="number">Number</option>
+
+          </select>
+          <ng-container *ngIf="isSubmit && controls['gradeType'].invalid">
+            <div class="text-danger">
+              <div class="alert-text" *ngIf="controls['gradeType']?.errors?.['required']">
+                Above field is required.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="form-group col-md-4" *ngIf="maxmarksField">
+          <label class="form-label" for="exampleInputText1">Maximum Marks<span class="text-danger">*</span></label>
+          <input type="number" class="form-control" id="exampleInputText1" formControlName="maxMarks"
+            placeholder="Maximum Marks">
+        </div>
+        <div class="form-group col-md-4">
+          <label class="form-label" for="exampleInputText1">Published Date<span class="text-danger">*</span></label>
+          <input type="date" [min]="now" class="form-control" id="exampleInputText1" formControlName="publishedDate"
+            placeholder="Published date">
+          <ng-container *ngIf="isSubmit && controls['publishedDate'].invalid">
+            <div class="text-danger">
+              <div class="alert-text" *ngIf="controls['publishedDate']?.errors?.['required']">
+                Above field is required.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label" for="exampleInputText1">Submit Date<span class="text-danger">*</span></label>
+          <input type="date" [min]="now" class="form-control" id="exampleInputText1" formControlName="submitDate"
+            placeholder="Submision Date">
+          <ng-container *ngIf="isSubmit && controls['submitDate'].invalid">
+            <div class="text-danger">
+              <div class="alert-text" *ngIf="controls['submitDate']?.errors?.['required']">
+                Above field is required.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+
+        <div class="form-group ">
+          <label class="form-label" for="exampleFormControlTextarea1">Assignment Questions<span
+              class="text-danger">*</span></label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="description"
+            rows="5"></textarea>
+          <ng-container *ngIf="isSubmit && controls['description'].invalid">
+            <div class="text-danger">
+              <div class="alert-text" *ngIf="controls['description']?.errors?.['required']">
+                Above field is required.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="form-group">
+
+          <label for="file">+ Add Attachments<span class="text-danger">*</span></label>
+
+          <input #selectFiles formControlName="uploadedFiles" id="file" accept=".jpg,.jpeg,.pdf" type="file" multiple
+            class="form-control" (change)="onFileChange($event)">
+
+          <div *ngIf="isSubmit && controls['uploadedFiles'].invalid">
+            <div *ngIf="controls['uploadedFiles']?.errors?.['required']">Choose a file</div>
+          </div>
+        </div>
+        <div class="upload-table mt-2" *ngIf="filesList?.length!=0">
+          <h3>Selected Files</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>View</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody class="upload-name-style">
+              <tr *ngFor="let item of filesList; let i = index">
+                <td>
+                  <strong>{{ item.name }} </strong>
+                </td>
+                <td>
+                  <button (click)="documentPreview(item)" class="btn btn-primary">View</button>
+                </td>
+                <td>
+                  <button (click)="deleteFilesFromList(i)" class="btn btn-secondary">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="upload-table mt-2"
+          *ngIf="data.isEdit && data.body.uploadedFiles!=null && data.body.uploadedFiles?.length!=0">
+          <h3>Uploaded Files:</h3>
+          <tbody class="upload-name-style">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>View</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody class="upload-name-style">
+                <tr *ngFor="let file of data.body.uploadedFiles;let i=index">
+                  <td>{{file.split("/").pop()}}</td>
+                  <td>
+                    <button (click)="documentPreview(file)" class="btn btn-primary"><i _ngcontent-cug-c349=""
+                        aria-hidden="true" class="fa fa-eye"></i> View</button>
+                  </td>
+                  <td>
+                    <button (click)="deleteUploadedFiles(i)" class="btn btn-secondary">Remove</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </tbody>
+        </table>
+
+      </div>
+      <button type="submit" class="btn btn-primary active" (click)="onSubmit()">{{data.isEdit ? 'Edit' :
+        'Submit'}}</button>&nbsp;
+      <button type="submit" class="btn btn-secondary active" mat-button mat-dialog-close>Cancel</button>
+    </form>
+  </div>
+</div>

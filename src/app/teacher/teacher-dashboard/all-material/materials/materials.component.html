@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="table-responsive">
+      <div class="row justify-content-between d-flex">
+          <div class="col-sm-12 col-md-6">
+              <div id="user_list_datatable_info" class="dataTables_filter">
+                  <form class="me-3 position-relative">
+                      <div class="form-group mb-0">
+                          <input class="form-control" (keyup)="searchFile($event)"
+                              [(ngModel)]="searchParam" type="text" placeholder="Search....">
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <table class="files-lists table table-striped mt-4">
+          <thead>
+              <tr>
+                  <th scope="col">Sr No.</th>
+                  <th scope="col">Material Name</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">View</th>
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngIf="material?.length == 0">
+                  <td colspan="8">No data found!</td>
+              </tr>
+              <tr *ngFor="let element of material; let i = index">
+                  <td>
+                      {{i+1}}
+                  </td>
+                  <td>
+                      {{ element?.name }}
+                  </td>
+                  <td>{{element?.createdDate | date}}</td>
+                  <td>
+                      <button type="button" class="btn btn-primary btn-sm"
+                          style="border-radius: 50%;height: 46px;" (click)="showPreview(element.path)">
+                          <mat-icon>
+                              {{imageTypes.includes(element.name.substring(element.name.lastIndexOf(".")+1))
+                              ?
+                              'image':videoTypes.includes(element.name.substring(element.name.lastIndexOf(".")+1))?
+                              'play_circle':'file_copy'
+                              }}
+                          </mat-icon>
+                      </button>
+                  </td>
+                  <td>
+                     
+                  </td>
+                  <td>
+                     
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+      (changeSize)="changeSize($event)"></app-table-paginator>
+  </div>
+</div>

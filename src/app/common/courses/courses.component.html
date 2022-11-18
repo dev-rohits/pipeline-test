@@ -1,0 +1,106 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Course Listing</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <input class="form-control" #courseSearch type="text" placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+
+                        <a (click)="addCourse()" class="chat-icon-delete btn bg-soft-primary">
+                           + Add Course
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Public</th>
+                        <th scope="col">Display Order</th>
+                        <th scope="col">Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="courses.length==0">
+                        <td colspan="6">No Course Found</td>
+                     </tr>
+                     <tr *ngFor="let element of courses; let i = index">
+                        <td>
+                           {{i+1}}
+                        </td>
+                        <td>
+                           {{element.id}}
+                        </td>
+                        <td>
+                           {{ element?.name }}
+                        </td>
+                        <td>
+                           <div class="form-check form-switch">
+                              <input class="form-check-input" [(ngModel)]="element.featured"
+                                 (change)="featured(element,$event)" type="checkbox" id="flexSwitchCheckChecked"
+                                 [checked]="element?.featured">
+                              <label class="form-check-label" for="flexSwitchCheckChecked">{{element?.featured ?
+                                 'Enable':'Disable'}}</label>
+                           </div>
+                        </td>
+                        <td>
+                           <input type="number" min="0" style="width: 55px;" #displayOrder
+                              (change)="changeDisplayOrder(displayOrder.value,element.id)"
+                              [value]="element?.displayOrder">
+                        </td>
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer" (click)="editCourse(element.id)"
+                                 data-toggle="tooltip" title="Edit Course">
+                                 Edit Course
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" (click)="enrolledStudents(element.id)"
+                                 data-toggle="tooltip" title="Enrolled Students">
+                                 Enrolled Students
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" (click)="deleteCourse(element.id)"
+                                 data-toggle="tooltip" title="Delete">
+                                 Delete
+                              </button>
+                           </mat-menu>
+                           <!--<button mat-menu-item (click)="editMapping(element)" data-toggle="tooltip"
+                                   title="Edit class Mapping">
+                                   Edit Class Mapping
+                                </button>
+                                <button mat-menu-item style="cursor: pointer" (click)="newMapMaterial(element)"
+                                   data-toggle="tooltip" title="Map material">
+                                   Map Material
+                                </button>
+                             </mat-menu> -->
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <app-table-paginator [size]="size" [totalElements]="totalCourses" (pageChange)="pageChange($event)"
+                  (changeSize)="changeSize($event)"></app-table-paginator>
+            </div>
+         </div>
+      </div>
+   </div>

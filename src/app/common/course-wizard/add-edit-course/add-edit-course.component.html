@@ -1,0 +1,342 @@
+<div class="card" style="text-align: left !important;">
+    <!-- <div class="card-header d-flex justify-content-between">
+        <div class="header-title">
+            <h4 class="card-title">Add/Edit Course</h4>
+        </div>
+    </div> -->
+    <div class="card-body">
+        <form [formGroup]="courseForm">
+            <!-- <div (click)="imageSelect.click()" class="customImageSelctor"
+                [ngStyle]="{'border':getControls['courseImage'].invalid && isSubmit ? '2px solid red':'2px solid gray'}">
+                <button type="button" class="btn btn-primary active mt-4"><i class="fa fa-picture-o" aria-hidden="true"></i> Select Image</button>
+            </div>
+            <div *ngIf="isSubmit && getControls['courseImage'].invalid">
+                <div class="alert-custom alert-light-danger alert-dismissible">
+                    <div class="text-danger" *ngIf="getControls['courseImage'].errors?.['required']">
+                        Course Image is Required.
+                    </div>
+                </div>
+            </div> -->
+            <!-- <input type="file" #imageSelect style="display: none;" (change)="fileChangeEvent($event)" /> -->
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label class="form-label" for="validationCustom01">Course Name<span
+                            class="text-danger">*</span></label>
+                    <input type="text" formControlName="courseName" class="form-control">
+                    <div *ngIf="isSubmit && getControls['courseName'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['courseName'].errors?.['required']">
+                                Course Name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationCustom04">Course Image<span
+                            class="text-danger">*</span></label>
+                    <input class="form-control"  #imageSelect (change)="fileChangeEvent($event)" type="file"
+                        id="validationCustom04">
+                    <p *ngIf="getControls['id'].value">{{getControls['courseImage'].value}}</p>
+                    <div *ngIf="isSubmit && getControls['courseImage'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['courseImage'].errors?.['required']">
+                                Course Image is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="validationCustom04">Payment Modes<span
+                            class="text-danger">*</span></label>
+                    <br>
+                    <div class="form-check form-checkbox form-check-inline">
+                        <input type="checkbox" class="form-check-input" checked #offline
+                            (change)="paymodeSelected($event)" value="offline" id="ii" />
+                        <label class="form-check-label" for="customCheck5">Offline</label>
+                    </div>
+                    <div class="form-check form-checkbox form-check-inline">
+                        <input type="checkbox" class="form-check-input" #online (change)="paymodeSelected($event)"
+                            value="online" id="i" />
+                        <label class="form-check-label" for="customCheck5">Online</label>
+                    </div>
+                    <div *ngIf="isSubmit && getControls['paymentType'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['paymentType'].errors?.['required']">
+                                Payment Type is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion mt-2" *ngIf="isCroppedImage" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" style="background: aliceblue;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            Image Cropper
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="row mt-2">
+                            <div class="col-md-12" *ngIf="!isImageLoaded" style="text-align:center ;">
+                             <div  class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> 
+                            </div>
+                            <div class="col-md-6">  
+                                <p *ngIf="isImageLoaded">Selected Image</p> 
+                                <image-cropper 
+                                    [imageURL]="course.courseImagePath"
+                                    [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                                    [aspectRatio]="1.75/1" format="png" [cropperMinHeight]="500" [cropperMinWidth]="875"
+                                    (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                                    (cropperReady)="cropperReady()"  (loadImageFailed)="loadImageFailed()">
+                                </image-cropper>
+                            </div>
+                            <div class="col-md-6" *ngIf="isImageLoaded">
+                                <p>Image Preview</p>
+                                <img [src]="croppedImage" style="width: 560px;height: 314px;">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion mt-2" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" style="background: aliceblue;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            Course Details
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                        [ngClass]="getControls['timePeriodCourse'].valid || getControls['courseDescription'].valid || getControls['subjectSyllabus'].valid ? 'show':''"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="form-label" for="validationCustom01">Course Duration</label>
+                                <input type="text" formControlName="timePeriodCourse" class="form-control">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="form-label" for="validationCustom01">Course Description</label>
+                                <textarea class="form-control" formControlName="courseDescription"></textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="form-label" for="validationCustom01">Course Syllabus</label>
+                                <angular-editor formControlName="subjectSyllabus" [config]="editorConfig">
+                                </angular-editor>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed" style="background: aliceblue;" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTwo">
+                            Advance
+                        </button>
+                    </h2>
+
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+                        aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <label class="form-label" for="validationCustom01">Meta Tags</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-chip-list #chipList aria-label="Tag Selection">
+                                            <mat-chip *ngFor="let tag of metaTags" (removed)="remove(tag)">
+                                                {{tag.name}}
+                                                <button matChipRemove>
+                                                    <mat-icon>cancel</mat-icon>
+                                                </button>
+                                            </mat-chip>
+                                            <input placeholder="Tags..." [matChipInputFor]="chipList"
+                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                [matChipInputAddOnBlur]="addOnBlur"
+                                                (matChipInputTokenEnd)="add($event)">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="validationCustom04">Demo Video</label>
+                                    <input class="form-control" (change)="onVideoSelect($event)" #videoSelect
+                                        type="file" id="validationCustom04" required>
+                                    <p *ngIf="getControls['id'].value">{{getControls['demoVideo'].value}}</p>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <label class="form-label" for="validationCustom04"> Study Material</label>
+                                    <br>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio11"
+                                            formControlName="whetherStudyMaterialIncluded" value="true"
+                                            name="customRadio-1" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio11"> Yes </label>
+                                    </div>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio12"
+                                            formControlName="whetherStudyMaterialIncluded" value="false"
+                                            name="customRadio-1" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio12"> No </label>
+                                    </div>
+                                    <!-- <label class="form-label" for="validationCustom04"> Study Material?</label>
+                                    <select class="form-select" formControlName="whetherStudyMaterialIncluded"
+                                        aria-label="Default select example" id="validationCustom04" required>
+                                        <option value="true">Yes</option>
+                                        <option value="false" selected>No</option>
+                                    </select> -->
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="validationCustom04"> Assignment</label>
+                                    <br>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio13"
+                                            formControlName="whetherAssignmentTestIncluded" value="true"
+                                            name="customRadio-7" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio13"> Yes </label>
+                                    </div>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio14"
+                                            formControlName="whetherAssignmentTestIncluded" value="false"
+                                            name="customRadio-7" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio14"> No </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="validationCustom04"> Test</label>
+                                    <br>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio8" formControlName="hasTest" value="true"
+                                            name="customRadio-8" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio8"> Yes </label>
+                                    </div>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio9" formControlName="hasTest" value="false"
+                                            name="customRadio-8" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio9"> No </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label class="form-label" for="validationCustom04"> Certifications</label>
+                                    <br>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio21" formControlName="isCertificateIncluded"
+                                            value="true" name="customRadio-3" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio21"> Yes </label>
+                                    </div>
+                                    <div class="form-check custom-radio form-check-inline">
+                                        <input type="radio" id="customRadio22" formControlName="isCertificateIncluded"
+                                            value="false" name="customRadio-3" class="form-check-input">
+                                        <label class="form-check-label" for="customRadio22"> No </label>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-2">
+                                    <label class="form-label" for="validationCustom04"> Certifications?</label>
+                                    <select class="form-select" formControlName="isCertificateIncluded"
+                                        aria-label="Default select example" id="validationCustom04" required>
+                                        <option value="true">Yes</option>
+                                        <option value="false" selected>No</option>
+                                    </select>
+                                </div> -->
+
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4">
+                                    <label class="form-label" for="validationCustom04">Select Categories</label>
+                                    <mat-form-field appearance="outline" style="width:100%" *ngIf="courseCategories">
+                                        <mat-label>Select Category</mat-label>
+                                        <mat-select multiple formControlName="categoryIds"
+                                            (openedChange)="onSelectionChange($event)">
+                                            <mat-optgroup>
+                                                <mat-form-field style="width:100% !important" class="example-form-field"
+                                                    appearance="legacy">
+                                                    <mat-label>Search..</mat-label>
+                                                    <mat-icon matSuffix>search</mat-icon>
+                                                    <input matInput type="text" #searchCategories>
+                                                </mat-form-field>
+                                            </mat-optgroup>
+                                            <ng-container
+                                                *ngFor="let category of courseCategories | filter:searchCategories.value ">
+                                                <mat-option [value]="category.id" *ngIf="category!=null">
+                                                    {{category?.name}}
+                                                </mat-option>
+                                                <mat-select-trigger *ngIf="category==null">
+                                                    No Item Found.
+                                                </mat-select-trigger>
+                                            </ng-container>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="validationCustom04">Select Sub Categories</label>
+                                    <mat-form-field appearance="outline" style="width:100%" *ngIf="subCategories">
+                                        <mat-label>Select Sub Category</mat-label>
+                                        <mat-select multiple (openedChange)="onSubCategorySelectionChange($event)"
+                                            formControlName="subCategoryIds">
+                                            <mat-optgroup class="mb-2">
+                                                <mat-form-field style="width:100% !important" appearance="legacy">
+                                                    <mat-label>Search..</mat-label>
+                                                    <mat-icon matSuffix>search</mat-icon>
+                                                    <input matInput type="text" #searchSubCategories>
+                                                </mat-form-field>
+                                            </mat-optgroup>
+                                            <mat-optgroup *ngFor="let category of subCategories"
+                                                [label]="category.name">
+                                                <ng-container
+                                                    *ngFor="let element of category.categories | filter:searchSubCategories.value">
+                                                    <mat-option [value]="element.id" *ngIf="element!=null">
+                                                        {{element.name}}
+                                                    </mat-option>
+                                                    <mat-select-trigger *ngIf="element==null">
+                                                        No Item Found.
+                                                    </mat-select-trigger>
+                                                </ng-container>
+                                            </mat-optgroup>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="validationCustom04">Select Sub Sub Categories</label>
+                                    <mat-form-field appearance="outline" style="width:100%">
+                                        <mat-label>Select Sub Sub Category</mat-label>
+                                        <mat-select multiple formControlName="subSubCategoryIds"
+                                            (openedChange)="onSubSubCategorySelectionChange($event)">
+                                            <mat-optgroup>
+                                                <mat-form-field style="width:100% !important" appearance="legacy">
+                                                    <mat-label>Search..</mat-label>
+                                                    <mat-icon matSuffix>search</mat-icon>
+                                                    <input matInput type="text" #searchSubSubCategories>
+                                                </mat-form-field>
+                                            </mat-optgroup>
+                                            <mat-optgroup *ngFor="let category of subSubCategories"
+                                                [label]="category.name">
+                                                <ng-container
+                                                    *ngFor="let element of category.categories | filter:searchSubSubCategories.value">
+                                                    <mat-option [value]="element.id" *ngIf="element!=null">
+                                                        {{element.name}}
+                                                    </mat-option>
+                                                    <mat-select-trigger *ngIf="element==null">
+                                                        No Item Found.
+                                                    </mat-select-trigger>
+                                                </ng-container>
+                                            </mat-optgroup>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="submit" (click)="submitBasicInfo()" type="submit" class="btn btn-primary active">Submit &
+            Next</button>
+    </div>
+</div>

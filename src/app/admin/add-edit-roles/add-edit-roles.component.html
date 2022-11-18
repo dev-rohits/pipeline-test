@@ -1,0 +1,31 @@
+<h3 mat-dialog-title>{{data.role.id ? 'Edit' :'Add'}} Role</h3>
+<div mat-dialog-content>
+    <label class="form-label" for="validationCustom01">Role Name<span class="text-danger">*</span></label>
+    <input type="text" [(ngModel)]="data.role.roleName" class="form-control">
+    <div *ngIf="submitted && isRoleNameEmpty">
+        <div class="alert-custom alert-light-danger alert-dismissible">
+            <div class="text-danger">
+                Role Name is required.
+            </div>
+        </div>
+    </div>
+    <!-- <label class="form-label" for="validationCustom01">Select Role Type<span class="text-danger">*</span></label>
+    <select class="form-select" [(ngModel)]="data.role.roleType" [disabled]="data.role.id ? true : false"
+        aria-label="Default select example">
+        <option value="Admin">Admin</option>
+    </select>
+    <div *ngIf="submitted && isRoleTypeEmpty">
+        <div class="alert-custom alert-light-danger alert-dismissible">
+            <div class="text-danger">
+                Role Type is required.
+            </div>
+        </div>
+    </div> -->
+</div>
+<div mat-dialog-actions class="mt-2">
+    <button class="btn btn-primary" (click)="submit()"><i *ngIf="data.role.id" class="fa fa-pencil-square-o" aria-hidden="true"></i><i
+          *ngIf="!data.role.id"   class="fa fa-cloud" aria-hidden="true"></i> {{data.role.id ? 'Edit' :'Submit'}}</button>
+    <button class="btn btn-secondary ms-2" (click)="cancel()"><i class="fa fa-ban" aria-hidden="true"></i>
+        Cancel</button>
+    <button class="btn btn-danger ms-2" *ngIf="data.role.id" (click)="delete(data.role.id)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+</div>

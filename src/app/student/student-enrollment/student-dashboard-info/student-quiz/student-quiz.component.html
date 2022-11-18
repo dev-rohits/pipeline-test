@@ -1,0 +1,45 @@
+<div class="card">
+   <div class="card-body">
+      <div id="table" class="table-editable">
+         <table class="table table-bordered table-responsive-md table-striped text-center">
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Marks</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Exam Duration</th>
+                  <th>Teacher Name</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngIf="ELEMENT_DATA.length == 0">
+                  <td colspan="7">No Quiz Found</td>
+               </tr>
+               <tr class="" *ngFor="let element of ELEMENT_DATA">
+                  <td contenteditable="true">{{element.name}} </td>
+                  <td contenteditable="true">{{element.marks}}</td>
+                  <td contenteditable="true">{{element.startTime | date:'short'}}</td>
+                  <td contenteditable="true">{{element.endTime | date:'short'}}</td>
+                  <td contenteditable="true"> {{element?.hour!=null ?
+                     element?.hour==0 ? element?.minutes + ' minutes' : element?.minutes==0
+                     ?
+                     element?.hour + ' Hour' : element?.hour +' Hour '+ element?.minutes + ' Minutes ' : 'NA'}}
+                  </td>
+                  <td contenteditable="true"> {{element.teacherName}}</td>
+                  <td>
+
+                     <button class="btn btn-primary" style="width: 105px;"
+                        [disabled]="checkTime(element.startTime, element.endTime,element.studentSubmittedQuizs)"
+                        (click)="startQuizOrGetResult(element,element.startTime, element.endTime,element.studentSubmittedQuizs)">{{buttonText}}</button>
+
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+            (changeSize)="changeSize($event)"></app-table-paginator>
+      </div>
+   </div>
+</div>

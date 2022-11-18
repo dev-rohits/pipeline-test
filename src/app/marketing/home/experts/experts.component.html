@@ -1,0 +1,46 @@
+<div class="expert-area fix">
+    <div class="container cs-padding">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="expert-left">
+                    <h2>Achievements By <br>
+                        Our Experts</h2>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="expert-slider arw-design-2 slick-initialized slick-slider">
+                    <button type="button" class="slick-prev slick-arrow" style="display: block;" (click)="prev()"><i
+                            class="fal fa-chevron-circle-left"></i>
+                    </button>
+                    <div class="slick-list draggable">
+                        <div class="slick-track">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                                (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+                                <div ngxSlickItem *ngFor="let expert of expertsList" class="expert-item"
+                                    data-slick-index="0" aria-hidden="false" tabindex="0"
+                                    style="width: 687px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+                                    <div class="expert-g-wrapper">
+                                        <div class="expert-item-inner position-relative text-center"
+                                            *ngFor="let expert of expertsList">
+                                            <div class="ex-thumb">
+                                                <img [src]="expert.profileImage ? expert.profileImage : 'assets/img/e-1.png'"
+                                                    alt="">
+                                            </div>
+                                            <div class="ex-content">
+                                                <h6>{{expert.name}}</h6>
+                                                <p>{{expert.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                    <button type="button" class="slick-next slick-arrow" style="display: block;" (click)="next()"><i
+                            class="fal fa-chevron-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

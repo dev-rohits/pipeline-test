@@ -1,0 +1,44 @@
+<form [formGroup]="form">
+    <div class="cta-area position-relative z-index-2">
+        <div class="container type-2 cs-padding mb-3" style="padding-left: 10%;">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2 class="text-white text-dec">How does this work?</h2>
+                </div>
+                <div class="col-sm-5 mt-3">
+                    <p style="color: #F6F8FF; font-weight: 300;" class="textdec">*(we don’t sell your phone numbers.
+                        PERIOD)</p>
+                </div>
+            </div>
+        </div>
+        <div class="container type-2 cs-padding" style="padding-left: 10%;">
+            <div class="cta-g-wrapper" style="grid-gap: 12px;">
+                <fieldset>
+                    <legend>Full Name</legend>
+                    <input class="form-control" type="text" formControlName="name" placeholder="John Smith"
+                        id="fullname" autocomplete="off">
+                </fieldset>
+                <fieldset>
+                    <legend>Contact Number</legend>
+                    <input class="form-control" type="text" formControlName="mobileNumber" placeholder="Contact Number"
+                        id="number" autocomplete="off" (keydown)="onlyNumeric($event)">
+                </fieldset>
+                <fieldset>
+                    <legend>Courses</legend>
+                    <input class="form-control" type="text" list="codes" formControlName="id" placeholder="Enter Course"
+                        [(ngModel)]="courseName" (input)="getCourses($event)" [matAutocomplete]="auto" />
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of courses" [value]="option.courseName">
+                            {{option.courseName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </fieldset>
+                <div class="">
+                    <button (click)="submit()"
+                        class="btn btn-medium_round d-flex align-items-center justify-content-center text-uppercase w-100"><span
+                            class="text-gradient textdec">BOOK FOR A CALL BACK</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

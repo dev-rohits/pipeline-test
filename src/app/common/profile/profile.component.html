@@ -1,0 +1,205 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between bg-primary">
+        <div class="header-title">
+          <h4 class="card-title text-white">My Profile</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="profileForm">
+          <div class="row mb-3">
+            <div class="row">
+              <!-- <div class="col-md-3"></div> -->
+              <div class="text-center">
+                <div style="position: relative; left: 0; top: 0;" class="item1">
+                  <img [src]="imageSrc ? imageSrc : '../../../assets/images/profile.png'" (click)="fileSelect.click()"
+                    class="rounded-circle profilePos" alt="Rounded Image" width="150px">
+                  <!-- <a class="iq-icons-list" (click)="fileSelect.click()">
+                    <img class="Pos" src="../../../assets/images-marketing/add-icon.png" height="15%"
+                      style="border-radius: 50%;" alt="">
+                  </a> -->
+                  <input style="display: none" #fileSelect type="file" accept=".jpg,.jpeg" class="custom-file-input"
+                    (change)="onFileChange($event)" />
+                </div>
+              </div>
+              <!-- <div class="col-md-3"></div> -->
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label for="exampleInputEmail1" class="form-label text-dark"> Name<span
+                  class="text-danger">*</span></label>
+              <input type="text" formControlName="name" autocomplete="off" placeholder="Your Name"
+                class="form-control ">
+              <div *ngIf="(submitted && controls['name'].invalid) || controls['name']?.touched">
+                <div *ngIf="controls['name'].errors?.['required']" class="text-danger">
+                  Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="exampleInputEmail1 " class="form-label text-dark">Email<span
+                  class="text-danger">*</span></label>
+              <input type="email" formControlName="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="name@example.com" autocomplete="off" [readOnly]="containsEmail && isVerified">
+
+              <div *ngIf="(submitted && controls['email'].invalid) || controls['email']?.touched">
+                <div *ngIf="controls['email'].errors?.['email']" class="text-danger">
+                  Email is required
+                </div>
+                <div *ngIf="controls['email'].errors?.['emailvalidate'] && !controls['email'].errors?.['email']"
+                  class="text-danger">
+                  Email format is not correct
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1" style="margin-top: 23px;">
+              <h6 *ngIf="isVerified" class="badge bg-success mt-2" style="padding: 9px;">Verified</h6>
+              <button *ngIf="!isVerified" class="btn btn-secondary mt-2 text-white"
+                [disabled]="controls['email'].errors?.['emailvalidate']" (click)="verifyEmail()">Verify</button>
+            </div>
+            <div class="col-md-4">
+              <label for="exampleInputEmail1" class="form-label text-dark">Date of Birth<span
+                  class="text-danger">*</span></label>
+              <input type="date" formControlName="dob" autocomplete="off" placeholder="DD/MM/YYYY"
+                class="form-control ">
+              <div *ngIf="(submitted && controls['dob'].invalid) || controls['dob']?.touched">
+                <div *ngIf="controls['dob'].errors?.['required']" class="text-danger">
+                  Date of Birth is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <div class="row">
+                <label for="gender" class="form-label text-dark">Gender<span class="text-danger">*</span></label>
+                <div class="col-md-4">
+                  <input id="male" type="radio" class="custom-control-input" value="M" name="gender"
+                    formControlName="gender">
+                  <label class="form-label text-dark" for="male">&nbsp;Male</label>
+                </div>
+                <div class="col-md-4">
+                  <input id="female" type="radio" class="custom-control-input" value="F" name="gender"
+                    formControlName="gender">
+                  <label class="form-label text-dark" for="male">&nbsp;Female</label>
+                </div>
+                <div *ngIf="(submitted && controls['gender'].invalid) || controls['gender']?.touched">
+                  <div *ngIf="controls['gender'].errors?.['required']" class="text-danger">
+                    Gender is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="exampleInputEmail1" class="form-label text-dark">Country<span
+                  class="text-danger">*</span></label>
+              <select formControlName="country" class="form-control">
+                <option *ngFor="let country of countryList" [value]="country">{{country}}
+                </option>
+              </select>
+              <div *ngIf="(submitted && controls['country'].invalid) || controls['country']?.touched">
+                <div *ngIf="controls['country'].errors?.['required']" class="text-danger">
+                  Country is required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="exampleInputEmail1" class="form-label text-dark">State<span
+                  class="text-danger">*</span></label>
+              <select formControlName="state" class="form-control">
+                <option *ngFor="let state of stateList" [value]="state">{{state}}
+                </option>
+              </select>
+              <div *ngIf="(submitted && controls['state'].invalid) || controls['state']?.touched">
+                <div *ngIf="controls['state'].errors?.['required']" class="text-danger">
+                  State is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">Address<span
+                class="text-danger">*</span></label>
+            <textarea class="form-control" id="address" rows="3" formControlName="address"></textarea>
+            <div *ngIf="(submitted && controls['address'].invalid) || controls['address']?.touched">
+              <div *ngIf="controls['address'].errors?.['required']" class="text-danger">
+                Address is required
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!isStudent" class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" style="background: aliceblue;" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne">
+                  Teacher Details
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="row mt-3" formGroupName="teacherObj">
+                  <div class="form-group col-sm-6">
+                    <label class="form-label" for="exampleFormControlSelect1">Select Teaser
+                      Video</label>
+                    <input #fileSelect type="file" class="form-control" placeholder="Select Teaser Video"
+                      (change)="onTeasorVideoChange($event)" />
+                  </div>
+                  <div class="form-group col-sm-6" style="margin-top: 40px;">
+                    <h6>{{teaserVideoName}}</h6>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="description" class="form-label">Teacher Description</label>
+                    <textarea class="form-control" rows="4" formControlName="teacherOneLineDescription"></textarea>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="facebookLink" class="form-label">Facebook Page Link</label>
+                    <input type="text" formControlName="facebookPage" autocomplete="off" class="form-control ">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="instaLink" class="form-label">Insta Page Link</label>
+                    <input type="text" formControlName="instaPage" autocomplete="off" class="form-control ">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="youtubeLink" class="form-label">Youtube Page Link</label>
+                    <input type="text" formControlName="youtubePage" autocomplete="off" class="form-control ">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="teacherLink" class="form-label">Teacher Page Link</label>
+                    <input type="text" formControlName="teacherPage" autocomplete="off" class="form-control ">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="linkedInLink" class="form-label">LinkedIn Page Link</label>
+                    <input type="text" formControlName="linkedInPage" autocomplete="off" class="form-control ">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="experience" class="form-label">Teacher Experience</label>
+                    <input type="text" formControlName="experience" autocomplete="off" class="form-control">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="metaTags" class="form-label">Meta Tags</label>
+                    <tag-input [(ngModel)]="new" placeholder="Meta Tags" formControlName="metaTags"></tag-input>
+                    <mat-hint> Hint:- Press enter for add tags. </mat-hint>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="metaDescription" class="form-label">Meta Description</label>
+                    <textarea class="form-control" formControlName="metaDescription"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <button (click)="submit()" class="btn box-btn btn-success mt-1">
+              Update Profile
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

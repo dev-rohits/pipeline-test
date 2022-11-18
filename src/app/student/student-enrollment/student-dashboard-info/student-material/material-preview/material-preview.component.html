@@ -1,0 +1,23 @@
+<div *ngIf="data.element.materialObj.materialType == 'video'">
+  <video controls style="  width: 100%;
+    height: 300px;
+    ">
+    <source src="{{filePath}}{{data.element.materialObj.materialFileName}}" />
+  </video>
+</div>
+<div *ngIf="data.element.materialObj.materialType == 'image'">
+  <img src="{{filePath}}{{data.element.materialObj.materialFileName}}" width="100%" />
+</div>
+<div *ngIf="data.element.materialObj.materialType == 'pdf'">
+  <!-- <pdf-viewer
+                      [src]="data.element.materialObj.materialFilePath"
+                      [render-text]="true"
+                      style="display: block"
+                    ></pdf-viewer> -->
+  <pdf-viewer src="{{filePath}}{{data.element.materialObj.materialFileName}}" [render-text]="true"
+    style="display: block"></pdf-viewer>
+</div>
+
+<div class="d-flex justify-content-md-center">
+  <button class="btn btn-danger" (click)="dialogRef.close()">CLOSE</button>
+</div>

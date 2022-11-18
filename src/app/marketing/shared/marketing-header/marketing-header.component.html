@@ -1,0 +1,53 @@
+<header class="header-area">
+    <div class="container cs-padding">
+        <div class="d-flex flex-row align-items-center">
+            <div class="col-4">
+                <a routerLink="/marketing/home" class="logo"><img src="../assets/img/logo.png" alt=""
+                        class="img-fluid"></a>
+            </div>
+            <div class="col-8">
+                <div class="header-right d-flex align-items-center justify-content-end">
+                    <a *ngIf="!authService.isLoggin() " routerLink="/auth/login"
+                        class="btn box-btn gradient-bg"><span><svg width="13" height="15" viewBox="0 0 13 15"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.16617 12.1667C6.16617 12.9 6.36617 13.58 6.70617 14.1667H1.4995C0.759502 14.1667 0.166168 13.5733 0.166168 12.8333V2.16668C0.166168 1.81305 0.306644 1.47392 0.556692 1.22387C0.806741 0.973819 1.14588 0.833344 1.4995 0.833344H2.16617V5.50001L3.83283 4.50001L5.4995 5.50001V0.833344H9.4995C9.85312 0.833344 10.1923 0.973819 10.4423 1.22387C10.6924 1.47392 10.8328 1.81305 10.8328 2.16668V8.22668C10.6128 8.19334 10.3928 8.16668 10.1662 8.16668C7.9595 8.16668 6.16617 9.96001 6.16617 12.1667ZM12.8328 12.1667L10.8328 10.1667V11.5H8.16617V12.8333H10.8328V14.1667L12.8328 12.1667Z"
+                                    fill="#F0F3FA" />
+                            </svg>
+                        </span>Login</a>
+                    <!-- <a *ngIf="!authService.isLoggin()" routerLink="/auth/signup-role"
+                        class="btn box-btn gradient-bg g-border-style"><span><svg width="13" height="15"
+                                viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.426 6.65998L4.83268 12.2533V14.1666H1.49935C0.759349 14.1666 0.166016 13.5733 0.166016 12.8333V2.16665C0.166016 1.81302 0.306491 1.47389 0.55654 1.22384C0.806588 0.973789 1.14573 0.833313 1.49935 0.833313H2.16602V5.49998L3.83268 4.49998L5.49935 5.49998V0.833313H9.49935C9.85297 0.833313 10.1921 0.973789 10.4422 1.22384C10.6922 1.47389 10.8327 1.81302 10.8327 2.16665V6.36665C10.686 6.44665 10.546 6.53998 10.426 6.65998ZM6.16602 12.8066V14.1666H7.52602L11.6127 10.0866L10.2527 8.71998L6.16602 12.8066ZM12.7327 8.47998L11.8527 7.59998C11.7193 7.46665 11.4993 7.46665 11.3727 7.59998L10.7193 8.25331L12.0793 9.61331L12.7327 8.95998C12.866 8.83331 12.866 8.61331 12.7327 8.47998Z"
+                                    fill="url(#paint0_linear_315_253)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_315_253" x1="0.166016" y1="-1.20002" x2="13.4546"
+                                        y2="-0.233506" gradientUnits="userSpaceOnUse">
+                                        <stop offset="1" stop-color="#008CE4" />
+                                        <stop offset="1" stop-color="#00AF9E" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </span><span class="gradient-text">Signup</span></a> -->
+                    <a *ngIf="authService.isLoggin()" class="btn box-btn gradient-bg g-border-style"
+                        (click)="openDashboard()"><span><svg width="13" height="15" viewBox="0 0 13 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.426 6.65998L4.83268 12.2533V14.1666H1.49935C0.759349 14.1666 0.166016 13.5733 0.166016 12.8333V2.16665C0.166016 1.81302 0.306491 1.47389 0.55654 1.22384C0.806588 0.973789 1.14573 0.833313 1.49935 0.833313H2.16602V5.49998L3.83268 4.49998L5.49935 5.49998V0.833313H9.49935C9.85297 0.833313 10.1921 0.973789 10.4422 1.22384C10.6922 1.47389 10.8327 1.81302 10.8327 2.16665V6.36665C10.686 6.44665 10.546 6.53998 10.426 6.65998ZM6.16602 12.8066V14.1666H7.52602L11.6127 10.0866L10.2527 8.71998L6.16602 12.8066ZM12.7327 8.47998L11.8527 7.59998C11.7193 7.46665 11.4993 7.46665 11.3727 7.59998L10.7193 8.25331L12.0793 9.61331L12.7327 8.95998C12.866 8.83331 12.866 8.61331 12.7327 8.47998Z"
+                                    fill="url(#paint0_linear_315_253)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_315_253" x1="0.166016" y1="-1.20002" x2="13.4546"
+                                        y2="-0.233506" gradientUnits="userSpaceOnUse">
+                                        <stop offset="1" stop-color="#008CE4" />
+                                        <stop offset="1" stop-color="#00AF9E" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </span><span class="gradient-text">Dashboard</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

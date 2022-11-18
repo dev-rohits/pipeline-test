@@ -1,0 +1,327 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between bg-primary">
+        <div class="header-title">
+          <h4 class="card-title text-white">Enter Course Details</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Enter Course Name*</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputText1"
+                  placeholder="Enter Course Name"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Enter Course Display Order*</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputText1"
+                  placeholder="Enter Course Display Order"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Enter Course Title*</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputText1"
+                  placeholder="Enter Course Title"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Is This Course For Internal Purpose ?*</label
+                >
+                <select class="form-select" id="exampleFormControlSelect1">
+                  <option selected="" disabled="">Select Purpose</option>
+                  <option>0-18</option>
+                  <option>18-26</option>
+                  <option>26-46</option>
+                  <option>46-60</option>
+                  <option>Above 60</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Is assignment test included ?*</label
+                >
+                <select class="form-select" id="exampleFormControlSelect1">
+                  <option selected="" disabled="">Select included</option>
+                  <option>0-18</option>
+                  <option>18-26</option>
+                  <option>26-46</option>
+                  <option>46-60</option>
+                  <option>Above 60</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputText1"
+                  >Is study material included ?*</label
+                >
+                <select class="form-select" id="exampleFormControlSelect1">
+                  <option selected="" disabled="">
+                    Select material included
+                  </option>
+                  <option>0-18</option>
+                  <option>18-26</option>
+                  <option>26-46</option>
+                  <option>46-60</option>
+                  <option>Above 60</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>Select Type*</strong>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check d-block">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  checked=""
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Default checked radio
+                </label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check d-block">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  checked=""
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Default checked radio
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <label for="">Enter Course Description</label>
+            <angular-editor formControlName="htmlContent"></angular-editor>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input"
+                  >Select Course Image</label
+                >
+                <input class="form-control" type="file" id="customFile" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input"
+                  >Select Teacher Profile Image*</label
+                >
+                <input class="form-control" type="file" id="customFile" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input"
+                  >Select Teaser Video</label
+                >
+                <input class="form-control" type="file" id="customFile" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input"
+                  >Select Demo Video*</label
+                >
+                <input class="form-control" type="file" id="customFile" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input"
+                  >Live Class Enabled*</label
+                >
+                <select class="form-select" id="exampleFormControlSelect1">
+                  <option selected="" disabled="">
+                    Select material included
+                  </option>
+                  <option>0-18</option>
+                  <option>18-26</option>
+                  <option>26-46</option>
+                  <option>46-60</option>
+                  <option>Above 60</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="customFile" class="form-label custom-file-input"
+                >What Student Will Learn</label
+              >
+              <angular-editor formControlName="htmlContent"></angular-editor>
+            </div>
+            <div class="form-group">
+              <label for="customFile" class="form-label custom-file-input"
+                >Who This Course Is For</label
+              >
+              <angular-editor formControlName="htmlContent"></angular-editor>
+            </div>
+            <div class="form-group">
+              <label for="customFile" class="form-label custom-file-input"
+                >Subject Syllabus</label
+              >
+              <angular-editor formControlName="htmlContent"></angular-editor>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label" for="exampleInputText1"
+                    >Time Period Course*</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputText1"
+                    placeholder="Time Period Course"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label" for="exampleInputText1"
+                    >Course Price*</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputText1"
+                    placeholder="Course Price"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label" for="exampleInputText1"
+                    >Enter Course Title*</label
+                  >
+                  <select class="form-select" id="exampleFormControlSelect1">
+                    <option selected="" disabled="">
+                      Select material included
+                    </option>
+                    <option>0-18</option>
+                    <option>18-26</option>
+                    <option>26-46</option>
+                    <option>46-60</option>
+                    <option>Above 60</option>
+                  </select>
+                </div>
+              </div>
+              <div class="card">
+                <div
+                  class="card-header d-flex justify-content-between bg-secondary"
+                >
+                  <div class="header-title">
+                    <h6 class="card-title text-white">
+                      Instructions For Course Price Plans
+                    </h6>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <ol>
+                    <li>Provide schedule for the classes</li>
+                    <ul>
+                      <li>Number of classes per week(mention specific days)</li>
+                      <li>Timing for each class</li>
+                      <li>
+                        Number of batches(Morning, Evening etc with timings)
+                      </li>
+                    </ul>
+                    <li>Pricing for group session and one-to-one session.</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea1"
+                  >Course Price Plans</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="5"
+                ></textarea>
+              </div>
+              <div class="card">
+                <div
+                  class="card-header d-flex justify-content-between bg-secondary"
+                >
+                  <div class="header-title">
+                    <h6 class="card-title text-white">
+                        Instructions For Teacher Bio
+                    </h6>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <ol >
+                    <li >
+                      Provide Brief Introduction About Yourself.
+                    </li>
+                    <ul >
+                      <li>
+                        Provide Your Educational Qualifications.
+                      </li>
+                      <li >Provide Your Experience.</li>
+                    </ul>
+                  </ol>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea1"
+                  >Teacher Bio</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="5"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="text-center mt-6"><button type="button" class="btn btn-primary active" >
+            Submit
+            </button>&nbsp;<button type="button" class="btn btn-secondary active ">cancel</button></div>
+      </div>
+    </div>
+  </div>
+</div>

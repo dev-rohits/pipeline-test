@@ -1,0 +1,19 @@
+.mat-form-field-flex:hover .mat-form-field-outline {
+    opacity: 0;
+    transition: none !important;
+ }
+ .mat-label{
+    color: white !important;
+ }
+
+ .customImageSelctor{
+   cursor: pointer; 
+   border:2px solid gray;
+   text-align: center;
+   background:rgba(80, 181, 255, 0.2);
+   height: 95px;
+   border-radius: 45px;
+   border-style: dotted !important;
+ }
+
+ 

@@ -1,0 +1,125 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <span>
+                  <h4 class="card-title text-white">Schedule Management </h4>
+               </span>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                                 placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+                        <th>Sr.</th>
+                        <th scope="col">Class Name</th>
+                        <th>Tags</th>
+                        <!-- <th scope="col">Class Subject</th> -->
+                        <th scope="col">Teacher Name</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td colspan="7" *ngIf="classScheduledList.length==0">
+                           No Record Found.
+                        </td>
+                     </tr>
+                     <tr *ngFor="let class of classScheduledList ; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>
+                           {{class.classTitle}}
+                        </td>
+
+                        <td>
+                           {{class.metaTags}}
+                        </td>
+                        <td>
+                           {{class.teacherName}}
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{class.startDate | date}}
+
+                           </div>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{class.startDate | date :'shortTime'}}
+
+                           </div>
+
+                        </td>
+                        <td>
+                           <div class="font-weight-bold text-muted">
+                              {{class.endDate | date}}
+                           </div>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{class.endDate | date :'shortTime'}}
+
+                           </div>
+                        </td>
+                        <td><span class="badge bg-info">{{class.active
+                              ? 'Active' : 'Inactive'}}</span></td>
+
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer" data-toggle="tooltip" title="Edit"
+                                 (click)="EditClassConfiguration(class)">
+                                 Edit
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" data-toggle="tooltip" title="Map To class"
+                                 (click)="classMapping(class.idClassSchedule)">
+                                 Map to Batch
+                              </button>
+                              <button mat-menu-item data-toggle="tooltip" title="Delete"
+                                 (click)="delete(class.idClassSchedule)">
+                                 Delete
+                              </button>
+
+                              <button mat-menu-item style="cursor: pointer" data-toggle="tooltip" title="Cancel"
+                                 (click)="cancel(class.idClassSchedule,class?.active ? false : true)">
+                                 {{class?.active ? 'Cancel Class':'Reschedule Class'}}
+                              </button>
+                           </mat-menu>
+                        </td>
+                     </tr>
+
+                  </tbody>
+               </table>
+               <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+                  (changeSize)="changeSize($event)"></app-table-paginator>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="d-flex justify-content-start">
+                     <button type="button" *ngIf="!disabledOnAllClasses" class="btn btn-primary"
+                       (click)="backToLastPage()">
+                        << Back</button>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+
+      </div>
+   </div>
+</div>

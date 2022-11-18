@@ -1,0 +1,83 @@
+<main>
+    <div class="teachers-area course-listing-area header-size-adjust  gray-bg position-relative fix">
+        <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute">
+        <div class="container cs-padding">
+            <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Blogs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blogs List</li>
+                </ol>
+            </nav>
+            <div class="newsletter-input position-relative global-search mb-5">
+                <input type="text" placeholder="Search..." class="gray-bg">
+                <button class="position-absolute"><i class="fal fa-search"></i></button>
+            </div>
+
+            <div class="catalog-all-wrapper">
+                <h2><b>Featured Blogs</b></h2>
+
+
+            </div>
+            <div class="ins-el-box" style=" background-image: url(../assets/images/Rectangle\ 1.png);background-repeat: no-repeat;
+            background-size: auto; width: 100%; ">
+                <!-- <img class="img-fluid position-absolute bottom-0 ins-t-1" src="assets/img/ins-t-1.png" alt=""> -->
+                <div class="ins-element">
+                    <div class="ins-el-inner">
+                        <h5>{{blogsList[0].subject}}</h5>
+                        <p  *ngIf="(blogsList[0]?.description + '').length <= 180" class="short-description">{{blogsList[0].description}}
+                        </p>
+                        <p *ngIf="(blogsList[0]?.description + '').length > 180" class="short-description"> {{blogsList[0].description | slice : 0 : 180 }}...</p>
+                        <p>Author <br>
+                            {{blogsList[0].firstName}} {{blogsList[0].lastName}}</p>
+                        <a class="btn box-btn fill-white small round-60" [routerLink]="['/marketing/blog-details']"
+                        [queryParams]="{id: blogsList[0].idBlog}">View Blog</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:40px ;" >
+                <div class="col-lg-4" style="margin-top: 20px" *ngFor="let blog of blogsList | slice:1; let i = index">
+                    <div class="course-item">
+                      <div class="card single-course"  [routerLink]="['/marketing/blog-details']"
+                      [queryParams]="{id: blog.idBlog}">
+                        <div class="thumb-part position-relative" style="background-image: url(assets/img/v-1.png)">
+                          <!-- <button class="badge cat-btn popular" tabindex="0">Popular<img class="img-fluid" src="assets/img/badge.svg" alt=""></button> -->
+                          <a class="position-absolute play" tabindex="0"><img src="assets/img/play.svg" alt=""
+                              class="img-fluid" /></a>
+                        </div>
+                        <div class="content-part">
+                          <div class="up-bar">
+                            <p class="status">
+                              <img class="img-fluid" src="assets/img/beginner-graph.svg" alt="" />
+                              Beginner
+                            </p>
+                            <p>
+                              <img src="../../../assets/images/Vector (2).png" alt="" />
+                            </p>
+                          </div>
+                          <div class="middle-content">
+                            <div class="ttl-content">
+                              <h4>{{blog.subject}}</h4>
+                            </div>
+                            <p *ngIf="(blog?.description + '').length <= 120" class="short-description">
+                                {{blog?.description }}</p>
+                            <p *ngIf="(blog?.description + '').length > 120" class="short-description">
+                                {{blog?.description | slice : 0 : 120 }}...</p>
+                          </div>
+          
+                          <div class="bottom-content">
+                            <h5 class="author">
+                              <span class="d-block">Author</span>{{blog.firstName}} {{blog.lastName}}
+                            </h5>
+                            <a class="know-more" tabindex="0">Know More<i class="far fa-arrow-right"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+            </div>
+        </div>
+    </div>
+</main>

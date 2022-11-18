@@ -1,0 +1,139 @@
+@import url("../../../assets/css/bootstrap.min.css");
+@import url("../../../assets/css/all.min.css");
+@import url("../../../assets/css/slick.css");
+@import url("../../../assets/css/nice-select.css");
+@import url("../../../assets/css/main.css");
+@import url("../../../assets/css/responsive.css");
+.fea-t{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+color: black;
+}
+.fea-t-2{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+color: #616161;
+}
+.ms-t{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 34px;
+/* or 189% */
+
+text-align: center;
+font-feature-settings: 'salt' on, 'liga' off;
+
+color: #8491A5;
+
+}
+.ms-t2{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 34px;
+/* or 189% */
+
+text-align: center;
+font-feature-settings: 'salt' on, 'liga' off;
+
+/* light grey */
+
+color: #8491A5;
+}
+.btn-1{
+   
+
+
+padding: 20.3607px 42px;
+gap: 9.05px;
+
+
+width: 231px;
+height: 68.72px;
+left: 524px;
+top: 7140px;
+
+/* Blue */
+color: #007EF2;
+border: 3px solid #007EF2;
+border-radius: 6.78689px;
+}
+.set-img{
+    margin-top: -100px;
+}
+.set-card{
+    background: rgba(0, 126, 242, 0.1);
+    border-radius: 20px; max-height:400px ; width: 100%;  
+}
+@media only screen and (max-width: 992px) {
+    .set-card{
+        max-height: 100%;
+
+    }
+    .set-img{
+        margin-top: 0px;
+    }
+}
+.ca-text{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 27px;
+/* identical to box height */
+
+letter-spacing: 0.145em;
+
+color: #4C535D;
+}
+.ca-text2{
+    
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 38px;
+line-height: 57px;
+/* identical to box height */
+
+
+/* Blue */
+
+color: #007EF2;
+}
+.ca-text3{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 39px;
+/* or 219% */
+
+letter-spacing: 0.015em;
+font-feature-settings: 'salt' on, 'liga' off;
+
+color: #4C535D;
+}
+.ca-btn1{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20.3607px 54.2951px;
+gap: 9.05px;
+
+position: absolute;
+width: 198.59px;
+height: 68.72px;
+color: white;
+
+/* Blue */
+
+background: #007EF2;
+border-radius: 6.78689px;
+}

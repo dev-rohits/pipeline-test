@@ -1,0 +1,163 @@
+@import url("../../../assets/css/bootstrap.min.css");
+@import url("../../../assets/css/all.min.css");
+@import url("../../../assets/css/slick.css");
+@import url("../../../assets/css/nice-select.css");
+@import url("../../../assets/css/main.css");
+@import url("../../../assets/css/responsive.css");
+.full{
+    width: 100%;
+    background: blue;
+    background-repeat: no-repeat;
+    background-size: 100% 800px;
+}
+.appd{
+    background: blue;
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+
+    position: relative;
+}
+.left1{
+float: left;
+height: fit-content;
+width: 70%;
+
+
+}
+.right1{
+    float: right;
+    height: fit-content;
+    width: 30%;
+}
+.ap1-t{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 42px;
+line-height: 63px;
+text-align: center;
+
+
+color: #000000;
+}
+.ap2-t{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 34px;
+/* or 189% */
+
+
+font-feature-settings: 'salt' on, 'liga' off;
+
+color: #4C535D;
+}
+.ap3-t{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+
+
+/* Black */
+
+color: #1F1F1F;
+}
+.cardofback{
+//    box-sizing: border-box; 
+background: #FFFFFF;
+box-shadow: 0px -18px 40px rgba(0, 0, 0, 0.06);
+border-radius: 80px 80px 0px 0px;
+}
+.cardbodyofback{
+    padding: 40px;
+    margin: 100px;
+    // margin-top: 120px;
+    // margin-left: 10%;
+    // margin-right: 10%;
+}
+.t1{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 34px;
+line-height: 51px;
+/* identical to box height */
+
+
+/* Black */
+
+color: #1F1F1F;
+}
+.al{
+    display: flex;
+    align-items: stretch;
+   
+}
+.ap4-t{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 36px;
+line-height: 54px;
+
+color: #000000;
+}
+.ic{
+    width: 115px;
+height: 115px;
+}
+.bg{
+    background: rgba(0, 126, 242, 0.1);
+border-radius: 22px;
+
+}
+.tu{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height */
+
+letter-spacing: 0.23em;
+text-transform: uppercase;
+
+/* light grey */
+
+color: #8491A5;
+}
+.b-t{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 63px;
+    
+    color: #000000;
+       
+}
+.ng{
+    background: rgba(0, 126, 242, 0.1);
+    border-radius: 22px;
+     max-height: 400px; 
+}
+.ng-img{
+     height:600px; 
+     margin-top: -100px;
+     width: 100%;
+}
+@media screen and (max-width: 900px) {
+    .ng-img{
+        height:100%; 
+        margin-top: 0px;
+        width: 100%;
+   }
+   .ng{
+    background: rgba(0, 126, 242, 0.1);
+    border-radius: 22px;
+     max-height: 100%; 
+}
+  }

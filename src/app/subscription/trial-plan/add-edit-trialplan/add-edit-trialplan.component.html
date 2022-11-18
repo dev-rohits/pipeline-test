@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Add Trial</h1>
+<div mat-dialog-content>
+ <form [formGroup]="form">
+     <div class="row">
+          <div class="form-group">
+            <label>Plan Name<span class="text-danger">*</span></label>
+            <input type="text" placeholder="Plan Name" formControlName="name" class="form-control"/>
+           
+         </div>
+          
+        </div>
+     
+           <div class="row">
+            <div class="col-md-6"> 
+                <div class="form-group">
+                <label>Space Allowed<span class="text-danger">*</span></label>
+                <input type="text" placeholder="Allowed Space" formControlName="allowedStorage" class="form-control"/>
+               
+              </div></div>
+             <div class="col-md-6"> 
+            <div class="form-group">
+               <label>Allowed Students <span class="text-danger">*</span></label>
+               <input type="text" placeholder="Allowed Students" formControlName="allowedStudents" class="form-control"/>
+              
+             </div>
+           </div>
+           <div class="col-md-6"> 
+            <div class="form-group">
+            <label>Allowed Teachers<span class="text-danger">*</span></label>
+            <input type="text" placeholder="Allowed Teachers" formControlName="allowedTeachers" class="form-control"/>
+           
+          </div></div>
+         <div class="col-md-6"> 
+        <div class="form-group">
+           <label> Allowed ConcurrentClasses<span class="text-danger">*</span></label>
+           <input type="text" placeholder="Allowed  ConcurrentClasses" formControlName="allowedConcurrentClasses" class="form-control"/>
+          
+         </div>
+       </div>
+          
+          </div>
+    
+ </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="submit()">Submit</button>
+</div>

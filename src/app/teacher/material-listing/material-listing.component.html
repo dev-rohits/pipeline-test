@@ -1,0 +1,101 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Material Listing</h4>
+            </div>
+            <button (click)="addMaterial()" class="btn" style="background: white; color: #50B5FF">
+               + Add Material
+            </button>
+         </div>
+
+         <div class="card-body">
+            <div class="table-responsive">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                                 placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+                        <th scope="col">No.</th>
+                        <!-- <th scope="col">Name</th> -->
+                        <th scope="col">File Name</th>
+                        <th scope="col">File Type</th>
+                        <!-- <th scope="col">Category</th> -->
+                        <th scope="col">Topic</th>
+                        <th scope="col">Uploaded On</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="material?.length == 0">
+                        <td colspan="8">No data found!</td>
+                     </tr>
+                     <tr *ngFor="let element of material; let i = index">
+                        <td>
+                           {{i+1}}
+                        </td>
+                        <!-- <td>
+                           {{ element?.materialName }}
+                        </td> -->
+                        <td>
+                           {{ element?.materialFileName }}
+                        </td>
+                        <td>{{ element?.materialType }}</td>
+                        <!-- <td>
+                           {{ element?.materialCategory }}
+                        </td> -->
+                        <td>{{ element?.materialTopic }}</td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.createdDate | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.createdDate | date: "h:mm:ss a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer"
+                                 (click)="editMaterial(element.idClassMaterial)" data-toggle="tooltip"
+                                 title="Map To class">
+                                 Edit
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" (click)="mapToClass(element)"
+                                 data-toggle="tooltip" title="Map To class">
+                                 Map To Class
+                              </button>
+                              <button mat-menu-item (click)="editMapping(element)" data-toggle="tooltip"
+                                 title="Edit class Mapping">
+                                 Edit Class Mapping
+                              </button>
+                              <button mat-menu-item style="cursor: pointer" (click)="newMapMaterial(element)"
+                                 data-toggle="tooltip" title="Map material">
+                                 Map to Batch
+                              </button>
+                           </mat-menu>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <!-- <app-table-paginator [size]="size" [totalElements]="materialCount" (pageChange)="pageChange($event)"
+                  (changeSize)="changeSize($event)"></app-table-paginator> -->
+               <app-table-paginator [size]="size" [totalElements]="materialCount" (pageChange)="pageChange($event)"
+                  (changeSize)="changeSize($event)"></app-table-paginator>
+            </div>
+         </div>
+      </div>
+   </div>

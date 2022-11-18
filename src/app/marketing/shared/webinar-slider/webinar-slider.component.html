@@ -1,0 +1,58 @@
+<h2 class="fourth-title">Join <span class="pesh"> webinar</span></h2>
+<div class="course-active gap-35 slider_shadow arw-design right_shadow_active slick-initialized slick-slider">
+    <button type="button" *ngIf="demoClasses.length > 0" class="slick-prev slick-arrow " aria-disabled="true"
+        (click)=" prev()">
+        <i class="far fa-angle-left"></i>
+    </button>
+
+    <div class="slick-list draggable">
+        <div class="slick-track">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+                <div ngxSlickItem class="course-item slick-slide slick-current slick-active" tabindex="0"
+                    data-slick-index="0" aria-hidden="false" *ngFor="let demo of demoClasses">
+
+                    <div class="gap-38 mb-0 point">
+                        <div class="book-rows">
+                            <div class="book-rw blue">
+                                <div class="bk-date">
+                                    <span class="text-uppercase d-block">{{demo?.startDate | date:'MMM'}}</span>
+                                    {{demo?.startDate | date:'d'}}
+                                </div>
+                                <div class="bk-ttl">
+                                    <h6>{{demo?.classTitle}}</h6>
+                                    <ul>
+                                        <li>Instructor <strong>{{demo?.teacherName}}</strong></li>
+                                        <li>Time <strong> {{ demo?.startDate | date: "h:mm a" }} -
+                                                {{ demo?.endDate | date: "h:mm a" }}</strong></li>
+                                    </ul>
+                                </div>
+                                <div class="action" *ngIf="demo?.endDate | date: 'YYYY-mm-dd HH:mm' not null > currentDate | date: 'YYYY-mm-dd HH:mm'">
+                                    <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                      class="btn box-btn book-now" *ngIf="isLogin" (click)=joinWebinar(demo)>Join Now
+                                    </button>
+                                    <a routerLink="/auth/login-otp" class="btn box-btn book-now" *ngIf="!isLogin">Join Now</a>
+                                    <!-- <button type="button"  ng-if="demo.startDate.getTime() > currentDate.getTime()"    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    class="btn box-btn book-now" >Not Started Yet
+                                    </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+    <button *ngIf="demoClasses.length > 0" type="button" (click)=" next()" class="slick-next slick-arrow"
+        style="display: block" aria-disabled="false">
+        <i class="far fa-angle-right"></i>
+    </button>
+</div>
+<div *ngIf="demoClasses.length <= 0">
+    <h6>No webinar found!</h6>
+</div>

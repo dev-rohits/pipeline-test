@@ -1,0 +1,48 @@
+<div class="achiever-wrapper common-gradient-bg" [ngStyle]="{'min-height': expertsList.length > 0 ? '210px' : '103px'}"
+    style="padding-top: 15px; padding-bottom: 15px;">
+    <h3 class="tertiary-title white text-center">OUR ACHIEVERS</h3>
+    <div *ngIf="expertsList.length > 0">
+        <ngx-slick-carousel class="expert-slider-2" #slickModal="slick-carousel" [config]="slideConfig"
+            (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+
+            <div ngxSlickItem tabindex="0" data-slick-index="0" aria-hidden="false" style="z-index: 0;"
+                class="expert-item ">
+                <div class="expert-g-wrapper point">
+                    <div *ngIf="expertsList.length > 0" class="expert-item-inner position-relative text-center">
+                        <div class="ex-thumb">
+                            <img [src]="expertsList[0].profileImage ? expertsList[0].profileImage : 'assets/img/e-2.png'"
+                                alt="" />
+                        </div>
+                        <div class="ex-content">
+                            <h6>{{expertsList[0].name}}</h6>
+                            <p>{{expertsList[0].description}}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="expertsList.length > 1" class="expert-item-inner position-relative text-center">
+                        <div class="ex-thumb">
+                            <img [src]="expertsList[1].profileImage ? expertsList[1].profileImage : 'assets/img/e-1.png'"
+                                alt="" />
+                        </div>
+                        <div class="ex-content">
+                            <h6>{{expertsList[1].name}}</h6>
+                            <p>{{expertsList[1].description}}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="expertsList.length > 2" class="expert-item-inner position-relative text-center">
+                        <div class="ex-thumb">
+                            <img [src]="expertsList[2].profileImage ? expertsList[2].profileImage : 'assets/img/e-4.png'"
+                                alt="" />
+                        </div>
+                        <div class="ex-content">
+                            <h6>{{expertsList[2].name}}</h6>
+                            <p>{{expertsList[2].description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ngx-slick-carousel>
+    </div>
+    <div *ngIf="expertsList.length == 0">
+        <h6 class="text-white text-center">No achievers found!</h6>
+    </div>
+</div>

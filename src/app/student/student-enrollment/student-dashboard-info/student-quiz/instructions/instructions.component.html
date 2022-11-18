@@ -1,0 +1,30 @@
+<ng-template [ngIf]="data.entry">
+    <h3 mat-dialog-title>Exam Instructions</h3>
+    <div mat-dialog-content>
+        <ol>
+            <li> Duration- {{data.params.hour!=null ?
+                data.params.hour==0 ? data.params.minutes + ' minutes' : data.params.minutes==0
+                ?
+                data.params.hour + ' Hour' : data.params.hour +' Hour '+ data.params.minutes + ' Minutes ' :
+                'NA'}}</li>
+            <li>{{data.params.totalMarks}} Marks Paper</li>
+            <li *ngIf="data?.params?.negtiveMarks">Negative Marking {{data.params.negtiveMarks}}%</li>
+            <li style="font-weight: bold; color: red;">Don't close or refresh the exam window otherwise the quiz will be
+                considered as submitted.</li>
+        </ol>
+    </div>
+    <div mat-dialog-actions align="center">
+        <button mat-raised-button class="btn btn-primary" (click)="close()">Next</button>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="!data.entry">
+    <div style="text-align: center;">
+        <h1 mat-dialog-title>Are you sure ?</h1>
+        <div mat-dialog-content>You want to quit the exam !</div>
+        <div mat-dialog-actions align="center">
+            <button mat-button class="btn btn-warn" (click)="close()">Quit ?</button>
+            <button mat-button mat-dialog-close class="btn btn-secondary">Cancel</button>
+        </div>
+    </div>
+</ng-template>

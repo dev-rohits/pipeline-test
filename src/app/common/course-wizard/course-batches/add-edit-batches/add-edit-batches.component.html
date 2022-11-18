@@ -1,0 +1,121 @@
+<div class="card" style="text-align: left !important;">
+    <div class="card-header d-flex justify-content-between">
+        <div class="header-title">
+            <h4 class="card-title">{{getControls['idBatch'].value==undefined ? 'Add Batch':'Edit Batch'}}</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <form class="form needs-validation" [formGroup]="batchForm" novalidate>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Batch Name<span
+                            class="text-danger">*</span></label>
+                    <input formControlName="batchName" type="text" id="validationCustom02" class="form-control"
+                        required>
+                    <div *ngIf="isSubmit && getControls['batchName'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['batchName'].errors?.['required']">
+                                Batch name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Start Date<span
+                            class="text-danger">*</span></label>
+                    <input type="date" [min]="now" formControlName="startDate" id="validationCustom02"
+                        class="form-control" required>
+                    <div *ngIf="isSubmit && getControls['startDate'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['startDate'].errors?.['required']">
+                                Start Date is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">End Date<span
+                            class="text-danger">*</span></label>
+                    <input type="date" [min]="now" formControlName="endDate" id="validationCustom02"
+                        class="form-control" required>
+                    <div *ngIf="isSubmit && getControls['endDate'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['endDate'].errors?.['required']">
+                                End Date is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Max Enrollments<span
+                            class="text-danger">*</span></label>
+                    <input type="number" formControlName="maxNoOfEnrollments" id="validationCustom02"
+                        class="form-control" required>
+                    <div *ngIf="isSubmit && getControls['maxNoOfEnrollments'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['maxNoOfEnrollments'].errors?.['required']">
+                                Max Enrollments is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label class="form-label" for="validationCustom02">Select Pricing Plan<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" formControlName="idPricingPlan" aria-label="Default select example">
+                        <option selected disabled>Open this select menu</option>
+                        <option [value]="element?.idPricingPlan" *ngFor="let element of pricingPlans">
+                            {{element?.pricingPlanName}}</option>
+                    </select>
+                    <div *ngIf="isSubmit && getControls['idPricingPlan'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['idPricingPlan'].errors?.['required']">
+                                Pricing Plan is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group  col-md-4">
+                    <span class="d-flex justify-content-between">
+                        <label class="form-label" for="validationCustom02">Select Teacher
+                        </label>
+                        <a class="form-label" style="text-decoration: underline;" for="validationCustom02"
+                            (click)=openAddTeacherDialog()>Add Teacher
+                        </a>
+                    </span>
+                    <mat-form-field appearance="outline" style="width:100%">
+                        <mat-select multiple formControlName="teacherIds">
+                            <mat-optgroup>
+                                <mat-form-field style="width:100% !important" appearance="legacy">
+                                    <mat-label>Search..</mat-label>
+                                    <mat-icon matSuffix>search</mat-icon>
+                                    <input matInput type="text" #searchTeacher>
+                                </mat-form-field>
+                            </mat-optgroup>
+                            <ng-container *ngFor="let element of teachers | filter:searchTeacher.value">
+                                <mat-option [value]="+element.id" *ngIf="element!=null">
+                                    <div class="row">
+                                        <div class="col-9">{{element.name}}</div>
+                                        <div class="col-3"> <img class="avatar"
+                                                [src]="element?.image ? element?.image :'../../../assets/images/profile.png'">
+                                        </div>
+                                    </div>
+                                </mat-option>
+                                <mat-select-trigger *ngIf="element==null">
+                                    No Item Found.
+                                </mat-select-trigger>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <div mat-dialog-actions>
+            <button type="button" style="margin-right: 5px;" type="submit" class="btn btn-primary active"
+                (click)="submit()"> {{getControls['idBatch'].value==undefined ?'Submit':'Edit'}}</button>
+            <button type="button" (click)="cancel()" class="btn btn-secondary active">Cancel</button>
+        </div>
+
+        <hr>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+@import url("../../../../assets/css/large-display.css");
+@import url("../../../../assets/css/global.css");
+
+.textdec {
+  font-family: poppins;
+}
+
+.item1:hover {
+  cursor: pointer;
+}
+
+.frame-div10 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+}

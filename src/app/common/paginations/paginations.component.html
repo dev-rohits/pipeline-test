@@ -1,0 +1,6 @@
+<div class="pagination alien-item-center">
+    <a (click)="nextPageNumber(currentPage-1)">Previous</a>
+    <a *ngFor="let element of totalItems | paginate:10:currentPage:maxPages" (click)="nextPageNumber(element-1)"
+        [ngClass]="currentPage==element-1? 'active':''">{{element}}</a>
+    <a (click)="nextPageNumber(currentPage+1)">Next</a>
+</div>

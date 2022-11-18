@@ -1,0 +1,55 @@
+<div class="gap-38 mb-0">
+    <h2 class="fourth-title">Book A <span class="pesh">Free Demo</span></h2>
+    <div *ngIf="demoClasses.length > 0" class="book-rows">
+        <div *ngFor="let demo of demoClasses" class="book-rw blue">
+            <div class="bk-date">
+                <span class="text-uppercase d-block">{{demo?.startDate | date:'MMM'}}</span>
+                {{demo?.startDate | date:'d'}}
+            </div>
+            <div class="bk-ttl">
+                <h6>{{demo?.classTitle}}</h6>
+                <ul>
+                    <li>Instructor <strong>{{demo?.teacherName}}</strong></li>
+                    <li>Time <strong> {{ demo?.startDate | date: "h:mm a" }} -
+                            {{ demo?.endDate | date: "h:mm a" }}</strong></li>
+                </ul>
+            </div>
+            <div class="action">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn box-btn book-now"
+                    *ngIf="isLogin" [disabled]="demo.status" (click)="classId=demo.idClassSchedule"> {{demo.status ? demo.status=='accepted' ? 'SCHEDULED' : (demo.status | uppercase) : 'BOOK NOW'}} </button>
+                <a routerLink="/auth/login" class="btn box-btn book-now" *ngIf="!isLogin">BOOK NOW</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="demoClasses.length <= 0" class="book-rows">
+        <h6>No demo found!</h6>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enter Remarks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form  [ngClass]="submitted==true ? 'was-validated':''" [formGroup]="form">
+                    <div class="form-group">
+                        <textarea placeholder="Enter Remarks" formControlName="remarks"  [ngClass]="submitted==true ? 'is-invalid':''"  class="form-control" style="resize:none;" style="height: 100px;" required=""></textarea>
+                        <div class="invalid-feedback" *ngIf="f['remarks'].errors && submitted">
+                            Please enter a message in the remarks.
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #closeAddExpenseModal>Close</button>
+                <button type="button" class="btn btn-primary" (click)="bookDemoClass()">Save Remarks</button>
+            </div>
+        </div>
+    </div>
+    
+</div>

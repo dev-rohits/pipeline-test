@@ -1,0 +1,175 @@
+<div class="section-cover fix" style="overflow-x: hide;" id="hero-area">
+  <div>
+    <a *ngIf="isTeacherOrStudent === 'admin'" routerLink="/marketing/home" class="logo">
+      <img style="  margin-left:20px; margin-top:20px" src="assets/img/logo.png" alt="" class="img-fluid">
+    </a>
+  </div>
+  <div>
+    <a *ngIf="isTeacherOrStudent == 'student'" class="logo">
+      <img style="margin-left:20px; margin-top:20px" src="assets/img/logo.png" alt="" class="img-fluid">
+    </a>
+  </div>
+  <div>
+    <img src="assets/img/g-1.svg" alt="" class="g-1 position-absolute">
+    <img src="assets/img/g-2.svg" alt="" class="g-2 position-absolute">
+  </div>
+  <div class="d-flex justify-content-md-end" style="margin-top: 0px;margin-right: 69px;">
+    <a *ngIf="isTeacherOrStudent == 'admin'" routerLink="/admin/enrollments"
+      style="color:  #00AF9E; text-decoration: none;"><b>Skip>></b></a>
+  </div>
+  <div class="container cs-padding">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../../../assets/images/Login Image.png" style="height: 100%; width:100% ; " alt="">
+      </div>
+      <div class="col-md-6">
+        <div class="section-title">
+          <h2>
+            <span class="title-pole position-relative">Continue As {{isTeacherOrStudent==='admin' ?
+              'Admin':'Student'}}</span>
+          </h2>
+        </div>
+        <!-- <div style="overflow: scroll;max-height: 433px;min-height: 433px;"> -->
+        <form [formGroup]="signupForm">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center">
+                <div style="position: relative; left: 0; top: 0;">
+                  <img [src]="imageSrc ? imageSrc : '../../../assets/images/profile.png'"
+                    class="rounded-circle profilePos" alt="Rounded Image" width="150" height="150">
+                  <a class="iq-icons-list" (click)="fileSelect.click()">
+                    <i class="fa fa-camera Pos rounded-circle" style="color: #CBE2FF;" aria-hidden="true"></i>
+                  </a>
+                  <input style="display: none" #fileSelect type="file" class="custom-file-input"
+                    (change)="onFileChange($event)" />
+                </div>
+
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">Name</label>
+            <input type="text" formControlName="name" autocomplete="off" placeholder="Your Name" class="form-control ">
+            <div *ngIf="(submitted && controls['name']?.invalid) || controls['name']?.touched">
+              <div *ngIf="controls['name']?.errors?.['required']" class="text-danger">
+                Name is required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1 " class="form-label text-dark">Email</label>
+            <input type="email" formControlName="email" class="form-control" id="exampleFormControlInput1"
+              placeholder="name@example.com" autocomplete="off">
+            <div *ngIf="(submitted && controls['email']?.invalid) || controls['email']?.touched">
+              <div *ngIf="controls['email']?.errors?.['email']" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="controls['email']?.errors?.['emailvalidate'] && !controls['email']?.errors?.['email']"
+                class="text-danger">
+                Email format is not correct
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">Date of Birth</label>
+            <input type="date" formControlName="dob" autocomplete="off" placeholder="DD/MM/YYYY" class="form-control ">
+            <div *ngIf="(submitted && controls['dob']?.invalid) || controls['dob']?.touched">
+              <div *ngIf="controls['dob']?.errors?.['required']" class="text-danger">
+                Date of Birth is required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="gender" class="form-label text-dark">Gender</label>
+              </div>
+              <div class="col-sm-3">
+                <input id="male" type="radio" class="custom-control-input" value="M" name="gender"
+                  formControlName="gender">
+                <label class="form-label text-dark" for="male">&nbsp;Male</label>
+              </div>
+              <div class="col-sm-3">
+                <input id="female" type="radio" class="custom-control-input" value="F" name="gender"
+                  formControlName="gender">
+                <label class="form-label text-dark" for="male">&nbsp;Female</label>
+              </div>
+            </div>
+            <div *ngIf="(submitted && controls['gender']?.invalid) || controls['gender']?.touched">
+              <div *ngIf="controls['gender']?.errors?.['required']" class="text-danger">
+                Gender is required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">Address</label>
+            <textarea class="form-control" id="address" rows="3" formControlName="address"></textarea>
+            <div *ngIf="(submitted && controls['address']?.invalid) || controls['address']?.touched">
+              <div *ngIf="controls['address']?.errors?.['required']" class="text-danger">
+                Address is required
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="country" class="form-label text-dark">Country</label>
+                <select formControlName="country" class="form-control">
+                  <option *ngFor="let c of countryList" [value]="c">{{c}}</option>
+                </select>
+                <div *ngIf="(submitted && controls['country']?.invalid) || controls['country']?.touched">
+                  <div *ngIf="controls['country']?.errors?.['required']" class="text-danger">
+                    Country is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="state" class="form-label text-dark">State</label>
+                <select formControlName="state" class="form-control">
+                  <option *ngFor="let s of stateList" [value]="s">{{s}}
+                  </option>
+                </select>
+                <div *ngIf="(submitted && controls['state']?.invalid) || controls['state']?.touched">
+                  <div *ngIf="controls['state']?.errors?.['required']" class="text-danger">
+                    State is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" formControlName="agree" type="checkbox" id="disabledFieldsetCheck">
+              <label class="form-check-label text-dark" for="disabledFieldsetCheck">
+                I agree with the <span class="text-primary">Terms and Conditions</span>
+              </label>
+              <div *ngIf="(submitted && controls['agree']?.invalid) || controls['agree']?.touched">
+                <div *ngIf="controls['agree']?.errors?.['required']" class="text-danger">
+                  Please agree terms & conditions
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- </div> -->
+        <button (click)="submit()" class="btn box-btn gradient-bg mt-1" [disabled]="clicked">
+          <span>
+            <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.16617 12.1667C6.16617 12.9 6.36617 13.58 6.70617 14.1667H1.4995C0.759502 14.1667 0.166168 13.5733 0.166168 12.8333V2.16668C0.166168 1.81305 0.306644 1.47392 0.556692 1.22387C0.806741 0.973819 1.14588 0.833344 1.4995 0.833344H2.16617V5.50001L3.83283 4.50001L5.4995 5.50001V0.833344H9.4995C9.85312 0.833344 10.1923 0.973819 10.4423 1.22387C10.6924 1.47392 10.8328 1.81305 10.8328 2.16668V8.22668C10.6128 8.19334 10.3928 8.16668 10.1662 8.16668C7.9595 8.16668 6.16617 9.96001 6.16617 12.1667ZM12.8328 12.1667L10.8328 10.1667V11.5H8.16617V12.8333H10.8328V14.1667L12.8328 12.1667Z"
+                fill="#F0F3FA">
+              </path>
+            </svg>
+          </span>Continue
+        </button>
+      </div>
+    </div>
+  </div>
+  <img src="assets/img/tile-2.png" alt="" class="tile-2 img-fluid position-absolute">
+</div>

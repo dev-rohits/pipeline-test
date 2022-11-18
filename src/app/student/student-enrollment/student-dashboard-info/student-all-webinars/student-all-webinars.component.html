@@ -1,0 +1,131 @@
+<mat-tab-group mat-align-tabs="vertical">
+    <mat-tab label="Live Webinars">
+       <div class="card">
+ 
+          <div class="card-body">
+             <div id="table" class="table-editable">
+                <div class="col-sm-12 col-md-6">
+                   <div id="user_list_datatable_info" class="dataTables_filter">
+                      <form class="me-3 position-relative">
+                         <!-- <div class="form-group mb-0">
+                            <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                               placeholder="Search....">
+                         </div> -->
+                      </form>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-6"></div>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                   <thead>
+                      <tr>
+                         <th>Class Title</th>
+                         <th>Teacher Name</th>
+                         <th>Start Time</th>
+                         <th>End Time</th>
+                         <th>Action</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <!-- <tr *ngIf="liveClasses.length==0">
+                         <td colspan="5">
+                            No Record Classes.
+                         </td>
+                      </tr> -->
+                      <tr class="" *ngFor="let live of liveClasses">
+                         <td>{{ live?.name }}</td>
+                         <td>{{ live?.teacher_name }}</td>
+                         <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ live?.start_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ live?.start_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ live?.end_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ live?.end_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+ 
+ 
+                         <td>
+                            <span class="table-remove"><button type="button"
+                                  class="btn btn-danger btn-rounded btn-sm my-0"
+                                  (click)="joinClass(live.id)">Join</button></span>
+                         </td>
+                      </tr>
+ 
+                   </tbody>
+                </table>
+             </div>
+          </div>
+       </div>
+    </mat-tab>
+    <mat-tab label="Future Webinars">
+       <div class="card">
+ 
+          <div class="card-body">
+             <div id="table" class="table-editable">
+                <div class="col-sm-12 col-md-6">
+                   <div id="user_list_datatable_info" class="dataTables_filter">
+                      <form class="me-3 position-relative">
+                         <div class="form-group mb-0">
+                            <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                               placeholder="Search....">
+                         </div>
+                      </form>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-6"></div>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                   <thead>
+                      <tr>
+                         <th>Class Title</th>
+                         <th>Teacher Name</th>
+                         <th>Start Time</th>
+                         <th>End Time</th>
+                         <!-- <th>Action</th> -->
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <!-- <tr *ngIf="futureClasses.length==0">
+                         <td colspan="4">
+                            No Record Found.
+                         </td>
+                      </tr> -->
+                      <tr class="" *ngFor="let element of futureClasses">
+                         <td>{{ element?.name }}</td>
+                         <td>{{ element?.teacher_name }}</td>
+                         <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.start_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.start_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.end_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.end_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+ 
+                      </tr>
+ 
+                   </tbody>
+                </table>
+                <app-table-paginator [size]="size" [totalElements]="totalCountOfFuture"
+                   (pageChange)="changeFutureClassesPage($event)" (changeSize)="changeFutureClassesSize($event)">
+                </app-table-paginator>
+             </div>
+          </div>
+       </div>
+    </mat-tab>
+ </mat-tab-group>

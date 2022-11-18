@@ -1,0 +1,98 @@
+<div class="section-cover fix" id="course-area" style="background-color: white;">
+    <div class="course-area position-relative">
+        <img src="assets/img/slice-1.png" alt="" class="slice-1 position-absolute">
+        <div class="container cs-padding">
+            <div class="section-title">
+                <h2>Browse your way <br>to
+                    <span class="title-pole sign position-relative">
+                        Knowledge </span>
+                </h2>
+            </div>
+            <nav>
+                <div class="nav nav-tabs course-tab border-0" id="nav-tab" role="tablist">
+                    <button (click)="tab=1" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                        aria-selected="true">See All</button>
+                    <button (click)="tab=2" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                        aria-selected="false">New</button>
+                    <button (click)="tab=3" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                        aria-selected="false">Free</button>
+                    <button (click)="tab=4" class="nav-link" id="nav-trending-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-trending" type="button" role="tab" aria-controls="nav-trending"
+                        aria-selected="false">Trending</button>
+                    <button (click)="tab=5" class="nav-link" id="nav-popular-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-popular" type="button" role="tab" aria-controls="nav-popular"
+                        aria-selected="false">Popular</button>
+                    <button (click)="tab=6" class="nav-link" id="nav-popular-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-webinar" type="button" role="tab" aria-controls="nav-webinar"
+                        aria-selected="false">Webinar</button>
+                        
+                </div>
+                <div class="text-end ">
+                    <a class="link_w_icon" (click)="viewAll()">View All Courses<i
+                            class="far fa-arrow-right"></i></a>
+                </div>  
+            </nav>
+       
+            <div class="tab-content minus-margin" id="nav-tabContent">
+                <div *ngIf="tab==1" class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                    aria-labelledby="nav-home-tab">
+                    <div *ngIf="allCourses.length > 0" class="tb-content">
+                        <app-course-slider [courses]="allCourses"></app-course-slider>
+                    </div>
+                    <div *ngIf="allCourses.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+                <div *ngIf="tab==2" class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                    aria-labelledby="nav-profile-tab">
+                    <div *ngIf="newCourses.length > 0" class="tb-content">
+                        <app-course-slider [courses]="newCourses"></app-course-slider>
+                    </div>
+                    <div *ngIf="newCourses.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+                <div *ngIf="tab==3" class="tab-pane fade show active" id="nav-contact" role="tabpanel"
+                    aria-labelledby="nav-contact-tab">
+                    <div *ngIf="freeCourses.length > 0" class="tb-content">
+                        <app-course-slider [courses]="freeCourses"></app-course-slider>
+                    </div>
+                    <div *ngIf="freeCourses.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+                <div *ngIf="tab==4" class="tab-pane fade show active" id="nav-trending" role="tabpanel"
+                    aria-labelledby="nav-trending-tab">
+                    <div *ngIf="trendingCourses.length > 0" class="tb-content">
+                        <app-course-slider [courses]="trendingCourses"></app-course-slider>
+                    </div>
+                    <div *ngIf="trendingCourses.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+                <div *ngIf="tab==5" class="tab-pane fade show active" id="nav-popular" role="tabpanel"
+                    aria-labelledby="nav-popular-tab">
+                    <div *ngIf="popularCourses.length > 0" class="tb-content">
+                        <app-course-slider [courses]="popularCourses"></app-course-slider>
+                    </div>
+                    <div *ngIf="popularCourses.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+                <div *ngIf="tab==6" class="tab-pane fade show active" id="nav-webinar" role="tabpanel"
+                    aria-labelledby="nav-webinar-tab">
+                    <div *ngIf="webinar.length > 0" class="tb-content">
+                        <app-webinar-slider [webinar]="webinar"></app-webinar-slider>
+                    </div>
+                    <div *ngIf="webinar.length <= 0" class="tb-content">
+                        ...
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- ./course-area -->
+</div>

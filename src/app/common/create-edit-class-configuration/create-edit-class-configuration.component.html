@@ -1,0 +1,329 @@
+<div class="card card-custom gutter-b">
+   <div class="card-header">
+      <div class="card-title">
+         <h3 class="card-label">Schedule Class</h3>
+      </div>
+   </div>
+   <div class="card-body">
+
+      <form class="form" id="kt_form" [formGroup]="form">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label class="form-label">Class Name<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="Class Title" formControlName="classTitle" />
+                  <ng-container *ngIf="isSubmit && f['classTitle'].invalid">
+                     <div class="text-danger">
+                        <div class="alert-text" *ngIf="f['classTitle']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+
+               </div>
+            </div>
+            <!-- <div class="col-sm-4">
+               <div class="form-group">
+                  <label class="form-label">Tag<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="Tags" formControlName="tags" />
+                  <ng-container *ngIf="isSubmit && f['tags'].invalid">
+                     <div class="text-danger">
+                        <div class="alert-text" *ngIf="f['tags']?.errors?. ['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+                 
+               </div>
+            </div> -->
+
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label class="form-label">Class Type<span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="classType">
+                     <option value="">Select Class Type</option>
+                     <option value="Regular">Regular</option>
+                     <option value="Demo">Demo</option>
+                     <option value="Webinar">Webinar</option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['classType'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['classType']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label class="form-label">Start Date<span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" placeholder="" formControlName="start" />
+                  <ng-container *ngIf="isSubmit && f['start'].invalid">
+                     <div class="text-danger">
+                        <div class="alert-text" *ngIf="f['start']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+
+               </div>
+            </div>
+            <!-- <div class="col-md-4 mt-2">
+               <div class="form-group">
+                  <label>Start Date<span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" formControlName="start">
+
+                  <ng-container *ngIf="isSubmit && f['start'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['start']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+
+            </div> -->
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label>Start Time<span class="text-danger">*</span></label>
+                  <input type="time" formControlName="starttime" class="form-control" id="exampleInputtime">
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label>End Time<span class="text-danger">*</span></label>
+                  <input type="time" formControlName="endtime" class="form-control" id="exampleInputtime">
+
+               </div>
+            </div>
+
+            <div class="col-md-12">
+               <label>Meta Tags<span class="text-danger">*</span></label>
+               <tag-input [(ngModel)]="new" placeholder="Meta Tags" formControlName="metaTags"></tag-input>
+               <mat-hint> Hint:- Press enter for add tags. </mat-hint>
+               <div *ngIf="(isSubmit && f['metaTags'].invalid)">
+                  <div *ngIf="f['metaTags'].errors?.['required']" class="text-danger">
+                     Meta Tags is required
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="form-group">
+                  <label>Class Details<span class="text-danger">*</span></label>
+                  <textarea class="form-control" placeholder="Class Details"
+                     formControlName="classDescription"></textarea>
+                  <!-- <span class="form-text text-muted">Please enter class details.</span> -->
+               </div>
+            </div>
+
+            <!-- <div class="col-sm-4">
+               <div class="form-group">
+                  <label>Is Demo Class<span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="isDemoClass" #isDemoClass (change)="isWebinarEnableOrdesabled(isDemoClass.value)">
+                     <option value="true">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['isDemoClass'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['isDemoClass']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+            </div> -->
+            <!-- <div class="col-sm-4" *ngIf="iswebinarShow">
+               <div class="form-group">
+                  <label>Is Webinar<span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="isWebinar">
+                     <option value="true">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['isWebinar'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['isWebinar']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+            </div> -->
+            <!-- <div class="col-sm-4" *ngIf="!isTeacher">
+               <div class="form-group">
+                  <label class="form-label">Teacher<span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="idTeacher">
+                     <option *ngFor="let teacherAttach of teacherList" [value]="teacherAttach?.id">
+                        {{ teacherAttach?.first_name + " " + teacherAttach?.last_name }}
+                     </option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['idTeacher'].invalid">
+                     <div class="text-danger">
+                        <div class="alert-text" *ngIf="f['idTeacher']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+                  
+               </div>
+            </div> -->
+            <!-- <div class="col-md-4">
+               <div class="form-group">
+                  <label>To Be Recorded Or Not.<span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="videoToBeUploadedOrNot">
+                     <option value="true">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['videoToBeUploadedOrNot'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['videoToBeUploadedOrNot']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+            </div> -->
+            <!-- <div class="col-md-4">
+               <div class="form-group">
+                  <label>Twoway or Oneway <span class="text-danger">*</span></label>
+                  <select class="form-control" formControlName="videoToBeRedirectType">
+                     <option value="true">Two Way</option>
+                     <option disabled value="false">One Way</option>
+                  </select>
+                  <ng-container *ngIf="isSubmit && f['videoToBeRedirectType'].invalid">
+                     <div class="
+                   text-danger
+                     ">
+                        <div class="alert-text" *ngIf="f['videoToBeRedirectType']?.errors?.['required']">
+                           Above field is required.
+                        </div>
+                     </div>
+                  </ng-container>
+               </div>
+            </div> -->
+
+            <div class="form-check d-block" *ngIf="data.from">
+               <input class="form-check-input" color="primary" type="checkbox" formControlName="repeatMeeting"
+                  id="flexCheckDefault3">
+               <label class="form-check-label" for="flexCheckDefault3">
+                  Repeat Meeting
+               </label>
+            </div>
+            <div class="row mt-3" *ngIf="f['repeatMeeting'].value">
+
+               <div class="col-md-6">
+
+                  <div class="form-check">
+                     <input class="form-check-input" formControlName="endMeetingRadioInput" [value]="false" type="radio"
+                        id="flexRadioDefault2">
+                     <label class="form-check-label" for="flexRadioDefault2">
+                        End Date
+                     </label>
+                  </div> &nbsp;
+                  <div class="form-check">
+                     <input class="form-check-input" formControlName="endMeetingRadioInput" [value]="true" type="radio"
+                        id="flexRadioDefault1">
+                     <label class="form-check-label" for="flexRadioDefault1">
+                        No. of occurrence
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-6"></div>
+
+               <div class="col-md-6 mt-3">
+                  <!-- <div class="form-group">
+                     <label>Meeting Start Date*<span class="text-danger">*</span></label>
+                     <input type="date" class="form-control" id="exampleInputdate" formControlName="meetingStartDate">
+                     <ng-container *ngIf="isSubmit && f['start'].invalid">
+                        <div class="
+                   text-danger
+                     ">
+                           <div class="alert-text" *ngIf="f['start']?.errors?.['required']">
+                              Meeting start date required.
+                           </div>
+                        </div>
+                     </ng-container>
+                  </div> -->
+
+                  <div>
+                     <section>
+                        <div class="form-check form-check-inline" *ngFor="let day of days;let i=index">
+                           <input class="form-check-input" #ref [checked]="classSchduleDays.includes(i+1)"
+                              (change)="addDaysInList(ref.value)" type="checkbox" id="inlineCheckbox1" value="option1"
+                              [value]="i+1" />
+                           <label class="form-check-label" for="inlineCheckbox1">{{day}}</label>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+               <div class="col-md-6  mt-3">
+
+
+                  <div *ngIf="f['endMeetingRadioInput'].value == true">
+                     <div class="form-group">
+                        <label>No. of occurrence*<span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" (input)="calculateDate(noOfOcc.value)"
+                           id="exampleInputdate" #noOfOcc formControlName="noOfOccurence">
+
+                        <ng-container *ngIf="isSubmit && f['noOfOccurence'].invalid">
+                           <div class="
+                  text-danger
+                    ">
+                              <div class="alert-text" *ngIf="f['noOfOccurence']?.errors?.['required']">
+                                 Please enter the occurrence.
+                              </div>
+                           </div>
+                        </ng-container>
+                        <p>{{f['meetingEndDate'].value | date:'MM/dd/yyyy'}}</p>
+                     </div>
+                  </div>
+
+
+                  <div *ngIf="f['endMeetingRadioInput'].value == false">
+
+                     <div class="form-group">
+                        <label>Meetings End Date*<span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="exampleInputdate3" formControlName="meetingEndDate">
+                        <ng-container *ngIf="isSubmit && f['meetingEndDate'].invalid">
+                           <div class="
+                  text-danger
+                    ">
+                              <div class="alert-text" *ngIf="f['meetingEndDate']?.errors?.['required']">
+                                 Meetings End date required.
+                              </div>
+                           </div>
+                        </ng-container>
+
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </form>
+
+   </div>
+   <div class="card-footer">
+      <button type="reset" *ngIf="!data.isEdit" class="btn btn-primary active" style="margin-right: 20px;"
+         (click)="onSubmit()">
+         Submit
+      </button>
+      <button type="reset" *ngIf="data.isEdit" class="btn btn-primary active" style="margin-right: 20px;"
+         (click)="onEdit()">
+         Edit
+      </button>
+      <button type="reset" class="btn btn-secondary active" mat-button mat-dialog-close>
+         Cancel
+      </button>
+   </div>
+</div>

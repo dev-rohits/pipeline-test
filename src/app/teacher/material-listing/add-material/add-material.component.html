@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Upload Material</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Topic<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Topic" formControlName="materialTopic"
+                                [(ngModel)]="materialModule.materialTopic">
+                            <div *ngIf="(isSubmit && controls['materialTopic'].invalid)">
+                                <div *ngIf="controls['materialTopic'].errors?.['required']" class="text-danger">
+                                    Topic is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Material Type<span class="text-danger">*</span></label>
+                            <select class="form-select" formControlName="materialType"
+                                [(ngModel)]="materialModule.materialType">
+                                <option selected="" disabled="">Select Material Type</option>
+                                <option value="video">Video</option>
+                                <option value="image">Image</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                            <div *ngIf="isSubmit && controls['materialType'].invalid">
+                                <div *ngIf="controls['materialType'].errors?.['required']" class="text-danger">
+                                    Material Type is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Meta Tags<span class="text-danger">*</span></label>
+                            <tag-input [(ngModel)]="new" placeholder="Meta Tags" formControlName="metaTags"></tag-input>
+                            <mat-hint> Hint:- Press enter for add tags. </mat-hint>
+                            <div *ngIf="(isSubmit && controls['metaTags'].invalid)">
+                                <div *ngIf="controls['metaTags'].errors?.['required']" class="text-danger">
+                                    Meta Tags is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label">Upload File<span class="text-danger">*</span></label>
+                            <input #fileSelect type="file" class="form-control" placeholder="Select File"
+                                (change)="onFileChange($event)" />
+                            <p *ngIf="materialFileName"><b>Uploaded File Name: </b>{{materialFileName}}</p>
+                            <div *ngIf="isSubmit && hasError" class="text-danger">
+                                Please select file
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 mb-3" style="padding-top: 32px;">
+                            <div class="row">
+                                <button (click)="documentPreview(file)" [disabled]="!(file || materialFilePath)"
+                                    class="btn btn-primary"><i _ngcontent-cug-c349="" aria-hidden="true"
+                                        class="fa fa-eye"></i> Preview</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <button type="reset" style="margin-right: 5px;" type="submit" class="btn btn-primary active"
+                            (click)="onSubmit()">Submit</button>
+                        <button (click)="back()" mat-button type="reset"
+                            class="btn btn-secondary active">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

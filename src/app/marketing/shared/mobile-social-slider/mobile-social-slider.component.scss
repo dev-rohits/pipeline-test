@@ -1,0 +1,73 @@
+@import url("../../../../assets/css/bootstrap.min.css");
+@import url("../../../../assets/css/all.min.css");
+@import url("../../../../assets/css/slick.css");
+@import url("../../../../assets/css/nice-select.css");
+@import url("../../../../assets/css/main.css");
+@import url("../../../../assets/css/responsive.css");
+.set-img {
+  margin-top: -100px;
+}
+.set-card {
+  background: rgba(0, 126, 242, 0.1);
+  border-radius: 20px;
+  max-height: 400px;
+  width: 100%;
+}
+@media only screen and (max-width: 992px) {
+  .set-card {
+    max-height: 100%;
+    height: 100%;
+  }
+  .set-img {
+    margin-top: 0px;
+  }
+}
+.ca-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  letter-spacing: 0.145em;
+
+  color: #4c535d;
+}
+.ca-text2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 57px;
+  /* identical to box height */
+
+  /* Blue */
+
+  color: #007ef2;
+}
+.ca-text3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 39px;
+  /* or 219% */
+
+  letter-spacing: 0.015em;
+  font-feature-settings: "salt" on, "liga" off;
+
+  color: #4c535d;
+}
+.ca-btn1 {
+  padding: 20.3607px 54.2951px;
+  gap: 9.05px;
+  margin-top: 4%;
+  width: 169px;
+  color: white;
+
+  /* Blue */
+
+  background: #007ef2;
+  border-radius: 6.78689px;
+}

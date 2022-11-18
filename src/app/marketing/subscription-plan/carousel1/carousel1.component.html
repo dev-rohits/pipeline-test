@@ -1,0 +1,49 @@
+<div class="course-active gap-35 slider_shadow arw-design  slick-initialized slick-slider">
+    <button type="button" class="slick-prev slick-arrow " aria-disabled="true" (click)=" prev()">
+        <i class="far fa-angle-left"></i>
+    </button>
+
+    <div class="slick-list draggable">
+        <div class="slick-track">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+                <div ngxSlickItem class="course-item slick-slide slick-current slick-active" tabindex="0"
+                    data-slick-index="0" aria-hidden="false" *ngFor="let item of slides">
+                    <div class="card" style="border-radius: 10px; top: 10px; left: 10px; bottom: 10px; right: 10px;">
+
+                        <div class="row" style="padding: 2%;">
+                            <div class="col-lg-4">
+                                <div class="card text-center" style="border-radius: 20px">
+                                    <div class="card-body">
+                                        <div class="card" style="background: #f6f8ff; border-radius: 20px">
+                                            <div class="card-body">
+                                                <img class="img-fluid" [src]="item.img"
+                                                    style="width: 65%; max-height: 491px" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="cmn-content" style="padding-top: 5%; padding-left: 5%; padding-right: 5%;">
+                                    <h2 class="title-pole text-primary" style="font-family: poppins;">
+                                        {{item.title}}
+                                    </h2>
+                                    <p style="line-height: 30px; font-family: poppins;">
+                                        {{item.description}}
+                                    </p>
+                                    <h5 style="color: #8491a5; font-family: poppins;">
+                                        {{item.subTitle}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+    <button type="button" (click)=" next()" class="slick-next slick-arrow" style="display: block" aria-disabled="false">
+        <i class="far fa-angle-right"></i>
+    </button>
+</div>

@@ -1,0 +1,28 @@
+@import url("../../../assets/css/bootstrap.min.css");
+@import url("../../../assets/css/all.min.css");
+@import url("../../../assets/css/slick.css");
+@import url("../../../assets/css/nice-select.css");
+@import url("../../../assets/css/main.css");
+@import url("../../../assets/css/responsive.css");
+
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: gray !important;
+  opacity: 1; /* Firefox */
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: gray !important;
+}
+
+input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: gray !important;
+}
+
+.active-category{
+  background: -o-linear-gradient(355.62deg, #008CE4 -1.08%, #00AF9E 96.88%);
+  background: linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+}
+

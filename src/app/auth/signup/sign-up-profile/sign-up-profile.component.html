@@ -1,0 +1,174 @@
+<div class="large-display-section">
+    <div class="section4" display="flex" align-items="center" justify-content="center">
+        <div class="form-div5" style="background-color: #F6FCFF; padding: 2%;">
+            <div style="margin-left: auto; margin-right: auto;">
+                <h2 class="sign-in-h2 textdec" style="font-size: 25px;">Complete Your Profile</h2>
+            </div>
+
+            <div *ngIf="!nextDetails" style="margin-top: 5%; margin-left: auto; margin-right: auto;">
+                <div class="item1" style="position: relative; left: 0; top: 0;">
+                    <img [src]="imageSrc ? imageSrc : '../../../../assets/images/profile.png'"
+                        (click)="fileSelect.click()" class="rounded-circle profilePos" alt="Rounded Image" width="104px"
+                        height="104px" style="border: 2px solid #0099CA;">
+                    <a class="iq-icons-list" (click)="fileSelect.click()">
+                        <img class="Pos" src="../../../../assets/images-marketing/add-icon.png" height="20px"
+                            style="border-radius: 50%;" alt="">
+                    </a>
+                    <input style="display: none" #fileSelect type="file" class="custom-file-input"
+                        (change)="onFileChange($event)" />
+                </div>
+            </div>
+
+            <div class="frame-div10">
+                <form class="form2" [formGroup]="signupForm">
+                    <div *ngIf="!nextDetails">
+                        <div class="form-div6" style="margin-top: 5%;">
+                            <p class="phone-number textdec">Your Name<span class="text-danger">*</span></p>
+                            <input class="component-9-input textdec" formControlName="name" autocomplete="off"
+                                type="text" style="background-color: #EFEFEF; padding-right: 5%; padding-left: 5%;">
+                            <div *ngIf="(submitted && controls['name']?.invalid) || controls['name']?.touched">
+                                <div style="padding-top: 26%; font-size: small"
+                                    *ngIf="controls['name']?.errors?.['required']" class="text-danger textdec">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-div6" style="margin-top: 5%;">
+                            <p class="phone-number textdec">Your Email<span class="text-danger">*</span></p>
+                            <input class="component-9-input textdec" type="email" formControlName="email"
+                                style="background-color: #EFEFEF; padding-right: 5%; padding-left: 5%;"
+                                autocomplete="off">
+                            <div *ngIf="submitted && controls['email']?.invalid">
+                                <div style="padding-top: 26%; font-size: small"
+                                    *ngIf="controls['email']?.errors?.['emailvalidate']" class="text-danger textdec">
+                                    Email format is not correct
+                                </div>
+                            </div>
+                        </div>
+                        <div style="max-width: 320.03px; margin-top: 5%;">
+                            <button type="submit" class="btn" (click)="checkNameAndEmail()"
+                                [ngStyle]="{'width': isTeacherOrStudent == 'admin' ? '49%' : '100%'}"
+                                style="background-color: #008CE4; color: white;">
+                                <p class="sign-up-div2 textdec" style="padding-top: 10px;">Continue</p>
+                            </button>
+                            <button *ngIf="isTeacherOrStudent == 'admin'" type="button" class="btn"
+                                routerLink="/admin/enrollments"
+                                [ngStyle]="{'width': isTeacherOrStudent == 'admin' ? '49%' : '100%'}"
+                                style="background-color: #3CCF4E; color: white; margin-left: 2%;">
+                                <p class="sign-up-div2 textdec" style="padding-top: 10px;">Skip</p>
+                            </button>
+
+                            <!-- <a *ngIf="isTeacherOrStudent == 'admin'" routerLink="/admin/enrollments"
+                                style="color:  #00AF9E; text-decoration: none;"><b>Skip>></b></a> -->
+                        </div>
+                    </div>
+                    <div *ngIf="nextDetails">
+                        <div class="form-div6" style="margin-top: 2%;">
+                            <p class="phone-number textdec">Date Of Birth<span class="text-danger">*</span></p>
+                            <input class="component-9-input textdec" type="date" formControlName="dob"
+                                autocomplete="off"
+                                style="background-color: #EFEFEF; padding-right: 5%; padding-left: 5%;">
+                            <div *ngIf="(submitted && controls['dob']?.invalid) || controls['dob']?.touched">
+                                <div style="padding-top: 26%; font-size: small"
+                                    *ngIf="controls['dob']?.errors?.['required']" class="text-danger textdec">
+                                    Date of Birth is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-div6" style="margin-top: 2%;">
+                            <p class="phone-number textdec">Gender<span class="text-danger">*</span></p>
+                            <div class="group-div1 item" style="background-color: #EFEFEF; border-radius: 5px;"
+                                [ngClass]="class1" (click)="setActiveClass(1)">
+                                <div class="male-div">Male</div>
+                                <img class="group-icon" alt=""
+                                    [src]="class1 == 'active' ? '../../../../assets/images-marketing/group-165.svg' : '../../../../assets/images-marketing/oval-4.svg'">
+                            </div>
+                            <div class="group-div2 item" style="background-color: #EFEFEF; border-radius: 5px;"
+                                [ngClass]="class2" (click)="setActiveClass(2)">
+                                <div class="female-div">Female</div>
+                                <img class="group-icon" alt=""
+                                    [src]="class2 == 'active' ? '../../../../assets/images-marketing/group-165.svg' : '../../../../assets/images-marketing/oval-4.svg'">
+                            </div>
+                            <div *ngIf="submitted && (profile.gender != 'M' && profile.gender != 'F')">
+                                <div style="padding-top: 26%; font-size: small" class="text-danger text-dec">
+                                    Gender is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-div6" style="margin-top: 2%;">
+                            <p class="phone-number textdec">Country<span class="text-danger">*</span></p>
+                            <div class="group-div1 item" style="background-color: #EFEFEF; border-radius: 5px;">
+                                <select formControlName="country" class="form-control"
+                                    style="line-height: 2.28; background-color: #EFEFEF;">
+                                    <option *ngFor="let c of countryList" [value]="c">{{c}}</option>
+                                </select>
+                                <div *ngIf="(submitted && controls['country']?.invalid)">
+                                    <div style="font-size: small" *ngIf="controls['country']?.errors?.['required']"
+                                        class="text-danger textdec">
+                                        Country is required
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="phone-number textdec" style="left: 52%;">
+                                State<span class="text-danger">*</span>
+                            </p>
+                            <div class="group-div2 item" style="background-color: #EFEFEF; border-radius: 5px;">
+                                <select formControlName="state" class="form-control"
+                                    style="line-height: 2.28; background-color: #EFEFEF;">
+                                    <option *ngFor="let s of stateList" [value]="s">{{s}}
+                                    </option>
+                                </select>
+                                <div *ngIf="(submitted && controls['state']?.invalid)">
+                                    <div style="font-size: small" *ngIf="controls['state']?.errors?.['required']"
+                                        class="text-danger textdec">
+                                        State is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-div6" style="margin-top: 5%; height: 0%; padding-bottom: 12%;">
+                            <input class="form-check-input" formControlName="agree" type="checkbox"
+                                id="disabledFieldsetCheck">
+                            <label style="padding-left: 20px;" class="phone-number textdec" for="disabledFieldsetCheck">
+                                I agree with the <span class="text-primary">Terms and Conditions</span>
+                            </label>
+                            <div *ngIf="(submitted && controls['agree']?.invalid) || controls['agree']?.touched">
+                                <div style="font-size: small" *ngIf="controls['agree']?.errors?.['required']"
+                                    class="text-danger textdec">
+                                    Please agree terms & conditions
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="max-width: 320.03px; margin-top: 2%;">
+                            <button type="submit" class="btn" (click)="submit()"
+                                style="background-color: #008CE4; color: white; width: 100%;" id="buttonSignup">
+                                <p class="sign-up-div2 textdec" style="padding-top: 10px;">Submit</p>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <a class="instiute-a2" style="top: 102%; left: 14%;">
+                <a class="register-your-instituteschool2">
+                    <span style="color: white;" class="textdec"> Register Your </span><b style="color: white;"
+                        class="textdec">Institute/School</b><span class="textdec" style="color: white;"> With Us!</span>
+                </a>
+            </a>
+            <a *ngIf="nextDetails" class="instiute-a2 item1" style="top: 109%; left: 38%;"
+                (click)="nextDetails = false">
+                <a class="register-your-instituteschool2">
+                    <span class="go-back2 textdec text-white">
+                        <b>
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Go Back
+                        </b>
+                    </span>
+                </a>
+            </a>
+        </div>
+    </div>

@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Upload Users In Bulk</h4>
+                </div>
+                <div style="float:left;">
+                    <input _ngcontent-bsw-c588="" type="file" #inputFile (change)="fileChangeListener($event)"
+                        class="btn btn-light-primary" style="background: white;">&nbsp;&nbsp;
+                    <button class="btn" style="background: white; color: #50B5FF">
+                        <a href="..\assets\usersCSV - Sheet1.csv"
+                            class="btn btn-light-primary font-weight-bolder btn-sm mr-2">Download Sample</a>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="table">
+                   
+                    <table class="files-lists table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Total Uploaded Records</th>
+                                <th>Success Count</th>
+                                <th>Failed Count</th>
+                                <th>Uploaded At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="8" *ngIf="csvUploadRecordsVO.length==0">
+                                    No Record Found.
+                                </td>
+                            </tr>
+                            <tr *ngFor="let csv of csvUploadRecordsVO ;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{csv?.totalRecords}}</td>
+                                <td>{{csv?.successCount}}</td>
+                                <td>{{csv?.failedCount}}</td>
+                               
+                                <td>
+                                    <div class="font-weight-bold text-muted">
+                                        {{csv.uploadedAt | date}}
+                                    </div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">
+                                        {{csv.uploadedAt | date :'shortTime'}}
+
+                                    </div>
+                                </td>
+                                <td >
+                                    <a *ngIf="csv.csvFilePath" data-bs-toggle="tooltip" class="btn btn-light-primary font-weight-bolder btn-sm mr-2" data-bs-placement="top" title=""
+                                    data-bs-original-title="Download" style="
+                                    color: blueviolet;"
+                                    (click)="downloadCSV(csv.csvFilePath)">Download CSV
+                                
+                                </a>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+                        (changeSize)="changeSize($event)"></app-table-paginator>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                       <div class="d-flex justify-content-start">
+                          <button type="button" class="btn btn-primary"
+                            (click)="backToLastPage()">
+                             << Back</button>
+                       </div>
+                    </div>
+                    
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

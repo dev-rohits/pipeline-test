@@ -1,0 +1,65 @@
+<div class="section-cover" id="hero-area">
+    <div class="hero-area fix position-relative">
+        <img src="assets/img/g-1.svg" alt="" class="g-1 position-absolute">
+        <img src="assets/img/g-2.svg" alt="" class="g-2 position-absolute">
+        <div class="container cs-padding">
+            <div class="hero-g-wrapper">
+                <div class="hero-left-content">
+                    <div class="section-title">
+                        <h2 style="font-size: 42px;">
+                            <span class="title-pole">We</span> Aggregate;
+                            Education <span class="title-pole position-relative">Resourses <img
+                                    class="text-btm-line position-absolute" src="assets/img/line-1.png" alt=""></span>
+                        </h2>
+                    </div>
+                    <p>Search for any resources in Education. <br>
+                        Teachers, Institutes and Courses <strong class="text-primary">all in 1 place</strong>
+                    </p>
+
+                    <form class="search position-relative">
+                        <button class="btn box-btn fill-blue position-absolute">SEARCH</button>
+                        <input (keyup)="search($event)" type="text" placeholder="What Do You Want To Learn ?">
+                        <ul *ngIf="searchRes" class="suggetions position-absolute"
+                            style="max-height: 180px; overflow:auto; min-width: 453px;">
+                            <ng-container *ngFor="let element of searchRes | keyvalue">
+                                <ol>
+                                    <div class="d-flex justify-content-between">
+                                        <b> {{element.key | uppercase}}</b>
+                                        <a [routerLink]="element.key.toString()=='courses' ? '/marketing/course-list' : element.key.toString()=='institutions' ? '/marketing/institute-list' : '/marketing/educator-list' "
+                                            [queryParams]="element.key.toString()=='courses' ? {search:'allCourses',name:searchedText} : {name:searchedText}">View
+                                            All</a>
+                                    </div>
+                                    <li *ngFor="let res of element.value"
+                                        (click)="redirect(res.type, res.id, res.name)">
+                                        <a> {{res.name}}</a>
+                                    </li>
+                                </ol>
+                            </ng-container>
+                        </ul>
+                    </form>
+                    <div class="learners-wrap d-flex align-items-center">
+                        <div class="learners-faces d-flex align-items-center">
+                            <img src="assets/img/st-1.png" alt="">
+                            <img src="assets/img/st-2.png" alt="">
+                            <img src="assets/img/st-3.png" alt="">
+                            <img src="assets/img/st-4.png" alt="">
+                        </div>
+                        <p><strong class="text-gradient">4,287+ Active</strong> Tutors &amp; Learners!</p>
+                    </div>
+                </div> <!-- ./hero-left-wrapper -->
+
+                <div class="hero-right-content">
+                    <div class="hero-main-img-wrap position-relative">
+                        <!-- <div class="trans-box position-absolute top-0 start-0">
+                            <img src="assets/img/move-1.png" alt="" class="position-absolute move-1">
+                            <img src="assets/img/move-2.png" alt="" class="position-absolute move-2">
+                            <img src="assets/img/move-3.png" alt="" class="position-absolute move-3">
+                            <img src="assets/img/move-4.png" alt="" class="position-absolute move-4">
+                        </div> -->
+                        <img class="hero-main-img img-fluid w-100 z-index-1" src="assets/img/hero-main-img.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="section-cover fix" id="category-area">
+    <div class="category-area gray-bg position-relative">
+        <img src="assets/img/blocks-1.png" alt="" class="block-1 img-fluid position-absolute">
+        <img src="assets/img/blocks-2.png" alt="" class="block-2 img-fluid position-absolute">
+        <div class="container cs-padding z-index-1">
+            <div class="title-wrap">
+                <div class="section-title">
+                    <h2>Choices <br>
+                        <span class="title-pole sign position-relative">Made Simple</span>
+                    </h2>
+                </div>
+
+                <a routerLink="/marketing/categories" class="link_w_icon">View All Category<i
+                        class="far fa-arrow-right"></i></a>
+            </div>
+            <div class="category-g-wrapper" style="grid-gap: 12px;">
+                <a class="d-block category-item" *ngFor="let category of categories;let i=index"
+                    [routerLink]="['/marketing/categories/subCategories']"
+                    [queryParams]="{id: category.idCourseCategory,name:category.categoryName}"
+                    >
+                    <div *ngIf="i < 9" class="category-item-nr">
+                        <div class="cat-icon">
+                            <img style="width: 3.5em; height: auto; margin: auto"
+                                [attr.src]="category?.categoryImagePath" />
+                        </div>
+                        <div class="cat-content">
+                            <h6>{{ category.categoryName }}</h6>
+                            <p>{{ category.categoryDescription }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div *ngIf="firstCourse || secondCourse" class="course-g-wrapper">
+                <div *ngIf="firstCourse" class="course-blk">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="badge">NEW</span>
+                            <h5>{{firstCourse.courseName}} <br>
+                                {{firstCourse.status}}</h5>
+                            <a [routerLink]="['/marketing/course-info']"
+                                [queryParams]="{id: firstCourse.idCourse,name:firstCourse.courseTitle}"
+                                class="btn box-btn fill-blue small">View Course</a>
+                        </div>
+                        <div class="col-md-7">
+                            <img class="image-dimensions" [src]="firstCourse.courseImage" alt="">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div *ngIf="secondCourse" class="course-blk yellow-bg">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="badge">NEW</span>
+                            <h5>{{secondCourse.courseName}} <br>
+                                {{secondCourse.status}}</h5>
+                            <a [routerLink]="['/marketing/course-info']"
+                                [queryParams]="{id: secondCourse.idCourse,name:secondCourse.courseTitle}"
+                                class="btn box-btn fill-blue small">View Course</a>
+                        </div>
+                        <div class="col-md-7">
+                            <img class="image-dimensions" [src]="secondCourse.courseImage" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

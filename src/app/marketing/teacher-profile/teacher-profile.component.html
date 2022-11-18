@@ -1,0 +1,185 @@
+<main>
+  <div class="teachers-area gray-bg position-relative">
+    <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute" />
+    <div class="container cs-padding">
+      <div class="one-third-g-wrapper">
+        <div class="one-third-left">
+          <div class="gap-38">
+            <div class="teacher-short-info-wrap">
+              <div class="theader-thumb">
+                <img class="img-fluid w-100" [src]="teacherDetails.teacherImage" alt="" />
+              </div>
+              <div class="teacher-short-info">
+                <h2 class="teacher-name">
+                  <span class="desination d-block">Instructor</span> {{teacherDetails.name}}
+                </h2>
+                <div class="badge-showcase d-flex align-items-center">
+                  <!-- <p>Badges</p>
+                  <div class="badges d-flex align-items-center">
+                    <img class="img-fluid" src="assets/img/b-1.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-1.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-2.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-2.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-3.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-4.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-4.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-5.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-6.svg" alt="" />
+                    <img class="img-fluid" src="assets/img/b-6.svg" alt="" />
+                  </div> -->
+                </div>
+
+                <div class="info-rw">
+                  <div class="details plc-2" style="margin-right: 0px;">
+                    <div class="single">
+                      <h6>
+                        <img class="follower img-fluid" src="assets/img/h-1.png" alt="" />{{teacherDetails.experience ? teacherDetails.experience : '-'}}
+                      </h6>
+                      <p>Experience</p>
+                    </div>
+                    <div class="single">
+                      <h6>
+                        <img class="watch-time img-fluid" src="assets/img/star-5.png"
+                          alt="" />{{teacherDetails.weightedAverage==null ? '0.0' : teacherDetails.weightedAverage}}
+                      </h6>
+                      <p>Reviews</p>
+                    </div>
+                    <div class="single">
+                      <a class="btn box-btn border-style-medium blue" (click)="scroll(target)">View Courses</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gap-38">
+            <div class="bio">
+              <h3 class="tertiary-title text-start">About Me</h3>
+              <p>
+                {{teacherDetails.description}}
+              </p>
+
+              <div class="experties">
+
+                <button *ngFor="let tag of teacherDetails.tags; let i = index"
+                  [ngClass]="{'' : (i < 4 ? i : i%4) == 0, 'blue' : (i < 4 ? i : i%4) == 1, 'red' : (i < 4 ? i : i%4) == 2, 'yellow' : (i < 4 ? i : i%4) == 3}">{{tag}}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gap-38">
+            <div class="one-third-blk">
+              <div class="flex-title">
+                <h3 class="tertiary-title m-0">My Methodology</h3>
+                <a (click)="scroll(target)" class="btn box-btn border-style-small blue">Book A Demo</a>
+              </div>
+
+              <p>
+                Hello students! I am a self-driven, motivated entrepreneur with
+                a proven track record of success with extraordinary
+                achievements.
+              </p>
+
+              <div class="video position-relative">
+                <!-- <img
+                  src="assets/img/v-bg.jpg"
+                  alt=""
+                  class="v-bg img-fluid w-100"
+                /> -->
+                <video controls="" width="100%">
+                  <source [src]="teacherDetails.teacherTeasorVideoPath" type="">
+                </video>
+
+
+
+                <!-- <a
+                  [href]="teacherDetails.teacherTeasorVideoPath"
+                  class="play-video position-absolute top-50 start-50"
+                  ><i class="fas fa-play"></i
+                ></a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="course-blk type-2">
+            <h5>
+              Still Confused About <br />
+              What To Do ?
+            </h5>
+            <a (click)="scroll(target)" class="btn box-btn fill-blue small">GRAB A FREE DEMO</a>
+            <!-- <a  class="btn box-btn fill-blue small" (click)="review()">Reviews</a> -->
+          </div>
+        </div>
+        <div class="one-third-right">
+          <div class="helper-div position-relative">
+            <img src="assets/img/move-1.png" alt="" class="position-absolute move-1" />
+            <app-inquiry-form [type]="'teacher'" [courses]="teachercourselist"></app-inquiry-form>
+          </div>
+          <app-highlights></app-highlights>
+
+          <div class="row">
+
+          </div>
+          <div class="flex-title" style="margin-bottom: 0px">
+            <h6 class="tertiary-title">Reviews</h6>
+            <a *ngIf="authService.isLoggin" class="btn box-btn border-style-small blue" (click)="openDialog()">Write
+              Review</a>
+          </div>
+          <app-review-slider [reviewAndRatings]="teacherReviewlist" [reviewFrom]="'teacher'"></app-review-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./instructor-area -->
+
+  <div #target class="section-cover" id="course-area">
+    <div class="teachers-course-area gray-bg position-relative">
+      <div class="container cs-padding">
+        <h2 class="secondary-title text-start mb-1">More From {{teacherDetails.name}} </h2>
+        <app-course-slider [courses]="teachercourselist"></app-course-slider>
+      </div>
+    </div>
+    <!-- ./teachers-course-area -->
+  </div>
+
+  <div class="ins-area fix bg-white">
+    <div class="container type-2 cs-padding">
+      <div class="ins-row-type-one">
+        <div class="ins-el-box position-relative">
+          <img class="img-fluid position-absolute bottom-0 ins-t-1" src="assets/img/ins-t-1.png" alt="" />
+          <div class="ins-element blue">
+            <div class="ins-el-inner">
+              <h5>Become An Instructor</h5>
+              <p>
+                Unable decide the curated courses for your skillset? <br />
+                Grab a free demo right now !
+              </p>
+              <a href="#" class="btn box-btn fill-white small round-60"><i class="far fa-plus-circle"></i>Apply Now</a>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="ins-img d-block"><img src="assets/img/ins-1.png" alt="" class="img-fluid w-100" /></a>
+      </div>
+
+      <div class="ins-row-type-two">
+        <a class="ins-img d-block"><img src="assets/img/ins-1.png" alt="" class="img-fluid w-100" /></a>
+        <div class="ins-el-box position-relative">
+          <img class="img-fluid position-absolute bottom-0 ins-t-1 two" src="assets/img/ins-t-2.png" alt="" />
+          <div class="ins-element green">
+            <div class="ins-el-inner">
+              <h5>Become An Instructor</h5>
+              <p>
+                Unable decide the curated courses for your skillset? <br />
+                Grab a free demo right now !
+              </p>
+              <a href="#" class="btn box-btn fill-white small round-60"><i class="far fa-plus-circle"></i>Register
+                Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./ins-area -->
+</main>

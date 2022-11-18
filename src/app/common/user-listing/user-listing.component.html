@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Users List</h4>
+                </div>
+                <div style="float: left;">
+                    <button routerLink="/admin/offline-enrollment" class="btn"
+                        style="background: white; color: #50B5FF">
+                        Offline Enrollments <span
+                            class="badge bg-primary text-white ml-2">{{offlineEnrollmentsCount}}</span>
+                    </button>&nbsp;&nbsp;
+                    <button routerLink="/admin/bulk-users-upload" class="btn" style="background: white; color: #50B5FF">
+                        + Bulk Users Upload
+                    </button>&nbsp;&nbsp;
+                    <button routerLink="/admin/add-user" class="btn" style="background: white; color: #50B5FF">
+                        + Create User
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul id="top-tab-list" style="margin-bottom: 0px !important;" class="p-0 row list-inline">
+                    <li class="col-lg-3 col-md-6 text-start mb-2" (click)="tab = 1" [ngClass]="tab==1 ? 'active':''"
+                        id="account">
+                        <a href="javascript:void(0);">
+                            <i class="material-symbols-outlined">
+                                groups
+                            </i><span>Admins</span>
+                        </a>
+                    </li>
+                    <li id="personal" (click)="tab = 2" class="col-lg-3 col-md-6 mb-2 text-start"
+                        [ngClass]="tab==2 ? 'active':''">
+                        <a href="javascript:void(0);">
+                            <i class="material-symbols-outlined">
+                                groups
+                            </i><span>Teachers</span>
+                        </a>
+                    </li>
+                    <li id="confirm" (click)="tab = 3" class="col-lg-3 col-md-6 mb-2 text-start"
+                        [ngClass]="tab==3 ? 'active':''">
+                        <a href="javascript:void(0);">
+                            <i class="material-symbols-outlined">
+                                groups
+                            </i><span>Students</span>
+                        </a>
+                    </li>
+                </ul>
+                <div *ngIf="tab==1">
+                    <app-admin-listing></app-admin-listing>
+                </div>
+                <div *ngIf="tab==2">
+                    <app-teacher-listing></app-teacher-listing>
+                </div>
+                <div *ngIf="tab==3">
+                    <app-student-listing></app-student-listing>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

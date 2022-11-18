@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let course of courseList; let i=index">
+    <div class="course-item s" style="margin-top: 15px">
+      <div class="card single-course" [routerLink]="['/marketing/course-info']"
+        [queryParams]="{id: course.idCourse,name:course?.courseTitle}">
+        <div class="thumb-part position-relative">
+          <img [src]="course?.courseImage" style="height:100%;width:100%" alt="">
+          <!-- <button class="badge cat-btn popular">
+                Popular<img class="img-fluid" src="../assets/img/badge.svg" alt="" />
+              </button> -->
+          <a class="position-absolute play" tabindex="0">
+            <img src="assets/img/play.svg" alt="" class="img-fluid">
+          </a>
+        </div>
+        <div class="content-part">
+          <div class="up-bar">
+            <p class="status">
+              <img class="img-fluid" src="../assets/img/beginner-graph.svg" alt="" />
+              {{course?.level}}
+            </p>
+            <p>{{course?.status}}</p>
+          </div>
+          <div class="middle-content">
+            <div class="ttl-content">
+              <h4>{{ course?.courseTitle }}</h4>
+
+              <div class="rating-wrap">
+                <div class="rat-o">{{course.weightedAverage ? (course.weightedAverage | number: '1.1-1') :
+                  '4.5'}}<span>/5</span></div>
+                <img class="img-fluid" src="../assets/img/rate-star.svg" alt="" />
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-content">
+            <h5 class="author">
+              <span class="d-block">Instructor</span>
+              {{course?.teacherName}}
+            </h5>
+            <a class="know-more">Know More<i class="far fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-paginations *ngIf="config > 10" [totalItems]="config" [pageSize]="10" [maxPages]="maxPages"
+  (nextPage)="nextPage.emit($event)">
+</app-paginations> -->
+<br>
+<app-table-paginator [size]="10" [totalElements]="config" [pagenumber]="pageNumber" (pageChange)="nextPage.emit($event)" [disableSize]="true"></app-table-paginator>

@@ -1,0 +1,121 @@
+<div class="card card-custom gutter-b">
+  <div class="card-header">
+    <div class="card-title" style="width: 100%">
+      <h3 class="card-label" *ngIf="!disableButton">View Assignment</h3>
+      <h3 class="card-label" *ngIf="disableButton">Submit Assignment</h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label><b>Assignment Topic</b><span class="text-danger">*</span></label>
+          <h5>{{title}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label><b>Questions</b><span class="text-danger">*</span></label>
+      <br>
+      <div class="row">
+        <h5 [innerHTML]="discriptions"></h5>
+<br>
+<br>
+<label><b>Answer</b><span class="text-danger">*</span></label>
+        <div class="row">
+          <angular-editor [config]="editorConfig2" [(ngModel)]="htmlContent1"></angular-editor>
+        </div>
+        <br>
+        <div  *ngIf="disableButton">
+          <div class="form-group">
+            <label><b>Upload File</b><span class="text-danger">*</span></label>
+            <input #fileInput type="file" accept=".jpg,.jpeg,.pdf" multiple class="form-control" placeholder="Assignment Topic"
+              (change)="fileChanges($event)" />
+          </div>
+        </div>
+        <div class="row mt-2" *ngIf="data.assignment.uploadedFiles">
+          <table class="mt-2 table">
+            <thead>
+              <th>Assignment Questions Attachments</th>
+              <th>View</th>
+            </thead>
+            <tbody class="upload-name-style" *ngFor="let file of data.assignment.uploadedFiles">
+              <tr>
+                <td>
+                  <strong>{{file.split("/").pop()}}</strong>
+                </td>
+                <td>
+                  <button class="btn btn-primary" (click)="documentPreview(file)">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="row mt-2" *ngIf="data.assignment.studentUploadedFiles">
+          <table class="mt-2 table">
+            <thead>
+              <th>Assignment Answers Attachments</th>
+              <th></th>
+              <th></th>
+              <th>View</th>
+            </thead>
+            <tbody class="upload-name-style" *ngFor="let file of data.assignment.studentUploadedFiles; let i = index">
+              <tr>
+                <td>
+                  <strong>{{file.split("/").pop()}}</strong>
+                </td>
+                <td></td>
+                <th></th>
+                <td>
+                  <button class="btn btn-primary" (click)="documentPreview(file)">View</button>
+                </td>
+                <td>
+                  <button  *ngIf="disableButton" (click)="deleteFilesFromList(i)" class="btn btn-secondary">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <table class="mt-2 table" *ngIf="filesList.length!=0">
+            <thead>
+              <th>Selected Files</th>
+              <th>View</th>
+              <th>Remove</th>
+            </thead>
+            <tbody class="upload-name-style" *ngFor="let file of filesList;let i=index">
+              <tr>
+                <td>
+               
+                  <strong>{{file.name}}</strong>
+                </td>
+                <td>
+                  <button class="btn btn-primary" (click)="documentPreview(file)">View</button>
+                </td>
+                <td>
+                  <button class="btn btn-secondary" (click)="removeSelectedFile(i)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer">
+          <span *ngIf="disableButton">
+            <button type="reset" class="btn btn-primary mr-2" (click)="submit()">
+              Submit
+            </button>&nbsp;
+          </span>
+          <button type="reset" class="btn btn-danger mr-2" (click)="dialogRef.close()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

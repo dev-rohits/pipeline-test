@@ -1,0 +1,27 @@
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+.setquiz{
+  max-height: 550px;
+  overflow: scroll;
+  width: 100%;
+}
+@media only screen and (max-width: 600px) {
+  .setquiz{
+    max-height: 1200px;
+    overflow: scroll;
+    width: 100%;
+  }
+}

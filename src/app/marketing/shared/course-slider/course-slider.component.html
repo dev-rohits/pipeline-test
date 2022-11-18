@@ -1,0 +1,61 @@
+<div class="course-active gap-35 slider_shadow arw-design right_shadow_active slick-initialized slick-slider">
+  <button *ngIf="courses.length > 0" type="button" class="slick-prev slick-arrow " aria-disabled="true"
+    (click)=" prev()">
+    <i class="far fa-angle-left"></i>
+  </button>
+
+  <div class="slick-list draggable">
+    <div class="slick-track">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+        (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+        <div ngxSlickItem class="course-item slick-slide slick-current slick-active" tabindex="0" data-slick-index="0"
+          aria-hidden="false" *ngFor="let course of courses">
+          <div class="card single-course point" [routerLink]="['/marketing/course-info']"
+            [queryParams]="{id: course.idCourse,name:course?.courseTitle}">
+            <div class="thumb-part position-relative">
+              <img [src]="course?.courseImage" style="height:100%;width:100%" alt="">
+              <a class="position-absolute play" tabindex="0">
+                <img src="assets/img/play.svg" alt="" class="img-fluid">
+              </a>
+            </div>
+            <div class="content-part">
+              <div class="up-bar">
+                <p class="status">
+                  <img class="img-fluid" src="../assets/img/beginner-graph.svg" alt="" />
+                  {{course?.level}}
+                </p>
+                <p>{{course?.status}}</p>
+              </div>
+              <div class="middle-content">
+                <div class="ttl-content">
+                  <h4>{{ course?.courseTitle }}</h4>
+
+                  <div class="rating-wrap">
+                    <div class="rat-o">{{course.weightedAverage ? (course.weightedAverage | number: '1.1-1') :
+                      '4.5'}}<span>/5</span></div>
+                    <img class="img-fluid" src="../assets/img/rate-star.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom-content">
+                <h5 class="author">
+                  <span class="d-block">Instructor</span>
+                  {{course?.teacherName}}
+                </h5>
+                <a class="know-more">Know More<i class="far fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+  <button *ngIf="courses.length > 0" type="button" (click)=" next()" class="slick-next slick-arrow"
+    style="display: block" aria-disabled="false">
+    <i class="far fa-angle-right"></i>
+  </button>
+</div>
+<div *ngIf="courses.length <= 0">
+  <h6>No courses found!</h6>
+</div>

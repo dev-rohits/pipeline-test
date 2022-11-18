@@ -1,0 +1,43 @@
+<div class="card">
+
+    <div class="card-body">
+       <div id="table" class="table-editable">
+ 
+          <table class="table table-bordered table-responsive-md table-striped text-center">
+             <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>
+                      Name</th>
+                   <th>
+                      Submission Type</th>
+                   <th>
+                      Grade Type</th>
+ 
+                   <th>Action</th>
+                </tr>
+             </thead>
+             <tbody>
+               <tr *ngIf="assignments?.length == 0">
+                  <td colspan="5">No Record Found.</td>
+               </tr>
+                <tr class="" *ngFor="let element of assignments">
+                   <td >{{ element?.id }}</td>
+                   <td > {{ element?.name }}</td>
+                   <td > {{ element?.submissiontype }}</td>
+                   <td > {{ element?.gradeType | uppercase }} </td>
+ 
+ 
+                   <td>
+                      <span class="table-remove"><button type="button"
+                            class="btn btn-success btn-rounded btn-sm my-0" (click)="assignmentSubmitBy(element)">Submitted By</button></span>
+                   </td>
+                </tr>
+ 
+             </tbody>
+          </table>
+       </div>
+       <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+       (changeSize)="changeSize($event)"></app-table-paginator>
+    </div>
+ </div>

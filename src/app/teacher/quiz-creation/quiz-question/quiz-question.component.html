@@ -1,0 +1,309 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between bg-primary nabvar">
+        <div class="header-title">
+            <h4 class="card-title text-white">{{isUpdate ? 'Update Quiz' : 'Create Quiz'}}</h4>
+        </div>
+        <div>
+            <button (click)="addSection()" class="btn" style="background: white; color: #50B5FF">
+                + Add Section
+            </button>
+        </div>
+    </div>
+    <div class="card-body setquiz">
+        <form [formGroup]="form">
+            <div class="row">
+                <!-- <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputText1">Teacher Name<span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputText1" formControlName="teacherName"
+                            placeholder="Enter Name">
+                        <div *ngIf="(isSubmit && controls['teacherName'].invalid)">
+                            <div *ngIf="controls['teacherName'].errors?.['required']" class="text-danger">
+                                Teacher Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputEmail3">Exam Name<span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Enter Exam Name"
+                            formControlName="name">
+                        <div *ngIf="isSubmit && controls['name']?.invalid">
+                            <div *ngIf="controls['name'].errors?.['required']" class="text-danger">
+                                Exam Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputEmail3">Marks<span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Enter Marks"
+                            formControlName="marks">
+                        <div *ngIf="(isSubmit && controls['marks']?.invalid)">
+                            <div *ngIf="controls['marks'].errors?.['required']" class="text-danger">
+                                Marks are required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputphone">Exam Type<span
+                                class="text-danger">*</span></label>
+                        <select class="form-select" id="exampleFormControlSelect1" formControlName="examType">
+                            <option selected="" disabled="">Select Exam Type</option>
+                            <option value="objective">Objective</option>
+                            <option value="subjective">Subjective</option>
+                        </select>
+                        <div *ngIf="(isSubmit && controls['examType'].invalid)">
+                            <div *ngIf="controls['examType'].errors?.['required']" class="text-danger">
+                                Exam Type is required
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleFormControlSelect1">OverAll Negative Marking<span
+                                class="text-danger">*</span></label>
+                        <select class="form-select" id="exampleFormControlSelect1" formControlName="negtiveMarking"
+                            #overAllNegMarks (change)="isNegtiveMarksForQuiz(overAllNegMarks.value)">
+                            <option selected="" disabled="">Select OverAll Negative Marking</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                        <div *ngIf="isSubmit && controls['negtiveMarking']?.invalid">
+                            <div *ngIf="controls['negtiveMarking'].errors?.['required']" class="text-danger">
+                                Negative Marking is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="negativeMarksForQuiz">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleFormControlSelect1">Negative Marks % per question<span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Enter Percentage"
+                            formControlName="negtiveMarks">
+                        <div *ngIf="(isSubmit && controls['negtiveMarks']?.invalid)">
+                            <div *ngIf="controls['negtiveMarks'].errors?.['required']" class="text-danger">
+                                Negative Marks Percentage is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputNumber1">Exam Duration(Hour)<span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="exampleInputNumber1" formControlName="hour">
+                        <div *ngIf="(isSubmit && controls['hour']?.invalid)">
+                            <div *ngIf="controls['hour'].errors?.['required']" class="text-danger">
+                                Exam Duration(Hour) is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputNumber1">Exam Duration(Minutes)<span
+                                class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="exampleInputNumber1" formControlName="minutes">
+                        <div *ngIf="(isSubmit && controls['minutes']?.invalid)">
+                            <div *ngIf="controls['minutes'].errors?.['required']" class="text-danger">
+                                Exam Duration(Minutes) is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputdatetime">Start Date<span
+                                class="text-danger">*</span></label>
+                        <input type="datetime-local" [min]="now" class="form-control" id="exampleInputdatetime"
+                            formControlName="startTime">
+                        <div *ngIf="(isSubmit && controls['startTime']?.invalid)">
+                            <div *ngIf="controls['startTime'].errors?.['required']" class="text-danger">
+                                Start Date & Time is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputdatetime">End Date<span
+                                class="text-danger">*</span></label>
+                        <input type="datetime-local" [min]="now" class="form-control" id="exampleInputdatetime"
+                            formControlName="endTime">
+                        <div *ngIf="(isSubmit && controls['endTime']?.invalid)">
+                            <div *ngIf="controls['endTime'].errors?.['required']" class="text-danger">
+                                End Date & Time is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div formArrayName="sections">
+                <div class="card" *ngFor="let section of getSections(); let i = index"
+                    style="box-shadow: none; border: 2px solid gainsboro;">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Section {{i+1}}</h4>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-outline-danger rounded-pill mb-1"
+                                (click)="removeSection(i)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove Section</button>
+                        </div>
+                    </div>
+                    <div class="card-body" [formGroupName]="i">
+                        <div class="form-group">
+                            <label class="form-label" for="exampleInputText1">Section Title </label>
+                            <input type="text" formControlName="sectionTitle" class="form-control"
+                                id="exampleInputText1" placeholder="Enter Section Title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="exampleInputText1">Display Order</label>
+                            <input type="text" formControlName="displayOrder" class="form-control"
+                                id="exampleInputText1" placeholder="Enter Display Order">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="exampleInputText1">Section Description</label>
+                            <angular-editor [config]="editorConfig" formControlName="sectionDescription">
+                            </angular-editor>
+                        </div>
+                        <button type="button" class="btn btn-secondary rounded-pill mb-1"
+                            (click)="addQuestion(section)">+ Add
+                            Question</button>
+                        <div class="card" formArrayName="questions" *ngFor="
+                        let question of getQuestions(section);
+                        let j = index
+                      " style="box-shadow: none;">
+                            <div class="card-body" [formGroupName]="j" [id]="'question'+i+j">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div>Question {{j +1}}</div>
+                                    <div>
+                                        <button type="button" (click)="removeQuestion(section,j)"
+                                            class="btn btn-outline-danger rounded-pill mb-1">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove
+                                            Question</button>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label class="form-label" for="exampleInputphone">Question Type</label>
+                                    <select class="form-select" formControlName="questionType"
+                                        id="exampleFormControlSelect1">
+                                        <option selected="" disabled="">Select Question Type</option>
+                                        <option value="objective">objective</option>
+                                        <option value="image">image</option>
+                                    </select>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="form-label">Select File</label>
+                                    <input type="file" [id]="'ques'+i+j" (change)="onQuestionFileChange($event,i,j)"
+                                        class="form-control">
+                                </div>
+                                <table class="table" *ngIf="question?.value?.questionImage">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">{{question?.value?.questionImage}}</th>
+                                            <th><button class="btn btn-primary"
+                                                    (click)="preview(question?.value?.questionImage)"><i
+                                                        class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</button>
+                                            </th>
+                                            <th><button class="btn btn-secondary"
+                                                    (click)="removeQuestionImage(question?.value?.questionImage,i,j)">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove</button>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group">
+                                    <label class="form-label" for="exampleInputphone">Question Title</label>
+                                    <angular-editor [config]="editorConfig" formControlName="questionTitle">
+                                    </angular-editor>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="exampleInputEmail3">Marks</label>
+                                    <input type="text" formControlName="marks" class="form-control"
+                                        id="exampleInputEmail3" placeholder="Enter Marks">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="exampleInputText1">Display Order</label>
+                                    <input type="number" formControlName="displayOrder" class="form-control"
+                                        id="exampleInputText1" placeholder="Enter Display Order">
+                                </div>
+                                <div class="card" formArrayName="answers" style="box-shadow: none;">
+                                    <div class="card-body">
+                                        <div>
+                                            <button type="button" (click)="addOption(question)"
+                                                class="btn btn-warning rounded-pill mb-1">Add
+                                                Option</button>
+                                        </div>
+                                        <div class="mt-2" [formGroupName]="k" *ngFor="
+                                        let option of getanswers(question);
+                                        let k = index;">
+                                            <div class=" form-group row">
+                                                <label
+                                                    class="control-label text-center col-sm-1 align-self-center mb-0">
+                                                    <input [id]="'option'+k" [name]="'right'+j+k+i"
+                                                        [checked]="option?.value?.right" value="true"
+                                                        (change)="updateOptionValue(question,k)"
+                                                        class="form-check-input" type="radio"></label>
+                                                <div class="col-sm-11">
+                                                    <input type="text" formControlName="optionTitle"
+                                                        class="form-control" id="email"
+                                                        placeholder="Enter Your  Option">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="upload-btn-wrapper">
+                                                    <button type="button" class="btn btn-soft-secondary rounded-pill">
+                                                        <i class="fa fa-upload" aria-hidden="true"></i>&nbsp; Upload
+                                                        File</button>
+                                                    <input type="file" [id]="'opt'+i+j+k"
+                                                        (change)="onOptionFileChange($event,i,j,k)" name="myfile" />
+                                                </div>
+                                                <div class="upload-btn-wrapper">
+                                                    <button type="button" (click)="removeOption(question,k)"
+                                                        class="btn btn-soft-danger rounded-pill"
+                                                        style="margin-left: 5px;">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        Remove Option</button>
+                                                </div>
+                                                <div class="upload-btn-wrapper" *ngIf="option?.value?.optionImage">
+                                                    <button style="margin-left: 5px;" type="button"
+                                                        (click)="preview(option?.value?.optionImage)"
+                                                        class="btn btn-soft-primary rounded-pill">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Preview
+                                                        {{option?.value?.optionImage}}&nbsp; </button>
+                                                </div>
+                                                <div class="upload-btn-wrapper" *ngIf="option?.value?.optionImage">
+                                                    <button style="margin-left: 5px;"
+                                                        (click)="removeOptionImage(option?.value?.optionImage,i,j,k)"
+                                                        type="button" class="btn btn-soft-danger rounded-pill">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Remove
+                                                        File
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary active" (click)="submit()" data-bs-toggle="button"
+                aria-pressed="true">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

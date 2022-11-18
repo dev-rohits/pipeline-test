@@ -1,0 +1,65 @@
+<div class="card-header bg-primary">
+  <div class="card-title">
+    <h3 class="card-label text-white" style="margin-bottom: -10px;">Material Mapping</h3>
+  </div>
+</div>
+<div style="width: 100%;" mat-dialog-content>
+  <form class=" mt-lg-0 ms-lg-3 d-flex align-items-center" style="margin-left: 0px !important;">
+    <span class="position-absolute ps-3 search-icon">
+      <i class="fe fe-search"></i></span><input type="text" (keyup)="searchData($event)" placeholder="Search Class List"
+      size="50" class="form-control ps-6">
+  </form>
+  <div cdkDropListGroup>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between text-center">
+            <div class="header-title">
+              <h4 class="card-title">Class List</h4>
+            </div>
+          </div>
+          <div style="overflow: scroll;height: 353px;" class="card-body">
+            <div cdkDropList [cdkDropListData]="filteredToDo" class="example-list" cdkDropListSortingDisabled
+              (cdkDropListDropped)="drop($event)">
+              <div class="card" *ngFor="let item of filteredToDo" cdkDrag>
+                <div class="card-body">
+                  <h4>{{item?.className}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between text-center">
+            <div class="header-title">
+              <h4 class="card-title">Map Material To Selected Class</h4>
+            </div>
+          </div>
+          <div style="overflow: scroll;height: 353px;" class="card-body">
+            <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="card" *ngFor="let item of done" cdkDrag>
+                <div class="card-body">
+                  <h4><strong>{{item?.className}}</strong></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button style="margin-right: 2px;" *ngIf="!data.isEdit" type="reset" class="btn btn-primary mr-2" (click)="onSubmit()">
+    Submit
+  </button>
+  <button style="margin-right: 2px;" *ngIf="data.isEdit" type="reset" class="btn btn-primary mr-2" (click)="onEdit()">
+    Edit
+  </button>
+  <button type="reset" class="btn btn-secondary" mat-button mat-dialog-close>
+    Cancel
+  </button>
+</div>

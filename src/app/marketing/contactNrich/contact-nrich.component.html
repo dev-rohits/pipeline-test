@@ -1,0 +1,113 @@
+<main class="fix">
+  <div class="teachers-area product-pge gray-bg position-relative fix">
+    <div>
+      <img src="assets/img/g-1.svg" alt="" class="g-1 position-absolute" />
+      <img src="assets/img/g-2.svg" alt="" class="g-2 position-absolute" />
+      <div class="container">
+        <div class="text-center">
+          <h3>CONTACT US</h3>
+          <div style="width: 70%;
+            margin-left: auto;
+            margin-right: auto;">
+            <div class="c-t">We are headquartered from Chandigarh and have satellite offices across key cities in India.
+              Feel free to connect with us or leave us your contact details and we will schedule a 1-on-1 call with you
+              to take you through the sign-up process.</div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 60px; width: 100%;">
+          <div class="col-md-4">
+            <div class="card cont-ca">
+              <div class="card-body" style="padding: 40px;">
+                <div class="c-us">Connect</div>
+                <p style="color: white;margin-top:10px ;"> <span><img src="../assets/images-marketing/Location on.png"
+                      alt=""></span> &nbsp; &nbsp; SCO 128-129, Sector - 8c,
+                  Madhya Marg, Chandigarh - 160009</p>
+                <p style="color: white;margin-top:10px ;"><span><img
+                      src="../assets/images-marketing/Email.png"></span>&nbsp;&nbsp; support@nrichlearning.co.in</p>
+                <p style="color: white;margin-top:10px ;"> <span><img src="../assets/images-marketing/Call.png"
+                      alt=""></span> &nbsp;&nbsp; +91 79425 30235</p>
+                <h6 style="color: white; margin-top:30px ;" class="o-t">Office Timings</h6>
+                <p style="color: white;margin-top:20px ;"><span><img src="../assets/images-marketing/Access time.png"
+                      alt=""></span>&nbsp;&nbsp;09:30 AM to 06:30 PM</p>
+                <p style="color: white;margin-top:30px ;">Follow Us</p>
+                <div class="text-center">
+                  <span>
+                    <span style="padding: 15px;">
+                      <img src="../assets/Vector-2.png" alt="">
+                    </span>
+                    <span style="padding: 15px;">
+                      <img src="../assets/Vector-5.png" alt="">
+                    </span>
+                    <span style="padding: 15px;">
+                      <img src="../assets/Vector.png" alt="">
+                    </span>
+                    <span style="padding: 15px;">
+                      <img src="../assets/Vector@2x.png" style="height:20px" alt="">
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card" style="border-radius: 5px;">
+              <div class="card-body">
+                <form [formGroup]="enquiry">
+                  <div class="row">
+                    <div class="col-md-12 mt-2">
+                      <label for="exampleFormControlInput1" class="c-t"> Full Name</label>
+                      <input type="text" class="form-control i-d" formControlName="name" id="exampleFormControlInput1"
+                        placeholder="Enter Full Name">
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <label for="exampleFormControlInput1" class="c-t">Email address</label>
+                      <input type="email" class="form-control i-d" formControlName="email" id="exampleFormControlInput1"
+                        placeholder="Email">
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <label for="exampleFormControlInput1" class="c-t">Phone Number</label>
+                      <input type="text" class="form-control i-d" formControlName="mobileNumber" autocomplete="off"
+                        (keydown)="onlyNumeric($event)" id="exampleFormControlInput1" placeholder="Enter Phone Number">
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <label for="exampleFormControlTextarea1" class="c-t">Message</label>
+                      <textarea class="form-control i-d" formControlName="message" id="exampleFormControlTextarea1"
+                        rows="4" style="height: 
+                        120.33px;"></textarea>
+                    </div>
+                  </div>
+                  <div style="margin-top: 40px;">
+                    <button class="btn btn-primary" (click)="submit()">Request Callback</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="faq-area gray-bg">
+            <div class="container cs-padding z-index-1">
+                <div class="section-title">
+                    <h2>Other Contacts <span class="title-pole sign position-relative">( FAQ’s
+                            )</span></h2>
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item border-0" *ngFor="let item of faq; let i = index">
+                        <button [ngClass]="item.expand== false ? 'collapsed' : 'accordion-button'" class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#collapse"
+                         aria-controls="collapseOne" (click)="item.expand=!item.expand"  >
+                            {{item.qus}}
+                        </button>
+                        <div id="collapseOne" [@collapse]="item.expand"  [ngClass]="item.expand== true ? 'show Collapsing':''"  class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {{item.ans}}
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div> 
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

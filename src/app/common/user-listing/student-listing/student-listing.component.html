@@ -1,0 +1,74 @@
+<div class="table-responsive">
+    <div class="row justify-content-between d-flex">
+        <div class="col-sm-12 col-md-6">
+            <div id="user_list_datatable_info" class="dataTables_filter">
+                <form class="me-3 position-relative">
+                    <div class="form-group mb-0">
+                        <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                            placeholder="Search....">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="files-lists table table-striped mt-4" style="display: table;">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Registration By</th>
+                <th scope="col">Registration Mode</th>
+                <th scope="col">Date</th>
+                <th scope="col">Enable/Disable</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="students.length == 0">
+                <td colspan="8">No students found!</td>
+            </tr>
+            <tr *ngFor="let element of students; let i = index">
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{ element?.name }}
+                </td>
+                <td>{{ element?.mobileNumber }}</td>
+                <td>{{ element?.registrationUser }}</td>
+                <td>{{ element?.registrationMode }}</td>
+                <td>{{ element?.registrationDate | date: 'dd/MM/yyyy' }}</td>    
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" [(ngModel)]="element.disabled"
+                            (change)="disableUser(element,$event)" type="checkbox" id="flexSwitchCheckChecked"
+                            [checked]="element?.disabled">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">{{element?.disabled ?
+                            'Disable':'Enable'}}</label>
+                    </div>
+                </td>
+                <td>
+                    <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu" aria-label="Example home icon">
+                        menu
+                    </mat-icon>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                            [routerLink]="['/admin/add-user']" [queryParams]="{id: element.id}">
+                            Edit
+                        </button>
+                        <button *ngIf="!element?.disabled" mat-menu-item data-toggle="tooltip" title="Manage Enrollment"
+                            (click)="mapStudent(element.id)">
+                            Map to Batch
+                        </button>
+                        <!-- <button mat-menu-item data-toggle="tooltip" (click)="disableUser(element.id)">
+                            Delete
+                        </button> -->
+                    </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-table-paginator [size]="size" [totalElements]="totalStudents" (pageChange)="pageChange($event)"
+        (changeSize)="changeSize($event)"></app-table-paginator>
+</div>

@@ -1,0 +1,64 @@
+<div class="section-cover fix" id="institue-area">
+    <div class="institue-area gray-bg position-relative">
+        <img src="assets/img/wave-1.png" alt="" class="wave-1 position-absolute">
+        <img src="assets/img/wave-2.png" alt="" class="wave-2 position-absolute">
+        <div class="container cs-padding z-index-1">
+            <div class="section-title">
+                <h2>Enroll With<br>
+                    <span class="title-pole sign position-relative">
+                        Leading Institutes</span>
+                </h2>
+            </div>
+
+            <div class="institue-slider slick-initialized slick-slider right_shadow_active">
+                <div class="slick-list draggable">
+                    <div class="slick-track">
+                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                            (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+                            <div ngxSlickItem *ngFor="let institute of institutes" class="slick-slide"
+                                data-slick-index="0" aria-hidden="true">
+
+
+
+                                <div class="institue-g-wrapper">
+                                    <div class="insti-left">
+                                        <img [src]="institute?.logoPath ? institute?.logoPath : '../../../../assets/img/ins-1.png'"
+                                            height="298px" width="469px" alt="">
+                                    </div>
+                                    <div class="insti-right">
+                                        <div class="cmn-content">
+                                            <h4>{{ institute?.instituteName }}</h4>
+
+                                            <p *ngIf="(institute?.institutionDescription + '').length <= 450">{{
+                                                institute?.institutionDescription }}</p>
+                                            <p *ngIf="(institute?.institutionDescription + '').length > 450">{{
+                                                institute?.institutionDescription | slice : 0 : 450}}...</p>
+
+                                            <a [routerLink]="['/marketing/institute-info']"
+                                                [queryParams]="{ id: institute.idInstitution,name:institute.instituteName }"
+                                                class="btn box-btn gradient-bg" tabindex="0"><span><svg width="13"
+                                                        height="15" viewBox="0 0 13 15" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M6.16617 12.1667C6.16617 12.9 6.36617 13.58 6.70617 14.1667H1.4995C0.759502 14.1667 0.166168 13.5733 0.166168 12.8333V2.16668C0.166168 1.81305 0.306644 1.47392 0.556692 1.22387C0.806741 0.973819 1.14588 0.833344 1.4995 0.833344H2.16617V5.50001L3.83283 4.50001L5.4995 5.50001V0.833344H9.4995C9.85312 0.833344 10.1923 0.973819 10.4423 1.22387C10.6924 1.47392 10.8328 1.81305 10.8328 2.16668V8.22668C10.6128 8.19334 10.3928 8.16668 10.1662 8.16668C7.9595 8.16668 6.16617 9.96001 6.16617 12.1667ZM12.8328 12.1667L10.8328 10.1667V11.5H8.16617V12.8333H10.8328V14.1667L12.8328 12.1667Z"
+                                                            fill="#F0F3FA"></path>
+                                                    </svg>
+                                                </span>View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ngx-slick-carousel>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-end mb-4">
+                <a class="link_w_icon" routerLink="/marketing/institute-list">View All Institutes<i
+                        class="far fa-arrow-right"></i></a>
+            </div>
+            <app-institute-slider [institutes]="institutes"></app-institute-slider>
+        </div>
+    </div> <!-- ./institute-area -->
+</div>

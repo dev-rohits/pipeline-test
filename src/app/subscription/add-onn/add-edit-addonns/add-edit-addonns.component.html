@@ -1,0 +1,154 @@
+<h1 mat-dialog-title> Add/Edit Addons</h1>
+<div class="mat-typography" mat-dialog-content>
+ 
+  <div class="card-body">
+      <form [formGroup]="addonForm">
+          <div class="row">
+              <div class="col-md-4 mt-2"><label>Addon Name<span class="text-danger">*</span></label>
+                  <input type="text" placeholder="Addon Name" formControlName="addOnPlanName" class="form-control" />
+                  <div *ngIf="submitted && form['addOnPlanName']?.invalid">
+                      <div class="text-danger" *ngIf="form['addOnPlanName']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Price<span class="text-danger">*</span></label>
+                  <input type="number"  min="0" placeholder="price" formControlName="price" class="form-control" />
+                  <div *ngIf="submitted && form['price']?.invalid">
+                      <div class="text-danger" *ngIf="form['price']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Discount Price</label>
+                  <input type="number"  min="0" value="0" placeholder="Discount Price" formControlName="discountPrice"
+                      class="form-control" />
+                  <!-- <div *ngIf="form['discountPrice'].invalid && form['discountPrice'].touched">
+                      <div class="text-danger" *ngIf="form['discountPrice']?.errors.required">
+                          Above Field Is Required.
+                      </div>
+                  </div> -->
+              </div>
+              <div class="col-md-4 mt-2"><label>Allowed Students</label>
+                  <input type="number"  min="0" placeholder="Allowed Students" formControlName="allowedStudents"
+                      class="form-control" />
+                  <div *ngIf="submitted && form['allowedStudents']?.invalid">
+                      <div class="text-danger" *ngIf="form['allowedStudents']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Allowed Teachers</label>
+                  <input type="number"  min="0" placeholder="Allowed Teachers" formControlName="allowedTeachers"
+                      class="form-control" />
+                  <div *ngIf="submitted && form['allowedTeachers']?.invalid">
+                      <div class="text-danger" *ngIf="form['allowedTeachers']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Allowed Storage(in GigaBytes)</label>
+                  <input type="number"  min="0" placeholder="Allowed Storage" formControlName="allowedStorage"
+                      class="form-control" />
+                  <div *ngIf="submitted && form['allowedStorage']?.invalid">
+                      <div class="text-danger" *ngIf="form['allowedStorage']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Allowed Concurrent Classes</label>
+                  <input type="number" min="0"  placeholder="Allowed Storage" formControlName="allowedConcurrentClasses"
+                      class="form-control" />
+                  <div *ngIf="submitted && form['allowedConcurrentClasses']?.invalid">
+                      <div class="text-danger" *ngIf="form['allowedConcurrentClasses']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 mt-2"><label>Display Order<span class="text-danger">*</span></label>
+                  <input type="number" min="0" placeholder="Display Order" formControlName="displayOrder"
+                      class="form-control" />
+                  <div *ngIf="submitted && form['displayOrder']?.invalid">
+                      <div class="text-danger" *ngIf="form['displayOrder']?.errors?.['required']">
+                          Above Field Is Required.
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mt-2"><label>Start Date<span class="text-danger">*</span></label>
+                    <input type="date" placeholder="Enter Start Date" [min]="minDate" formControlName="startDate"
+                        class="form-control" />
+                    <div *ngIf="submitted && form['startDate']?.invalid">
+                        <div class="text-danger" *ngIf="form['startDate']?.errors?.['required']">
+                            Above Field Is Required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-2"><label>End Date<span class="text-danger">*</span></label>
+                    <input type="date" placeholder="Enter End Date" [min]="minDate" formControlName="endDate"
+                        class="form-control" />
+                    <div *ngIf="submitted && form['endDate']?.invalid">
+                        <div class="text-danger" *ngIf="form['endDate']?.errors?.['required']">
+                            Above Field Is Required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-2"><label name="addonType">Addon Type<span class="text-danger">*</span></label>
+                    <select formControlName="type" class="form-select">
+                        <option value="">Select Value</option>
+                        <option value="annual">Annual</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                    <div *ngIf=" submitted && form['type']?.invalid">
+                        <div class="text-danger" *ngIf="form['type']?.errors?.['required']">
+                            Above Field Is Required.
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="card mt-4 mt-2">
+              <div><h3 class="card-title">Add More Features</h3></div>
+              <div class="card-body" formArrayName="features" *ngFor="let a of getControls(); let i = index">
+                  <div [formGroupName]="i">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <label>Feature Description<span class="text-danger">*</span></label>
+                              <textarea  rows="1" placeholder="Feature Description"
+                                  formControlName="featureDescription" class="form-control"></textarea>
+                              <div *ngIf="submitted && a?.invalid">
+                                  <div class="text-danger">
+                                      Above Field Is Required.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <label>Display Order<span class="text-danger">*</span></label>
+                              <input type="number" min="0" placeholder="Display Order"
+                                  formControlName="displayOrder" class="form-control" />
+                              <div *ngIf="submitted && a?.invalid">
+                                  <div class="text-danger">
+                                      Above Field Is Required.
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-3" style="margin-top: 2em;">
+                              <mat-icon style="cursor: pointer"  (click)="delete(i)">delete</mat-icon>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <button class="btn btn-secondary" (click)="addFeatures()">Add Features</button>
+              </div>
+            </div>
+      </form>
+  </div>
+ 
+</div>
+<div mat-dialog-actions><button class="btn btn-secondary active "  (click)="createPlan()">
+    Submit
+</button>
+&nbsp;
+<button class="btn btn-primary active" (click)="close()" mat-button mat-dialog-close>
+    Cancel
+</button>
+</div>

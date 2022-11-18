@@ -1,0 +1,20 @@
+<form [formGroup]="studentFeedback">
+    <div class="form-floating">
+        <div>
+            <div class="stars">
+                <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+            </div>
+            <div *ngIf="submitted && fControls['rating'].errors">
+                <div *ngIf="fControls['rating'].errors['required']" class="text-danger">Rating is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a Review here" formControlName="review"></textarea>
+        <label for="floatingTextarea2">Enter Your Review</label>
+        <div *ngIf="submitted && fControls['review'].errors">
+            <div *ngIf="fControls['review'].errors['required']" class="text-danger">Review is required</div>
+        </div>
+    </div>
+</form>
+<button style="margin-top: 20px" type="submit" class="btn box-btn gradient-bg" (click)="submit()">Submit</button>

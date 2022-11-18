@@ -1,0 +1,95 @@
+<form [formGroup]="billingAddressForm">
+    <div class="row" style="margin-top: 25px;">
+        <h4>Contact Information</h4>
+        <div class="col-md-3">
+            <label for="inputEmail4" class="form-label">Name </label>
+            <input type="text " class="form-control" formControlName="name" id="inputEmail4" />
+            <div *ngIf="controls['name'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['name']?.errors?.['required']">
+                    Above field is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" id="inputEmail4" />
+            <div *ngIf="controls['email'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['email']?.errors?.['required']">
+                    Above field is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="inputEmail4" class="form-label">Mobile Number</label>
+            <input type="number" class="form-control" formControlName="phoneNumber" id="inputEmail4" />
+            <div *ngIf="controls['phoneNumber'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['phoneNumber']?.errors?.['required']">
+                    Above field is required.
+                </div>
+                <div class="err" *ngIf="controls['phoneNumber']?.errors?.['pattern']">
+                    Invalid Mobile Number
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf="controls['isGST'].value==true">
+            <label for="inputEmail4" class="form-label">GST Number</label>
+            <input formControlName="gstNumber" class="form-control" id="inputEmail4" />
+            <div *ngIf="controls['gstNumber'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['gstNumber']?.errors?.['required']">
+                    Above field is required.
+                </div>
+                <div class="err" *ngIf="controls['gstNumber']?.errors?.['pattern']">
+                    Invalid GST Number.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="form-check">
+                <input class="form-check-input" formControlName="isGST" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Do You Have GST Number
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px;">
+        <h4>Address</h4>
+        <div class="col-md-4">
+            <label for="inputEmail4" class="form-label">Country</label>
+            <select type="number" class="form-control" formControlName="country" id="inputEmail4">
+                <option value="">Select</option>
+                <option value="India">India</option>
+            </select>
+            <div *ngIf="controls['country'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['country']?.errors?.['required']">
+                    Above field is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputEmail4" class="form-label">State</label>
+            <select class="form-control" formControlName="state" id="inputEmail4">
+                <option *ngFor="let states of states" value="{{states?.id}}">{{states?.stateName}}</option>
+            </select>
+            <div *ngIf="controls['state'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['state']?.errors?.['required']">
+                    Above field is required.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputEmail4" class="form-label">Zip Code</label>
+            <input type="number" formControlName="pinCode" class="form-control" id="inputEmail4" />
+            <div *ngIf="controls['pinCode'].invalid && submitted" class="fv-plugins-message-container">
+                <div class="err" *ngIf="controls['pinCode']?.errors?.['required']">
+                    Above field is required.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="row" style="margin-top: 25px;"><button class="btn btn-primary bt-12" (click)="payment()"> PROCEED TO
+        PAY</button>
+</div>

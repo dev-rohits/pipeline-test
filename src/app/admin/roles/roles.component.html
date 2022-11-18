@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between bg-primary">
+        <div class="header-title">
+            <h4 class="card-title text-white">Role Management</h4>
+        </div>
+        <button class="btn" (click)="addRole()" style="background: white; color: #50B5FF">
+            + Create Role
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table">
+            <table class="files-lists table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Role Name</th>
+                        <th scope="col">Role Type</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of roles;let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{element.roleName}}</td>
+                        <td>{{element.roleType}}</td>
+                        <td>
+                            <i class="fa fa-tags ms-2" title="screen mapping" (click)="screenmapping(element)"
+                                aria-hidden="true" style="cursor: pointer;"></i>
+                            <i *ngIf="checkEditAccess(element)" (click)="addRole(element)"
+                                class="fa fa-pencil-square-o fa-lg ms-2 update-icon" title="edit"
+                                aria-hidden="true" style="cursor: pointer;"></i>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

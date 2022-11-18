@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Class Configuration Listing</h4>
+                </div>
+                <button (click)="addClassConfiguration()" class="btn" style="background: white; color: #50B5FF">
+                    + Create Class
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="table">
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <div id="user_list_datatable_info" class="dataTables_filter">
+                            <form class="me-3 position-relative">
+                                <div class="form-group mb-0">
+                                    <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam"
+                                        type="text" placeholder="Search....">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="files-lists table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Class Name</th>
+                                <th>Tags</th>
+                                <th>Teacher Name</th>
+                                <th>Start Date/Time</th>
+                                <th>End Date/Time</th>
+                                <th>Future Class Deleted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="8" *ngIf="classConfiguration.length==0">
+                                    No Record Found.
+                                </td>
+                            </tr>
+                            <tr *ngFor="let class of classConfiguration ;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{class?.className}}</td>
+
+                                <td>{{class?.metaTags}}</td>
+                               <td>Teacher Name</td> 
+                                <td>
+                                    <div class="font-weight-bold text-muted">
+                                        {{class.meetingStartDate | date}}
+                                    </div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">
+                                        {{class.meetingStartDate | date :'shortTime'}}
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="font-weight-bold text-muted">
+                                        {{class.meetingEndDate | date}}
+                                    </div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">
+                                        {{class.meetingEndDate | date :'shortTime'}}
+
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-info"
+                                        [ngClass]="{'badge-danger' : class.futureClassesDeleted , 'badge-info': !class.futureClassesDeleted}">{{class.futureClassesDeleted
+                                        ? 'Deleted' : 'Available'}}</span></td>
+                                <td>
+                                    <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example home icon">menu
+                                    </mat-icon>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title="Map To class" [routerLink]="['/teacher/schedule-list']"
+                                            [queryParams]="{ id: class.id}">
+                                            See Classes
+                                        </button>
+
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title="Map material" (click)="classMapping(class.id)">
+                                            Map to Batch
+                                        </button>
+
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title="Map material" (click)="onDelete(class,class.id)">Delete Future
+                                            Classes
+                                        </button>
+                                    </mat-menu>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+                        (changeSize)="changeSize($event)"></app-table-paginator>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

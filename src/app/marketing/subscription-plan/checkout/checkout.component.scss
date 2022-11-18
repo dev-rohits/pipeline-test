@@ -1,0 +1,144 @@
+@import url("../../../../assets/css/bootstrap.min.css");
+@import url("../../../../assets/css/all.min.css");
+@import url("../../../../assets/css/slick.css");
+@import url("../../../../assets/css/nice-select.css");
+@import url("../../../../assets/css/main.css");
+@import url("../../../../assets/css/responsive.css");
+.tab1{
+
+width: 30.32px;
+height: 30.32px;
+
+background: linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+border-radius: 5.57195px;
+transform: rotate(-45deg);
+}
+.tab2{
+cursor: pointer;
+width: 30.32px;
+height: 30.32px;
+background: rgba(255, 255, 255, 0.6);
+border-style: solid;
+border-color: #008CE4;
+
+background: #FFFFFF;
+border-radius: 5.57195px;
+transform: rotate(-45deg);
+}
+.text1{
+    font-family: "Neue Montreal";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.0012px;
+    line-height: 9px;
+    color: #FFFFFF;
+    transform: rotate(45deg);
+    margin-top: 6px;
+    margin-left: 5px;
+
+}
+.text2{
+    font-family: "Neue Montreal";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.0012px;
+    line-height: 9px;
+    color:linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+    transform: rotate(45deg);
+    margin-top: 8px;
+    margin-left: -2px;
+  
+}
+.line{
+    position: absolute;
+width: 167.76px;
+height: 37.7px;
+left: 202.32px;
+top: 163px;
+
+opacity: 0.4;
+/* light grey */
+
+border: 1.15407px solid rgb(9, 9, 9);
+}
+.oreder-h{
+    font-style: normal;
+font-weight: 700;
+font-size: 14.2692px;
+line-height: 21px;
+
+/* Blue */
+
+color: #007EF2;
+
+}
+.f-1{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22.1966px;
+    line-height: 33px;
+    font-family: 'Poppins';
+    color: #4F4F4F;
+}
+    
+.order-b{
+    width: 36.37px;
+height: 31.68px;
+
+background: #FFFFFF;
+box-shadow: 3.17094px 3.17094px 15.8547px rgba(0, 0, 0, 0.06);
+border-radius: 3.17094px;
+}
+.bt-12{
+    margin-top: 20px;
+    background: linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+box-shadow: 0px 18px 29px rgba(23, 16, 21, 0.025), 0px 3.6px 4.7125px rgba(23, 16, 21, 0.05);
+border-radius: 12px;
+}
+.o-1{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12.6837px;
+line-height: 19px;
+/* identical to box height */
+
+
+/* light grey */
+
+color: #8491A5;
+}
+.o-2{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 12.6837px;
+line-height: 19px;
+/* identical to box height */
+
+
+/* Black */
+
+color: #1F1F1F;
+}
+.o-3{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 27px;
+/* identical to box height */
+
+
+/* red */
+
+color: #FF635F;
+}
+
+.active{
+   background:linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+   color:white
+}
+.text-active{
+    color: #FFFFFF;
+}

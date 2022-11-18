@@ -1,0 +1,86 @@
+<div class="card">
+   <div class="card-header d-flex justify-content-between bg-primary">
+      <div class="header-title">
+         <h4 class="card-title text-white">Quiz</h4>
+      </div>
+   </div>
+   <div class="card-body">
+      <div class="table-responsive">
+         <div class="row justify-content-between d-flex">
+            <div class="col-sm-12 col-md-6">
+               <div id="user_list_datatable_info" class="dataTables_filter">
+                  <form class="me-3 position-relative">
+                     <div class="form-group mb-0">
+                        <input class="form-control" #quizSearch type="text" placeholder="Search....">
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+               <div class="user-list-files d-flex justify-content-end">
+                  <a class="chat-icon-delete btn bg-soft-primary" (click)="createQuiz()">
+                     + Add Quiz
+                  </a>
+               </div>
+            </div>
+         </div>
+         <table class="files-lists table table-striped mt-4">
+            <thead>
+               <tr>
+
+
+                  <th scope="col">Name</th>
+                  <th scope="col">Marks</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Exam Duration</th>
+                  <th scope="col">Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngIf="quizs.length==0">
+                  <td colspan="6">
+                     No Record Found.
+                  </td>
+               </tr>
+               <tr *ngFor="let quiz of quizs">
+                  <td>{{quiz.name}}</td>
+                  <td>{{quiz.totalMarks}}</td>
+                  <td>{{quiz.startDate | date:'short'}}</td>
+                  <td>{{quiz.endDate | date:'short'}}</td>
+                  <td><span class="badge bg-primary">
+                        <h6 style="color: white;">{{quiz.hour}}:{{quiz.minutes}} hour</h6>
+                     </span></td>
+                  <td>
+                     <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu" aria-label="Example home icon">
+                        menu
+                     </mat-icon>
+                     <mat-menu #menu="matMenu">
+                        <button mat-menu-item style="cursor: pointer" (click)="editQuiz(quiz.id)" data-toggle="tooltip"
+                           title="Edit Quiz">
+                           Edit
+                        </button>
+                        <button mat-menu-item data-toggle="tooltip" (click)="newMapMaterial(quiz.id)"
+                           title="Edit Quiz Mapping">
+                           Map to Batch
+                        </button>
+                        <button mat-menu-item data-toggle="tooltip" title="Submitted By"
+                           (click)="quizSubmitBy(quiz.id)">
+                           Submitted By
+                        </button>
+                        <button mat-menu-item data-toggle="tooltip" (click)="preview(quiz.id)" title="Prevew">
+                           Preview
+                        </button>
+                        <button mat-menu-item data-toggle="tooltip" (click)="delete(quiz.id)" title="Delete">
+                           Delete
+                        </button>
+                     </mat-menu>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <app-table-paginator [size]="size" [totalElements]="totalElement" (pageChange)="pageChange($event)"
+            (changeSize)="changeSize($event)"></app-table-paginator>
+      </div>
+   </div>
+</div>

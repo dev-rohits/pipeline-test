@@ -1,0 +1,86 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Assignment Listing</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <!-- <input type="search" class="form-control" id="exampleInputSearch" placeholder="Search"> -->
+                              <!-- <input class="form-control" (keyup)="applyFilter($event)" placeholder="Search...." #input /> -->
+                              <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                                 placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+
+                        <a (click)="addassignment()" class="chat-icon-delete btn bg-soft-primary">
+                           + Add Assignment
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+
+                        <th>Sr.</th>
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>Submission Date</th>
+                        <th>actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td colspan="6" *ngIf="assignments?.length==0">
+                           No Record Found.
+                        </td>
+                     </tr>
+                     <tr class="" *ngFor="let assignment of assignments ; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{assignment.name}}</td>
+                        <td>{{assignment.publishedDate | date}}</td>
+                        <td>{{assignment.submissionFrom | date}}</td>
+
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">
+                              menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer" (click)="editAssignment(assignment)"
+                                 data-toggle="tooltip" title="Edit Assignment">
+                                 Edit
+                              </button>
+                              <button mat-menu-item (click)="assignmentMapping(assignment.id)" data-toggle="tooltip"
+                                 title="Edit class Mapping">
+                                 Map to Batch
+                              </button>
+                              <button mat-menu-item (click)="assignmentSubmitBy(assignment)" data-toggle="tooltip"
+                                 title="Submitted By">
+                                 Submitted By
+                              </button>
+                           </mat-menu>
+                        </td>
+                     </tr>
+
+                  </tbody>
+               </table>
+            </div>
+            <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+               (changeSize)="changeSize($event)"></app-table-paginator>
+         </div>
+      </div>
+   </div>
+</div>

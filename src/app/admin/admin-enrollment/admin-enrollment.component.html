@@ -1,0 +1,109 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div id="content-page" class="content-page">
+         <div class="row">
+            <div class="mb-2">
+               <h4>My Courses</h4>
+            </div>
+
+            <div *ngIf="courseList.length == 0">
+               <h6>No course found!</h6>
+            </div>
+
+            <div class="col-sm-3 col-md-3" *ngFor="let course of courseList">
+               <div class="card cardhover point" [routerLink]="['/admin/admin-batches']"
+                  [queryParams]="{ id: course.idCourse,idbatch:course.batchId,courseName:course.courseName}">
+                  <div class="card-body">
+                     <div>
+                        <img [src]="course.courseImage ? course.courseImage : '../assets/images/market/1.png'"
+                           height="100%" width="100%" class="avatar job-icon mb-3 d-inline-block " loading="lazy"
+                           alt="img">
+                     </div>
+                     <h5 *ngIf="(course.courseName + '').length <= 25" class="short-description">{{course.courseName}}
+                     </h5>
+                     <h5 *ngIf="(course.courseName + '').length > 25" class="short-description">{{course.courseName |
+                        slice : 0 : 25 }}...</h5>
+
+                     <small></small>
+                     <div class="mt-2" style="min-height: 50px;">
+                        <p *ngIf="(course.courseTitle + '').length <= 80" class="short-description">
+                           {{course.courseTitle | innerhtmltoplaintext}}
+                        </p>
+                        <p *ngIf="(course.courseTitle + '').length > 80" class="short-description">{{course.courseTitle | innerhtmltoplaintext
+                           |
+                           slice : 0 : 76 }}...</p>
+                     </div>
+                     <span class="text-warning d-block line-height mt-0">
+                        <span class="text-warning d-flex align-items-center mt-2">
+                           <i [ngClass]="course.weightedAverage >= 1 ? '' : 'text-gray'"
+                              class="material-symbols-outlined md-18 me-1">star</i>
+                           <i [ngClass]="course.weightedAverage >= 2 ? '' : 'text-gray'"
+                              class="material-symbols-outlined md-18 me-1">star</i>
+                           <i [ngClass]="course.weightedAverage >= 3 ? '' : 'text-gray'"
+                              class="material-symbols-outlined md-18 me-1">star</i>
+                           <i [ngClass]="course.weightedAverage >= 4 ? '' : 'text-gray'"
+                              class="material-symbols-outlined md-18 me-1">star</i>
+                           <i [ngClass]="course.weightedAverage >= 5 ? '' : 'text-gray'"
+                              class="material-symbols-outlined md-18 text-gray me-1">star</i>
+                           <small style="padding-top: 5px;" class="text-dark me-1">{{course.weightedAverage ?
+                              course.weightedAverage : '0.0'}}/5</small>
+                        </span>
+                     </span>
+                  </div>
+               </div>
+            </div>
+
+
+
+
+
+
+            <!-- <div class="col-sm-3" *ngFor="let course of courseList">
+               <div class="card" [routerLink]="['/admin/admin-batches']"
+                  [queryParams]="{ id: course.idCourse,idbatch:course.batchId,courseName:course.courseName}">
+                  <div class="card-body">
+                     <div class="event-images">
+
+                        <img [src]="course.courseImage" class="img-fluid rounded" alt="Responsive image" loading="lazy">
+
+
+                     </div>
+                     <div class="mt-3">
+                        <h5>{{course.courseName}} </h5>
+                     </div>
+                     <div class="mt-1">
+                        <small><small class="text-primary"></small> </small>
+                     </div>
+
+                     <hr class="hr-horizontal">
+                     <div class="d-flex justify-content-between">
+                        <div>
+                           <p class="mb-0">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16px" class="mb-0" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                              </svg>
+                              <small class="ms-1">{{course.level}}</small>
+                           </p>
+                        </div>
+                        <p class="mb-0">
+
+                           <small _ngcontent-owg-c289="" *ngIf="course.weightedAverage" class="rating-wrap type-2"><span
+                                 class="rt"><img src="assets/img/sss.png" alt="">{{course.weightedAverage | number :
+                                 '1.0-0'}} <span _ngcontent-yxw-c289="">/5</span></span>
+                           </small>
+                           <small _ngcontent-owg-c289="" *ngIf="!course.weightedAverage"
+                              class="rating-wrap type-2"><span class="ms-1" style="color: gray;">No Rating</span>
+                           </small>
+
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+
+         </div>
+      </div>
+   </div>
+</div>

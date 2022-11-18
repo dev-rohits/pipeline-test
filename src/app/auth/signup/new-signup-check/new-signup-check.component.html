@@ -1,0 +1,57 @@
+<div class="large-display-section">
+    <div class="section4" display="flex" align-items="center" justify-content="center">
+        <div class="form-div5" style="background-color: #F6FCFF; padding: 2%;">
+            <h2 class="sign-in-h2 textdec" style="font-size: 25px;">Join Us</h2>
+            <div class="description-div">
+                <p class="step-into-the-world-of-endless textdec" style="color: #7F8487;">
+                    To begin this journey, tell us what type of <br> account you’d be opening.
+                </p>
+            </div>
+
+            <div class="frame-div10">
+                <div class="frame-div11 item" [ngClass]="class1" (click)="role='student'; setActiveClass(1)">
+                    <div class="rectangle-div7"></div>
+                    <img class="polygon-icon3" alt="" src="../../../../assets/images-marketing/polygon-11.svg">
+                    <div class="student-div1">
+                        <p class="textdec">Student</p>
+                    </div>
+                    <div class="personal-account-to-manage-all1">
+                        <p class="textdec" style="font-size: 10px; line-height: 120%;">Personal account to manage all
+                            you activities.</p>
+                    </div>
+                    <img class="user-icon" alt="" src="../../../../assets/images-marketing/user1.svg">
+                </div>
+
+                <div class="frame-div11 item" [ngClass]="class2" (click)="role='admin'; setActiveClass(2)">
+                    <div class="rectangle-div7"></div>
+                    <img class="polygon-icon3" alt="" src="../../../../assets/images-marketing/polygon-22.svg">
+                    <div class="student-div1">
+                        <p class="textdec">Tutor</p>
+                    </div>
+                    <div class="personal-account-to-manage-all1">
+                        <p class="textdec" style="font-size: 10px; line-height: 120%;">Personal account to manage all
+                            you activities.</p>
+                    </div>
+                    <img class="user-icon" alt="" src="../../../../assets/images-marketing/chalkboard.svg">
+                </div>
+
+                <div style="max-width: 320.03px;">
+                    <button (click)="checkRole()" class="btn"
+                        style="background-color: #008CE4; color: white; width: 355%;" id="buttonSignup">
+                        <p class="sign-up-div2 textdec" style="padding-top: 10px;">Continue</p>
+                    </button>
+                </div>
+
+            </div>
+            <a class="instiute-a2" style="top: 102%; left: 12%;">
+                <a class="register-your-instituteschool2">
+                    <span style="color: white;" class="textdec"> Register Your </span><b style="color: white;"
+                        class="textdec">Institute/School</b><span class="textdec" style="color: white;"> With Us!</span>
+                </a>
+            </a>
+            <!-- <button class="view-all-bultton2">
+            <b class="go-back2 textdec" style="color: white;">Go Back</b>
+            </button> -->
+        </div>
+    </div>
+</div>

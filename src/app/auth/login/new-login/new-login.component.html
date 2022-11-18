@@ -1,0 +1,71 @@
+<div class="large-display-section">
+    <div class="section4" display="flex" align-items="center" justify-content="center">
+        <div class="form-div5" style="background-color: #F6FCFF; padding: 2%;">
+            <h2 class="sign-in-h2 textdec" style="font-size: 25px;">Sign In</h2>
+            <div class="description-div">
+                <p class="welcome-to-nrich-learning-step">
+                <p class="welcome-to-nrich-learning textdec" style="color: #7F8487;">
+                    <span class="welcome-to">Welcome to </span><b>Nrich Learning</b>
+                </p>
+                <p class="step-into-the-world-of-endless textdec" style="color: #7F8487;"><span>Step Into
+                        The World Of Endless Possibilities</span>
+                </p>
+            </div>
+
+            <div class="frame-div10">
+                <form class="form2">
+                    <div class="form-div6">
+                        <p class="phone-number textdec">Phone Number</p>
+                        <input class="component-9-input textdec" type="text" #emailValue [(ngModel)]="mobileNo"
+                            maxlength="10" minlength="10" style="padding-right: 5%; padding-left: 5%;"
+                            [ngStyle]="{'background-color': enterOtp ? '#C7D0DA' : '#EFEFEF' }"
+                            (keydown)="onlyNumeric($event)" placeholder="6360915xxx" [readonly]="enterOtp">
+                    </div>
+                </form>
+
+                <form class="form2">
+                    <div class="form-div6">
+                        <p class="phone-number textdec">Enter Your OTP</p>
+                        <div *ngIf="enterOtp">
+                            <a style="padding-left: 290px;" (click)="enterOtp = false;"
+                                class="text-primary item1">Edit</a>
+                        </div>
+
+                        <input class="component-9-input textdec" [(ngModel)]="Otp" maxlength="4" minlength="4"
+                            type="text" placeholder="Enter OTP" style="padding-right: 5%; padding-left: 5%;"
+                            [ngStyle]="{'background-color': !enterOtp ? '#C7D0DA' : '#EFEFEF'}" [readonly]="!enterOtp">
+                    </div>
+                </form>
+                <div *ngIf="enterOtp">
+                    <a *ngIf="counter > 0" class="resend-otp-code textdec" style="color: #C7D0E1;">RESEND OTP CODE AFTER
+                        {{transform(counter)}}</a>
+                    <a *ngIf="counter == 0" class="resend-otp-code textdec" style="color: #C7D0E1;"
+                        (click)="resendOtp()">RESEND OTP CODE</a>
+                </div>
+
+                <div style="max-width: 320.03px;" *ngIf="!enterOtp">
+                    <button class="btn" style="background-color: #008CE4; color: white; width: 207%;" id="buttonSignup"
+                        (click)="sendOtp(emailValue.value);" [disabled]="!(mobileNo.length == 10)">
+                        <div class="sign-up-div2 textdec" style="padding: 7px;">Sign In With OTP</div>
+                    </button>
+                </div>
+                <div style="max-width: 320.03px;" *ngIf="enterOtp">
+                    <button type="submit" class="btn" [disabled]="Otp.length != 4" (click)="Login()"
+                        style="background-color: #008CE4; color: white; width: 259%;" id="buttonSignup">
+                        <div class="sign-up-div2 textdec" style="padding: 7px;">Submit OTP</div>
+                    </button>
+                </div>
+
+            </div>
+            <a class="instiute-a2" style="top: 102%; left: 12%;">
+                <a class="register-your-instituteschool2">
+                    <span style="color: white;" class="textdec"> Register Your </span><b style="color: white;"
+                        class="textdec">Institute/School</b><span class="textdec" style="color: white;"> With Us!</span>
+                </a>
+            </a>
+            <!-- <button class="view-all-bultton2">
+            <b class="go-back2 textdec" style="color: white;">Go Back</b>
+            </button> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+      <div class="card-title" style="width: 100%">
+        <h3 class="card-label">View Assignment</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label>Assignment Topic<span class="text-danger">*</span></label>
+            <h3>{{title}}</h3>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <angular-editor [(ngModel)]="htmlContent1" [config]="editorConfig2"></angular-editor>
+        
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="upload-table mt-2" *ngIf="filesList.length!=0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody class="upload-name-style">
+              <tr *ngFor="let item of filesList; let i = index">
+                <td>
+                  <strong>{{item.split("/").pop()}} </strong>
+                  
+                </td>
+                <td>
+                  <button (click)="documentPreview(item)" class="btn btn-primary">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-sm-12" *ngIf="data.assignment.assignmentObj.gradeType.toLowerCase() == 'grade'">
+          <div class="form-group">
+            <label>Grade<span class="text-danger">*</span></label>
+            <select type="select" class="form-control" placeholder="Grade" [(ngModel)]="grade">
+            <option value="">Select Grade</option>
+            <option *ngFor="let gradeType of grades">{{gradeType}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-sm-6" *ngIf="data.assignment.assignmentObj.gradeType.toLowerCase() == 'number'"> 
+          <div class="form-group">
+            <label>Maximum Marks<span class="text-danger">*</span></label>
+            <input type="number" class="form-control" placeholder="Marks" [(ngModel)]="maxMarks" readonly />
+          </div>
+        </div>
+        <div class="col-sm-6" *ngIf="data?.assignment.assignmentObj.gradeType.toLowerCase() == 'number'"> 
+          <div class="form-group">
+            <label>Obtained Marks<span class="text-danger">*</span></label>
+            <input type="number" class="form-control" placeholder="Marks" max="data.assignment.assignmentObj.maxMarks" [(ngModel)]="marks" />
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="reset" class="btn btn-primary active" (click)="submit(data.assignment.assignmentObj.id)">
+          Submit
+        </button>&nbsp;
+        <button type="reset" class="btn btn-secondary active" (click)="dialogRef.close()">
+          Cancel
+        </button>
+      </div>
+    </div>

@@ -1,0 +1,17 @@
+<div *ngIf="type == 'image'">
+    <img class="img-thumbnail" style="object-fit:contain" src='{{path}}' width="400" height="400">
+</div>
+<div *ngIf="type=='video'">
+<vg-player>
+    <vg-buffering></vg-buffering>
+    <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" width="800" height="400" crossorigin controls>
+        <source src="{{path}}" type="video/mp4">
+    </video>
+</vg-player>
+</div>
+<div *ngIf="type=='file'">
+    <pdf-viewer src="{{path}}" [render-text]="true" [original-size]="false"
+    style="width: 700px; height: 600px">
+    </pdf-viewer>
+</div>
+<button mat-dialog-close class="btn btn-sm btn-danger mt-2">Close</button>

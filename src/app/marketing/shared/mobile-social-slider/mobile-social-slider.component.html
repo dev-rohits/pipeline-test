@@ -1,0 +1,43 @@
+<div class="minus-margin" style="margin-top: 150px;">
+ 
+    <div 
+      class="educator-active gap-35 slider_shadow gray arw-design slick-initialized slick-slider ">
+      <!-- <button type="button" class="slick-prev slick-arrow" (click)="prev()">
+        <i class="far fa-angle-left"></i>
+      </button> -->
+      <button type="button" class="slick-prev slick-arrow " aria-disabled="true" (click)="prev()">
+        <i class="far fa-angle-left"></i>
+      </button>
+      <div >
+        <div class="slick-track">
+          <ngx-slick-carousel  #slickModal="slick-carousel" [config]="slideConfig"
+            (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+            <div ngxSlickItem *ngFor="let teacher of slides" >
+          <div class="card set-card point" >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="set-img" >
+                    <img [src]="teacher.img" style="width: 100%;" alt="">
+                  </div>
+                </div>
+                <div class="col-md-8" style="align-items: flex-start;">
+                  <div class="ca-text">{{teacher.subTitle}}</div>
+                  <div class="ca-text2">{{teacher.title}}</div>
+                  <div class="ca-text3">{{teacher. description}}</div>
+                <div class="ca-btn1">EXPLORE</div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </ngx-slick-carousel>
+  
+        </div>
+      </div>
+  
+      <button type="button" (click)="next()" class="slick-next slick-arrow" style="display: block" aria-disabled="false">
+        <i class="far fa-angle-right"></i>
+      </button>
+    </div>
+  </div>

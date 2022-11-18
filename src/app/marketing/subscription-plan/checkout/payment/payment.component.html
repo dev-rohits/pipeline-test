@@ -1,0 +1,103 @@
+<div class="text-center">
+   <h4>Payment</h4>
+   <hr style="margin-left: 22em; margin-right:22em">
+   <!-- <div style="cursor: pointer;" data-bs-toggle="collapse"
+      data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> -->
+   <div style="cursor: pointer;">
+      <div>
+         <b>Plan Name: {{planList?.pricingPlanName | titlecase}}</b>
+      </div>
+      <!-- <div class="col-md-3 mt-4" style="margin-top: 1em;">
+         <div>X 1</div>
+      </div>
+      <div class="col-md-3 mt-4" style="margin-top: 1em;">
+         <div><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+      </div> -->
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+         data-bs-parent="#accordionFlushExample">
+         <div class="accordion-body">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th scope="col">No.</th>
+                     <th scope="col">Feature Description</th>
+                  </tr>
+                  <tr *ngFor="let element of planList?.features;let i=index">
+                     <td>
+                        {{i+1}}
+                     </td>
+                     <td>
+                        {{element.featureDescription}}
+                     </td>
+                  </tr>
+               </thead>
+            </table>
+         </div>
+      </div>
+      <hr class="mt-2">
+   </div>
+   <div style="padding-left: 10em; padding-right: 10em;cursor: pointer;" class="d-flex justify-content-between">
+      <input type="text" [(ngModel)]="coupon" class="form-control" style="width: 20em;"
+         placeholder="Apply Coupon"><button class="btn btn-primary" [disabled]="coupon ? false : true"
+         (click)="applyCoupon()" type="button">Apply Coupon</button>
+      <button [disabled]="coupon ? false : true" (click)="reinitalizeCoupon()" class="btn btn-secondary">Cancel
+         Coupon</button>
+   </div>
+   <div style="padding-left: 10em; padding-right: 10em">
+      <table class="table">
+         <thead>
+            <tr>
+               <th scope="col"></th>
+               <th scope="col"></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Amount</td>
+               <td> <b> &#x20b9; {{subscriptionPlanTransaction?.amount}} </b></td>
+            </tr>
+            <tr *ngIf="subscriptionPlanTransaction?.discount">
+               <td>Discount</td>
+               <td>
+                  <b>&#x20b9;
+                     {{subscriptionPlanTransaction?.discount}}</b>
+               </td>
+            </tr>
+            <tr *ngIf="subscriptionPlanTransaction?.igstInAmount">
+               <td>IGST</td>
+               <td><b>
+                     &#x20b9;
+                     {{subscriptionPlanTransaction?.igstInAmount}}</b></td>
+            </tr>
+            <tr *ngIf="subscriptionPlanTransaction?.sgstInAmount">
+               <td>SGST</td>
+               <td><b> &#x20b9;
+                     {{subscriptionPlanTransaction?.sgstInAmount}}</b></td>
+            </tr>
+            <tr *ngIf="subscriptionPlanTransaction?.gstInAmount">
+               <td>GST</td>
+               <td><b>&#x20b9;
+                     {{subscriptionPlanTransaction?.gstInAmount}}</b></td>
+            </tr>
+            <tr>
+               <td>Total</td>
+               <td><b> &#x20b9; {{subscriptionPlanTransaction?.netamount}}</b></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                  <button class="btn btn-lg btn-primary" (click)="pay()" style="width: 31em;">PAY
+                     &#x20b9;{{subscriptionPlanTransaction?.netamount}}</button>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <button class="btn btn-sm btn-secondary" (click)="goBack()">Go Back</button>
+               </td>
+               <td>
+                  Having trouble in payment.<a href="#"> Need any help?</a>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

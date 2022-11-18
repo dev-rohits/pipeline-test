@@ -1,0 +1,166 @@
+<main class="fix">
+    <div class="teachers-area product-pge gray-bg position-relative fix">
+        <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute">
+        <div class="container cs-padding">
+            <div class="one-third-g-wrapper">
+                <div class="one-third-left">
+                    <div class="gap-38">
+                        <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a>Home</a></li>
+                                <li class="breadcrumb-item"><a>Courses</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Product Design</li>
+                            </ol>
+                        </nav>
+                        <div class="experties">
+                            <!-- <button class="size-2">Art &amp; Design</button> -->
+                        </div>
+                        <div class="section-title type-5">
+                            <h2>
+                                <span class="title-pole sign position-relative">
+                                    {{courseDetails.courseTitle}}</span>
+                            </h2>
+                        </div>
+                        <div class="artist-wrapper d-flex align-items-center">
+                            <div class="artist-thumb">
+                                <img [src]="courseDetails.teacherImagePath" alt="">
+                            </div>
+                            <h5 class="author"><span class="d-block">Instructor</span> {{courseDetails.teacherName}}
+                            </h5>
+                           
+                            <h5 class="author"><span class="d-block">Rating</span> <span class="rt"><img
+                                        src="assets/img/Rating.png" alt="">{{courseDetails.weightedAverage | number :
+                                    '1.0-0'}}</span>
+                            </h5>
+                        </div>
+
+                        <div class="art position-relative">
+                            <img src="assets/img/wave-1.png" alt="" class="wave position-absolute">
+                            <img [src]="courseDetails.courseImage" alt="" class="img-fluid w-100 z-index-1">
+                        </div>
+
+                        <div class="book-short-wrap">
+                            <h4>Thinking Of Taking A Demo First ?</h4>
+                            <a class="btn box-btn gradient-bg" (click)="scroll(target)">Book A Demo</a>
+                        </div>
+                    </div>
+                    <div class="gap-38">
+                        <div class="des-review-wrap">
+                            <nav>
+                                <div class="nav nav-tabs nav-back" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">Description</button>
+                                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-profile" type="button" role="tab"
+                                        aria-controls="nav-profile" aria-selected="false">Curriculum</button>
+                                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-contact" type="button" role="tab"
+                                        aria-controls="nav-contact" aria-selected="false">Review</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-home-tab">
+                                    <div class="des-rv-content">
+                                    
+                                        <div class="para">
+                                            <p>{{courseDetails.courseDescription | innerhtmltoplaintext}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <div class="des-rv-content">
+                                    
+                                        <div class="para">
+                                            <div *ngFor="
+                                              let module of courseDetails?.courseModules;
+                                              let i = index
+                                            ">
+                                                <div class="accordion" id="courseAccordion">
+                                                    <div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item px-0 pt-0">
+                                                                <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none active"
+                                                                    data-bs-toggle="collapse" aria-expanded="true"
+                                                                    aria-controls="courseOne">
+                                                                    <span class="chevron-arrow ms-4">
+                                                                        <i class="fe fe-chevron-down fs-4"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <mat-accordion>
+                                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                        (closed)="panelOpenState = false">
+                                                        <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                                <b [innerHTML]="module?.moduleTitle"></b>
+                                                            </mat-panel-title>
+                                                            <b [innerHTML]="module?.moduleDuration"></b>
+                                                        </mat-expansion-panel-header>
+                                                        <div *ngFor="
+                                                    let section of module.courseModuleSectionsVO;
+                                                    let i = index
+                                                  ">
+                                                            <p [innerHTML]="section?.moduleSectionTitle"></p>
+                                                            <p *ngFor="
+                                                          let description of section?.moduleSectionDescription
+                                                        " [innerHTML]="description"></p>
+                                                            <b [innerHTML]="section?.moduleSectionDuration"></b>
+                                                            <b [innerHTML]="
+                                                          section?.moduleSectionDurationType
+                                                        "></b>
+                                                        </div>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <div class="des-rv-content">
+                                        <h5>Review</h5>
+                                        <div class="para">
+                                            {{courseDetails.isStudent}}
+                                            <app-reviews [courseDetails]="courseDetails" (newItemEvent)="refresh()">
+                                            </app-reviews>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="enroll">
+                        <app-pricing-plans [pricingPlan]="pricingPlan"></app-pricing-plans>
+                        <div #target>
+                            <app-book-demo [demoClasses]="demoClasses" [courseName]="courseDetails.courseName"
+                                (refreshDemoClassList)="refreshDemoClassList()"></app-book-demo>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-third-right">
+                    <app-course-video (newItemEvent)="enroll()" [courseDetails]="courseDetails"></app-course-video>
+                    <app-inquiry-form [type]="'course'"></app-inquiry-form>
+                    <app-related-courses [relatedCourses]="relatedCourses"></app-related-courses>
+                    <app-review-slider [reviewAndRatings]="reviewAndRatings"></app-review-slider>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-cover" id="course-area fix">
+        <div class="teachers-course-area gray-bg position-relative">
+            <div class="container cs-padding">
+                <h2 class="secondary-title text-start mb-1">Recommended Courses</h2>
+                <app-course-slider [courses]="recommendedCourses"></app-course-slider>
+            </div>
+        </div>
+    </div>
+    <app-teacher-registration></app-teacher-registration>
+</main>

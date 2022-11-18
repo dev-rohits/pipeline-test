@@ -1,0 +1,85 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">Create/Edit Sub-Category</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <form class="form" id="kt_form" [formGroup]="form">
+            <ng-container *ngIf="isSubmit && hasError">
+                <div class="text-danger">
+                    Please Enter something in required field.
+                </div>
+            </ng-container>
+            <div class="row">
+                <div class="form-group">
+                    <label>Enter Sub-Category Name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="categoryName"
+                        placeholder="Enter Sub-Category Name" />
+                    <ng-container *ngIf="isSubmit && f['categoryName'].invalid">
+                        <div class="
+                text-danger
+                ">
+                            <div class="alert-text" *ngIf="f['categoryName']?.errors?.['required']">
+                                Sub Category Name is required.
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>Enter display Order<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="displayOrder"
+                        placeholder="Enter display Order" />
+                    <ng-container *ngIf="isSubmit && f['displayOrder'].invalid">
+                        <div class="
+                text-danger
+                ">
+                            <div class="alert-text" *ngIf="f['displayOrder']?.errors?.['required']">
+                                display Order is required.
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label>Enter Sub-Category Description<span class="text-danger">*</span></label>
+                    <textarea name="" id="" type="text" class="form-control" formControlName="categoryDescription"
+                        placeholder="Enter Category Description"></textarea>
+                    <ng-container *ngIf="isSubmit && f['categoryDescription'].invalid">
+                        <div class="
+                text-danger
+                ">
+                            <div class="alert-text" *ngIf="f['categoryDescription']?.errors?.['required']">
+                                Category Description is required.
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="">Select Sub-Category Image</label>
+                    <input #fileSelect type="file" class="form-control" formControlName="categoryImage"  accept=".jpg,.jpeg,.png,.gif" placeholder=""
+                        (change)="onFileChange($event)" />
+                </div>
+                <label>{{ this.data.categoryImage }}</label>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="submit" *ngIf="!data.isEdit" class="btn btn-primary active" style="margin-right: 20px;"
+            (click)="onSubmit()">
+            Submit
+        </button>
+        <button type="submit" *ngIf="data.isEdit" class="btn btn-primary active" style="margin-right: 20px;"
+            (click)="onSubmit()">
+            Edit
+        </button>
+        <button type="reset" class="btn btn-secondary active" (click)="close()" mat-button mat-dialog-close>
+            Cancel
+        </button>
+    </div>
+</div>

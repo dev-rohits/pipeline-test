@@ -1,0 +1,178 @@
+<mat-tab-group mat-align-tabs="vertical">
+    <mat-tab label="Live Demo Classes">
+       <div class="card">
+ 
+          <div class="card-body">
+             <div id="table" class="table-editable">
+               <div class="col-sm-12 col-md-6">
+                  <div id="user_list_datatable_info" class="dataTables_filter">
+                     <form class="me-3 position-relative">
+                        <!-- <div class="form-group mb-0">
+                           <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                              placeholder="Search....">
+                        </div> -->
+                     </form>
+                  </div>
+               </div>
+               <div class="col-sm-12 col-md-6"></div>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                   <thead>
+                      <tr>
+                         <th>Class Title</th>
+                         <th>Teacher Name</th>
+                         <th>Start Time</th>
+                         <th>End Time</th>
+                         <th>Action</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr class="" *ngFor="let live of liveClasses">
+                         <td>{{ live?.name }}</td>
+                         <td>{{ live?.teacher_name }}</td>
+                         <td> {{ live?.start_date | date: "h:mm a" }} </td>
+                         <td> {{ live?.end_date | date: "h:mm a" }} </td>
+ 
+ 
+                         <td>
+                            <span class="table-remove"><button type="button"
+                                  class="btn btn-danger btn-rounded btn-sm my-0" (click)="joinClass(live.id)">Join</button></span>
+                         </td>
+                      </tr>
+ 
+                   </tbody>
+                </table>
+             </div>
+             <div class="col-md-12" *ngIf="liveClasses.length > 0">
+               <div class="d-flex justify-content-end">
+                  <nav aria-label="...">
+                     <ul class="pagination">
+                        <li class="page-item"><span class="page-link bg-primary">
+                              <select class="form-select-sm" style="padding-top: 0; padding-bottom:0" [(ngModel)]="size"
+                                 (change)="onChange()">
+                                 <option value="5">5</option>
+                                 <option value="10">10</option>
+                                 <option value="15">15</option>
+                                 <option value="20">20</option>
+                              </select>
+                           </span>
+                        </li>
+                        <li class="page-item ">
+                           <button class="page-link" (click)="previous()" [disabled]="page <= 0">Previous</button>
+                        </li>
+                        <li [ngClass]="page==0? 'active':''" (click)="page = 0 ; onChange()" class="page-item">
+                           <button class="page-link">1</button>
+                        </li>
+                        <li *ngIf=" totalCount > size" [ngClass]="page==1? 'active':''" (click)="page = 1 ; onChange()" class="page-item">
+                           <button class="page-link">2</button>
+                        </li>
+                        <li *ngIf="totalCount > 3*size" [ngClass]="page==2? 'active':''" (click)="page = 2 ; onChange()" class="page-item">
+                           <button class="page-link">3</button>
+                        </li>
+                        <li *ngIf="page >= 3" [ngClass]="page>=3? 'active':''" class="page-item">
+                           <button class="page-link">{{page + 1}}</button>
+                        </li>
+                        <!-- <li *ngIf="materialCount > 4*size">
+
+                        </li> -->
+                        <li class="page-item">
+                           <button class="page-link" (click)="onTableDataChange()"
+                              [disabled]="(((page + 1) * size) >= totalCount)">Next</button>
+                        </li>
+                     </ul>
+                     <!-- <h2>{{(materialCount-1)%size | number: '1-0'}}</h2> -->
+                     <!-- <h2>{{materialCount/size | number: '1.0-0'}}</h2> -->
+                  </nav>
+               </div>
+            </div>
+          </div>
+       </div>
+    </mat-tab>
+    <mat-tab label="Future Demo Classes">
+       <div class="card">
+ 
+          <div class="card-body">
+             <div id="table" class="table-editable">
+               <div class="col-sm-12 col-md-6">
+                  <div id="user_list_datatable_info" class="dataTables_filter">
+                     <form class="me-3 position-relative">
+                        <div class="form-group mb-0">
+                           <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                              placeholder="Search....">
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <div class="col-sm-12 col-md-6"></div>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                   <thead>
+                      <tr>
+                         <th>Class Title</th>
+                         <th>Teacher Name</th>
+                         <th>Start Time</th>
+                         <th>End Time</th>
+                         <!-- <th>Action</th> -->
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr class="" *ngFor="let element of futureClasses">
+                         <td>{{ element?.name }}</td>
+                         <td>{{ element?.teacher_name }}</td>
+                         <td> {{ element?.start_date | date: "h:mm a" }} </td>
+                         <td> {{ element?.end_date | date: "h:mm a" }} </td>
+ 
+                         <!--                       
+                      <td>
+                         <span class="table-remove">  <span class="badge" [ngClass]="element?.active ? 'bg-success' : 'bg-warning'"
+                           style="width: 60px;">{{ element?.active ? 'Active' : 'Canceled'}}</span></span>
+                      </td> -->
+                      </tr>
+ 
+                   </tbody>
+                </table>
+             </div>
+             <div class="col-md-12" *ngIf="futureClasses.length > 0">
+               <div class="d-flex justify-content-end">
+                  <nav aria-label="...">
+                     <ul class="pagination">
+                        <li class="page-item"><span class="page-link bg-primary">
+                              <select class="form-select-sm" style="padding-top: 0; padding-bottom:0" [(ngModel)]="size"
+                                 (change)="onChange()">
+                                 <option value="5">5</option>
+                                 <option value="10">10</option>
+                                 <option value="15">15</option>
+                                 <option value="20">20</option>
+                              </select>
+                           </span>
+                        </li>
+                        <li class="page-item ">
+                           <button class="page-link" (click)="previous()" [disabled]="page <= 0">Previous</button>
+                        </li>
+                        <li [ngClass]="page==0? 'active':''" (click)="page = 0 ; onChange()" class="page-item">
+                           <button class="page-link">1</button>
+                        </li>
+                        <li *ngIf=" totalCountOfFuture > size" [ngClass]="page==1? 'active':''" (click)="page = 1 ; onChange()" class="page-item">
+                           <button class="page-link">2</button>
+                        </li>
+                        <li *ngIf="totalCountOfFuture > 3*size" [ngClass]="page==2? 'active':''" (click)="page = 2 ; onChange()" class="page-item">
+                           <button class="page-link">3</button>
+                        </li>
+                        <li *ngIf="page >= 3" [ngClass]="page>=3? 'active':''" class="page-item">
+                           <button class="page-link">{{page + 1}}</button>
+                        </li>
+                        <!-- <li *ngIf="materialCount > 4*size">
+
+                        </li> -->
+                        <li class="page-item">
+                           <button class="page-link" (click)="onTableDataChange()"
+                              [disabled]="(((page + 1) * size) >= totalCountOfFuture)">Next</button>
+                        </li>
+                     </ul>
+                     <!-- <h2>{{(materialCount-1)%size | number: '1-0'}}</h2> -->
+                     <!-- <h2>{{materialCount/size | number: '1.0-0'}}</h2> -->
+                  </nav>
+               </div>
+            </div>
+          </div>
+       </div>
+    </mat-tab>
+ </mat-tab-group>

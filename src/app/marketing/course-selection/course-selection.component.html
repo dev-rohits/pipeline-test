@@ -1,0 +1,82 @@
+<main>
+    <div class="teachers-area course-listing-area header-size-adjust  gray-bg position-relative fix">
+        <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute">
+        <div class="container cs-padding">
+            <div class="row">
+                <fieldset class="type-2 z-index-1 col-md-5" style="width: 200px; margin: 15px;">
+                    <legend>Course Name</legend>
+                    <input #courseSearch type="text" class="form-control" list="CourseNames">
+                    <datalist id="CourseNames">
+                        <option *ngFor="let element of searchRes">{{element}}</option>
+                    </datalist>
+                </fieldset>
+                <fieldset class="type-2 z-index-1 col-md-5" style="width: 200px; margin: 15px;">
+                    <legend>Category</legend>
+                    <input [(ngModel)]="categoryName" type="text" class="form-control" list="categoriesNames"
+                        (change)="fetchCourseByCategory($event)">
+                    <datalist id="categoriesNames">
+                        <option *ngFor="let element of categoryList | filter:categoryName">{{element?.categoryName}}
+                        </option>
+                    </datalist>
+                </fieldset>
+                <div class="col-md-2">
+                    <button style="width: 141px; margin-top: 24px;height: 47px;"
+                        class="col-md-3 btn box-btn gradient-bg" [disabled]="!(searchCoursesNames || categoryId)"
+                        (click)="filter()">Search</button>
+                </div>
+            </div>
+            <br>
+            <!-- <div class="newsletter-input position-relative global-search mb-5">
+                <input type="text" [(ngModel)]="searchText" placeholder="Search..." class="gray-bg">
+                <button class="position-absolute"><i class="fal fa-search"></i></button>
+            </div> -->
+            <div class="catalog-all-wrapper">
+                <div class="catalog-left-slider gap-35 arw-design slider_shadow vertical slick-initialized 
+                    slick-slider slick-vertical right_shadow_active">
+                    <button type="button" class="slick-prev slick-arrow" aria-disabled="true" style="display: block;"><i
+                            class="far fa-angle-up" (click)="prev()"></i>
+                    </button>
+                    <br>
+                    <div class="slick-list draggable" style="height: 620px;">
+                        <div class="slick-track"
+                            style="opacity: 1; height: 918px; transform: translate3d(0px, 0px, 0px);">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+                                (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+                                <div ngxSlickItem class="d-block category-item slick-slide slick-current"
+                                    data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 300px;"
+                                    *ngFor="let category of categories"
+                                    (click)="activeCategoryId=category.idCourseCategory"
+                                    [ngClass]="category.idCourseCategory==activeCategoryId ? 'active-category':''"
+                                    [routerLink]="['/marketing/categories/subCategories']"
+                                    [queryParams]="{id: category.idCourseCategory,name:category.categoryName}">
+                                    <div class="category-item-nr">
+                                        <div class="cat-icon">
+                                            <img style="width: 3.5em; height: auto; margin: auto"
+                                                [attr.src]="category?.categoryImagePath" />
+                                        </div>
+                                        <div class="cat-content">
+                                            <h6
+                                                [ngStyle]="activeCategoryId==category.idCourseCategory ? {'color':'white'}:{}">
+                                                {{ category?.categoryName }}</h6>
+                                            <p
+                                                [ngStyle]="activeCategoryId==category.idCourseCategory ? {'color':'white'}:{}">
+                                                {{ category?.categoryDescription }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                    <button type=" button" class="slick-next slick-arrow" style="display: block; position: inherit;"
+                        aria-disabled="false" (click)="next()"><i class="far fa-angle-down"></i></button>
+                </div>
+                <div class="all-classes">
+                    <div class="all-classes-inner">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,8 @@
+<h1>Select Institute</h1>
+<select #ref  class="form-select" aria-label="Default select example">
+    <option selected disabled>Select Your Institute</option>
+    <option [value]="institute.instituteId" *ngFor="let institute of institutes">{{institute.instituteName}}</option>
+</select>
+
+<hr>
+<button type="button mt-2"  (click)="submit(ref.value)" class="btn btn-primary">submit</button>

@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div id="content-page" class="content-page">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-2">
+              <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <a class="nav-link vertical-center active" id="v-pills-home-tab" data-bs-toggle="pill"
+                  href="#v-pills-home" role="tab" aria-controls="v-pills-home" style="height: 40px;"
+                  aria-selected="false">Classes</a>
+                  <a class="nav-link vertical-center" id="v-pills-studentWebinars-tab" data-bs-toggle="pill"
+                  href="#v-pills-studentWebinars" role="tab" aria-controls="v-pills-studentWebinars"
+                  style="height: 40px;" aria-selected="false">Webinars
+                  </a>
+                <a class="nav-link vertical-center" id="v-pills-profile-tab" data-bs-toggle="pill"
+                  href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" style="height: 40px;"
+                  aria-selected="true">Assignments</a>
+                <a class="nav-link vertical-center" id="v-pills-messages-tab" data-bs-toggle="pill"
+                  href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" style="height: 40px;"
+                  aria-selected="false">Material</a>
+                <a class="nav-link vertical-center" id="v-pills-settings-tab" data-bs-toggle="pill"
+                  href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" style="height: 40px;"
+                  aria-selected="false">Quiz</a>
+              </div>
+            </div>
+            <div class="col-sm-10">
+              <div class="tab-content mt-0" id="v-pills-tabContent">
+                <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel"
+                  aria-labelledby="v-pills-home-tab">
+                  <app-student-all-classes>
+                  </app-student-all-classes>
+                </div>
+                <div class="tab-pane fade" id="v-pills-studentWebinars" role="tabpanel"
+                aria-labelledby="v-pills-studentWebinars-tab">
+                <app-student-all-webinars></app-student-all-webinars>
+              </div>
+                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  <app-student-all-assignments></app-student-all-assignments>
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                  <app-student-material></app-student-material>
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <app-student-quiz></app-student-quiz>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

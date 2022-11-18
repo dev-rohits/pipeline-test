@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+    <div class="cta-area position-relative z-index-2 textdec">
+        <div class="container type-2 cs-padding mb-3" style="padding-left: 10%;">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2 class="text-white">Start My Learning</h2>
+                </div>
+                <div class="col-sm-5 mt-3">
+                    <p class="text-white">*(we don’t sell your phone numbers. PERIOD)</p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="container type-2 cs-padding" style="padding-left: 10%;">
+            <div class="cta-g-wrapper">
+                <fieldset>
+                    <legend>Full Name</legend>
+                    <input class="form-control" type="text" formControlName="name" placeholder="John Smith"
+                        id="fullname" autocomplete="off">
+                </fieldset>
+                <fieldset>
+                    <legend>Contact Number</legend>
+                    <input class="form-control" type="text" formControlName="mobileNumber" placeholder="Contact Number"
+                        id="number" autocomplete="off" (keydown)="onlyNumeric($event)">
+                </fieldset>
+                <fieldset>
+                    <legend>Courses</legend>
+                    <input class="form-control" type="text" list="codes" formControlName="id" placeholder="Enter Course"
+                        [(ngModel)]="courseName" (input)="getCourses($event)" [matAutocomplete]="auto" />
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of courses" [value]="option.courseName">
+                            {{option.courseName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </fieldset>
+                <div class="action h-100 w-100">
+                    <button (click)="submit()"
+                        class="btn btn-medium_round d-flex align-items-center justify-content-center text-uppercase h-100 w-100"><span
+                            class="text-gradient">START FREE</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

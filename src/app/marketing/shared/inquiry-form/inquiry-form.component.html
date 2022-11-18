@@ -1,0 +1,92 @@
+<form novalidate="" [formGroup]="form" 
+  class="cta-fm cmn-box position-relative z-index-2 ng-untouched ng-pristine ng-invalid">
+  <h3 class="tertiary-title text-center">Send A Message Now !</h3>
+  <fieldset class="type-2"
+    [ngStyle]="isSubmit && controls['name'].invalid ? {'border-color':'red'} : isSubmit ? {'border-color':'#007EF2'} : {}">
+    <legend [ngStyle]="isSubmit && controls['name'].invalid ? {'color':'red'} : isSubmit ? {'color':'#007EF2'} : {}">
+      Your Full Name</legend><input type="text" placeholder="Your Full Name" formControlName="name"
+      class="form-control ng-untouched ng-pristine ng-invalid">
+  </fieldset>
+  <!---->
+  <fieldset class="type-2"
+    [ngStyle]="isSubmit && controls['mobileNumber'].invalid ? {'border-color':'red'} : isSubmit ? {'border-color':'#007EF2'} : {}">
+    <legend
+      [ngStyle]="isSubmit && controls['mobileNumber'].invalid ? {'color':'red'} : isSubmit ? {'color':'#007EF2'} : {}">
+      +91</legend><input type="number" placeholder="Mobile Number" formControlName="mobileNumber"
+       class="form-control ng-untouched ng-pristine ng-invalid" #number (keypress)="number.value.length!=10 ">
+  </fieldset>
+  <!---->
+  <fieldset class="type-2"
+    [ngStyle]="isSubmit && controls['message'].invalid ? {'border-color':'red'} : isSubmit ? {'border-color':'#007EF2'} : {}">
+    <legend [ngStyle]="isSubmit && controls['message'].invalid ? {'color':'red'} : isSubmit ? {'color':'#007EF2'} : {}">
+      Message</legend><textarea name="" id="" style="height: 302px; resize: none;"
+      placeholder="Compose your message here....." formControlName="message"
+      class="form-control ng-untouched ng-pristine ng-invalid"></textarea>
+  </fieldset>
+  <!---->
+  <fieldset *ngIf="type!='course'"
+    [ngStyle]="isSubmit && controls['id'].invalid ? {'border-color':'red'} : isSubmit ? {'border-color':'#007EF2'} : {}"
+    class="type-2 z-index-1">
+    <legend [ngStyle]="isSubmit && controls['id'].invalid ? {'color':'red'} : isSubmit ? {'color':'#007EF2'} : {}">
+      Course Name</legend><select  name="level-selection" id="level-selection" formControlName="id"
+      class="form-control ng-untouched ng-pristine ng-invalid">
+      <option selected="">Select Course</option>
+      <option [value]="course.idCourse"  *ngFor="let course of courses" class="ng-star-inserted">{{course.courseName}}</option>
+      <!---->
+    </select>
+  </fieldset>
+  <button type="submit" class="btn box-btn fill-blue send-btn d-flex align-items-center justify-content-center w-100"
+    (click)="submit()">
+    <img class="img-fluid" src="assets/img/send.svg" alt="" />Send
+  </button>
+</form>
+
+
+<!-- <div class="helper-div position-relative">
+
+  <form action="#" class="cta-fm cmn-box position-relative z-index-2" [formGroup]="form">
+    <h3 class="tertiary-title text-center">Send A Message Now !</h3>
+
+    <fieldset class="type-2">
+      <legend>Your Full Name</legend>
+      <input type="text" class="form-control" placeholder="Your Full Name" formControlName="name" />
+
+    </fieldset>
+    <div *ngIf="isSubmit && controls['name'].invalid">
+      <div class="text-danger">
+        <div class="alert-text">
+          Name Is Required.
+        </div>
+      </div>
+    </div>
+    <fieldset class="type-2">
+      <legend>+91</legend>
+      <input class="form-control" type="number" placeholder="Mobile Number" formControlName="mobileNumber" min="0" />
+
+    </fieldset>
+    <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+      <div class="text-danger">
+        <div class="alert-text">
+          Name Is Required.
+        </div>
+      </div>
+    </div>
+    <fieldset class="type-2">
+      <legend>Message</legend>
+      <textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="Compose your message here....."
+        formControlName="message"></textarea>
+
+    </fieldset>
+    <div *ngIf="isSubmit && controls['message'].invalid">
+      <div class="text-danger">
+        <div class="alert-text">
+          Message Is Required.
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn box-btn fill-blue send-btn d-flex align-items-center justify-content-center w-100"
+      (click)="submit()">
+      <img class="img-fluid" src="assets/img/send.svg" alt="" />Send
+    </button>
+  </form>
+</div> -->

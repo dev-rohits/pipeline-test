@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Offline Enrollment Application Listing</h4>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <div class="row justify-content-between d-flex">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="user_list_datatable_info" class="dataTables_filter">
+                                <form class="me-3 position-relative">
+                                    <div class="form-group mb-0">
+                                        <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam"
+                                            type="text" placeholder="Search....">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="files-lists table table-striped mt-4">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Batch Name</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Mobile Number</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="offlineEnrollmentsList.length == 0">
+                                <td colspan="8">No data found!</td>
+                            </tr>
+                            <tr *ngFor="let element of offlineEnrollmentsList; let i = index">
+                                <td>
+                                    {{i+1}}
+                                </td>
+                                <td>
+                                    {{ element?.name }}
+                                </td>
+                                <td>
+                                    {{ element?.batchName }}
+                                </td>
+                                <td>{{ element?.courseName }}</td>
+                                <td>
+                                    {{ element?.mobileNumber }}
+                                </td>
+                                <td>{{ element?.email }}</td>
+                                <td>{{ element?.amount }}</td>
+                                <td class="text-center">
+                                    <a (click)="paymentRecieved(element)"><i class="fa fa-inr text-success"
+                                            aria-hidden="true"></i></a>
+                                    <!-- <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example home icon">menu
+                                    </mat-icon>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item style="cursor: pointer" (click)="mapToClass(element)"
+                                            data-toggle="tooltip" title="Map To class">
+                                            Map To Class
+                                        </button>
+                                        <button mat-menu-item (click)="editMapping(element)" data-toggle="tooltip"
+                                            title="Edit class Mapping">
+                                            Edit Class Mapping
+                                        </button>
+                                        <button mat-menu-item style="cursor: pointer" (click)="newMapMaterial(element)"
+                                            data-toggle="tooltip" title="Map material">
+                                            Map Material
+                                        </button>
+                                    </mat-menu> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <app-table-paginator [size]="size" [totalElements]="applicationCount"
+                        (pageChange)="pageChange($event)" (changeSize)="changeSize($event)"></app-table-paginator>
+                </div>
+            </div>
+        </div>
+    </div>

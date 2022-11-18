@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="course-item col-md-6 mt-6" *ngFor="let institute of instituteList" style="margin-top:25px ;">
+    <div class="cmn-wrap institue" [routerLink]="['/marketing/institute-info']"
+      [queryParams]="{ id: institute.idInstitution,name:institute.instituteName }">
+      <div class="top-zone">
+        <div class="institue-logo">
+          <img [attr.src]="institute?.logoPath && !institute?.logoPath.includes('null')? institute?.logoPath
+          : '../../../../assets/assets/images/course/course-react.jpg'" class="img-fluid" alt="">
+        </div>
+        <div class="top-zone-right">
+          <h5>{{ institute?.instituteName }}</h5>
+          <div class="details">
+            <div class="single">
+              <h6><img class="follower img-fluid" src="assets/img/follower.png" alt="">121
+              </h6>
+              <p>Followers</p>
+            </div>
+            <div class="single">
+              <h6><img class="watch-time img-fluid" src="assets/img/watch-time.png" alt="">24
+              </h6>
+              <p>Courses</p>
+            </div>
+            <div class="single">
+              <h6><img class="watch-time img-fluid" src="assets/img/watch-time.png" alt="">121
+              </h6>
+              <p>Watch Time</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="(institute?.institutionDescription + '').length <= 180">{{
+        institute?.institutionDescription }}</p>
+      <p *ngIf="(institute?.institutionDescription + '').length > 180">{{
+        institute?.institutionDescription | slice : 0 : 180}}...</p>
+      <div class="text-end">
+        <a class="btn style-1 view-courses" tabindex="0">view courses<i class="far fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="pagination-align" *ngIf="instituteList.length > 8">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div> -->
+<br>
+<app-table-paginator [size]="10" [totalElements]="config" [pagenumber]="pageNumber" (pageChange)="nextPage.emit($event)" [disableSize]="true"></app-table-paginator>
+<div *ngIf="instituteList?.length <= 0">
+    <h6>No institute found!</h6>
+</div>

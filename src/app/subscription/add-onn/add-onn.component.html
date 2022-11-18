@@ -1,0 +1,126 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Add onn</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <input class="form-control" type="text" placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+
+                        <a (click)="addons()" class="chat-icon-delete btn bg-soft-primary">
+                           + Add Add onns
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <table class="files-lists table table-striped mt-4">
+                  <thead>
+                     <tr>
+
+                        <th scope="col">Plan Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Students</th>
+
+                        <th scope="col">Storage</th>
+                        <th scope="col">Teachers </th>
+                        <th scope="col">Concurrent Classes</th>
+                        <th scope="col">Effective Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Type </th>
+                        <th scope="col"> Display Order </th>
+                        <th scope="col">view </th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <ng-container *ngFor="let row of  addonslist">
+                        <tr>
+                           <td>
+                              {{row.addOnPlanName}}
+                           </td>
+                           <td>
+                              {{row.price}}
+                           </td>
+                           <td>
+                              {{row.allowedStudents ? row.allowedStudents :
+                              'NA'}}
+                           </td>
+                           <td>
+                              {{row.allowedStorage ? row.allowedStorage :
+                              'NA'}}
+                           </td>
+                           <td>
+                              {{row.allowedTeachers ? row.allowedTeachers :
+                              'NA'}}
+                           </td>
+                           <td>
+                              {{row.allowedConcurrentClasses ?
+                              row.allowedConcurrentClasses : 'NA'}}
+                           </td>
+                           <td>
+                              {{row.startDate | date:'short'}}
+                           </td>
+                           <td>
+                              {{row.endDate | date:'short'}}
+                           </td>
+                           <td>{{row.type}}</td>
+                           <td>{{row.displayOrder}}</td>
+                           <td><button (click)="open = row.id" class="btn btn-primary
+                            ">view</button></td>
+                           <td>
+                              <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                                 aria-label="Example home icon">menu
+                              </mat-icon>
+                              <mat-menu #menu="matMenu">
+
+                                 <button mat-menu-item data-toggle="tooltip" title="Edit class Mapping"
+                                    (click)="editPlan(row)">
+                                    Edit
+                                 </button>
+
+                              </mat-menu>
+                           </td>
+                        </tr>
+                        <tr *ngIf="open == row.id">
+                           <td colspan="12">
+                              <table class="table" >
+                                 <thead>
+                                    <tr>
+                                       <th>Feature Description</th>
+                                       <th>Display Order</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let feature of row.features">
+                                       <td>{{feature.featureDescription}}
+                                       </td>
+                                       <td>{{feature.displayOrder}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </ng-container>
+                  </tbody>
+               </table>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</div>

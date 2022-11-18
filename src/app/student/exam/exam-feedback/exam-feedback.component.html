@@ -1,0 +1,11 @@
+<h4>Feedback Form</h4>
+<div>
+    <!-- <textarea [(ngModel)]="feedback" matInput rows="8"></textarea> -->
+    <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="feedback" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="close()" class="btn btn-danger" style="margin-right: 2px;">Close</button>
+    <button mat-raised-button (click)="submit()" class="btn btn-success">Submit</button>
+</div>

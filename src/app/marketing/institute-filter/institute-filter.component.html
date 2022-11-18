@@ -1,0 +1,52 @@
+<main class="fix">
+    <div class="teachers-area product-pge gray-bg position-relative fix">
+        <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute" />
+        <div class="container cs-padding">
+            <div class="">
+                <div>
+                    <div class="gap-38">
+                        <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Institue List
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="section-title">
+                            <h2>
+                                Explore
+                                <span class="title-pole sign position-relative">Featured Institutes</span>
+                            </h2>
+                        </div>
+
+                        <div class="row">
+
+                            <fieldset class="type-2 z-index-1 col-md-3" style="width: 200px; margin: 15px;">
+                                <legend>Institute Name</legend>
+                                <input type="text" [(ngModel)]="name" #instituteSearch
+                                    class="form-control" list="name" />
+                                <datalist id="name">
+                                    <option *ngFor="let nameInstitute of  resultName">{{nameInstitute}}</option>
+
+                                </datalist>
+                            </fieldset>
+                            <fieldset class="type-2 z-index-1 col-md-3" style="width: 200px; margin: 15px;">
+                                <legend>Category</legend>
+                                <input [(ngModel)]="categoryName" type="text" class="form-control" list="categoriesNames"
+                                  (change)="fetchInstituteByCategory($event)">
+                                <datalist id="categoriesNames">
+                                  <option *ngFor="let element of categoryList | filter:categoryName">{{element?.categoryName}}</option>
+                                </datalist>
+                              </fieldset>
+                            <button (click)="searchInstitutes()" style="width: 141px; margin: 22px;"
+                                class="col-md-3 btn box-btn gradient-bg" [disabled]="!(name || categoryId)">Search</button>
+                        </div>
+                        <app-institute-list [instituteList]="instituteList" [config]="config" [maxPages]="10" (nextPage)="nextPage($event)"></app-institute-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

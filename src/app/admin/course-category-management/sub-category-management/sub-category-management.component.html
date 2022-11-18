@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Category Management</h4>
+                </div>
+                <button (click)="addCategory()" class="btn" style="background: white; color: #50B5FF">
+                    + Add Sub-Category
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="table">
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <div id="user_list_datatable_info" class="dataTables_filter">
+                            <form class="me-3 position-relative">
+                                <div class="form-group mb-0">
+                                    <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam"
+                                        type="text" placeholder="Search....">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="files-lists table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Display Order</th>
+                                <th>isFeatured</th>
+                                <th>isPrivate</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="8" *ngIf="CourseCategoryVO.length==0">
+                                    No Record Found.
+                                </td>
+                            </tr>
+                            <tr *ngFor="let category of CourseCategoryVO ;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{category?.categoryName}}</td>
+
+                                <td>{{category?.categoryDescription}}</td>
+                                <td>{{category?.displayOrder}}</td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" [(ngModel)]="category.isFeatured"
+                                            (change)="updateFeatured(category.subCategoryId)" type="checkbox" id="flexSwitchCheckChecked"
+                                            [checked]="category.isFeatured">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">{{ category.isFeatured ? "Enable" : "Disable"}}</label>
+                                    </div>
+                            </td>
+
+                            <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" [(ngModel)]="category.isPrivate"
+                                        (change)="updatePrivate(category.subCategoryId)" type="checkbox" id="flexSwitchCheckChecked"
+                                            [checked]="category.isPrivate">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">{{ category.isPrivate ? "Enable" : "Disable"}}</label>
+                                    </div>
+                            </td>
+                                <td>
+                                    <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example home icon">menu
+                                    </mat-icon>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title="View Sub Category" [routerLink]="['/admin/sub-sub-category-management']"
+                                            [queryParams]="{ id: category.subCategoryId
+                                            }">
+                                            View Sub-Sub Category
+                                        </button>
+
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title="Edit Category" (click)="editCategory(category)">
+                                            Edit Sub Category
+                                        </button>
+
+                                        <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                            title=" Delete Category" (click)="delete(category.subCategoryId)">
+                                            Delete Sub Category
+                                        </button>
+                                    </mat-menu>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-table-paginator [size]="size" [totalElements]="totalCount" (pageChange)="pageChange($event)"
+                    (changeSize)="changeSize($event)"></app-table-paginator>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

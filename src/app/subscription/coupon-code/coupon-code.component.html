@@ -1,0 +1,89 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Coupon Code</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table-editable">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+                              <input class="form-control" type="text" placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+
+                        <a (click)="addcoupen()" class="chat-icon-delete btn bg-soft-primary">
+                           + Add Coupon
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+
+                        <th scope="col">No.</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Discount</th>
+
+                        <th scope="col">No. Of Coupens</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Coupon For</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let  element of  couponlist;  let i = index">
+                        <td>
+                           {{i+1}}
+                        </td>
+                        <td>
+                           {{ element.type }}
+                        </td>
+                        <td>
+                           {{ element.discount }}
+                        </td>
+                        <td>
+                           {{ element.noOfCoupens }}
+                        </td>
+                        <td>
+                           {{ element.startDate | date }}
+                        </td>
+                        <td> {{ element.endDate | date }}</td>
+                        <td> {{ element.couponFor }}</td>
+
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+
+                              <button mat-menu-item data-toggle="tooltip" title="Edit class Mapping"
+                                 (click)="edit(element)">
+                                 Edit
+                              </button>
+
+                              <button mat-menu-item style="cursor: pointer" (click)="view(element?.id)"
+                                 data-toggle="tooltip" title="Map material">
+                                 View Coupon
+                              </button>
+                           </mat-menu>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

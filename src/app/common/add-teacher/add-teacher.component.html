@@ -1,0 +1,187 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Add Teacher</h4>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+
+
+                <form [formGroup]="userForm">
+                    <div class="row mb-3">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 text-center">
+                                <div style="position: relative; left: 0; top: 0;">
+                                    <img [src]="imageSrc ? imageSrc : '../../../assets/images/profile.png'"
+                                        class="rounded-circle profilePos" alt="Rounded Image" width="150" height="150">
+                                    <a class="iq-icons-list" (click)="fileSelect.click()">
+                                        <i class="fa fa-camera Pos rounded-circle" style="color: #CBE2FF;"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                    <input style="display: none" #fileSelect type="file" accept=".jpg,.jpeg" class="custom-file-input"
+                                        (change)="onFileChange($event)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Name<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="name" autocomplete="off" placeholder="Your Name"
+                                class="form-control ">
+                            <div *ngIf="(isSubmit && controls['name'].invalid) || controls['name']?.touched">
+                                <div *ngIf="controls['name'].errors?.['required']" class="text-danger">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Email<span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" formControlName="email"
+                                [readonly]="disableField">
+
+                            <div *ngIf="isSubmit && controls['email'].invalid">
+                                <div *ngIf="controls['email'].errors?.['required']" class="text-danger">
+                                    Email is required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Phone Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="exampleInputEmail3" placeholder=""
+                                formControlName="mobileNumber" (keydown)="onlyNumeric($event)" autocomplete="off"
+                                [readonly]="disableField">
+                            <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+                                <div *ngIf="controls['mobileNumber'].errors?.['required']" class="text-danger">
+                                    Mobile Number is required
+                                </div>
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="controls['mobileNumber'].errors?.['maxlength'] || controls['mobileNumber'].errors?.['minlength']">
+                                Mobile Number should be of 10 numbers.
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-6 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Role<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" formControlName="role">
+                                <option *ngFor="let roleName of roles" [value]="roleName">{{roleName}}
+                                </option>
+                            </select>
+                            <div *ngIf="isSubmit && controls['role'].invalid">
+                                <div *ngIf="controls['role'].errors?.['required']" class="text-danger">
+                                    Role is required
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+
+                    <div class="mb-3">
+                        <button *ngIf="!disableField" type="button" style="margin-right: 5px;" type="submit"
+                            class="btn btn-primary active" (click)="onSubmit()">Submit</button>
+    
+                            <button mat-button type="button"
+                            class="btn btn-secondary active" mat-button mat-dialog-close>Close</button>
+                    </div>
+
+                </form>
+
+
+
+
+
+                <!-- <form class="form" id="kt_form" [formGroup]="userForm">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="exampleInputText1">Name<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="exampleInputText1" placeholder="Name"
+                                formControlName="name">
+                            <div *ngIf="isSubmit && f['name'].invalid">
+                                <div class="alert alert-custom alert-light-danger alert-dismissible">
+                                    <div class="text-danger" *ngIf="f['name'].errors?.['required']">
+                                        Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="exampleFormControlSelect1">Email<span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleInputEmail3"
+                                placeholder="abc@xyz.pqr/xuv" formControlName="email" [readonly]="disableField">
+                            <ng-container *ngIf="isSubmit && f['email'].invalid">
+                                <div class="alert alert-custom alert-light-danger alert-dismissible">
+                                    <div class="text-danger" *ngIf="f['email'].errors?.['required']">
+                                        Email is required.
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="exampleFormControlSelect1">Phone Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="exampleInputEmail3" placeholder=""
+                                formControlName="mobileNumber" (keydown)="onlyNumeric($event)" autocomplete="off"
+                                [readonly]="disableField">
+                            <ng-container *ngIf="isSubmit && f['mobileNumber'].invalid">
+                                <div class="alert alert-custom alert-light-danger alert-dismissible">
+                                    <div class="text-danger" *ngIf="f['mobileNumber'].errors?.['required']">
+                                        Phone Number is required.
+                                    </div>
+                                    <div class="text-danger"
+                                        *ngIf="f['mobileNumber'].errors?.['maxlength'] || f['mobileNumber'].errors?.['minlength']">
+                                        Phone Number should be of 10 numbers.
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="form-label" for="exampleFormControlSelect1">Role<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" id="exampleFormControlSelect1" formControlName="role">
+                                <option value="Teacher">Teacher</option>
+                                <option value="Student">Student</option>
+                            </select>
+                            <ng-container *ngIf="isSubmit && f['role'].invalid">
+                                <div class="alert alert-custom alert-light-danger alert-dismissible">
+                                    <div class="text-danger" *ngIf="f['role'].errors?.['required']">
+                                        Role is required.
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-2">
+                        <div class="form-group">
+                            <button *ngIf="!disableField" type="button" style="margin-right: 5px;" type="submit"
+                                class="btn btn-primary active" (click)="onSubmit()">Submit</button>
+                            <button *ngIf="disableField" type="button" style="margin-right: 5px;" type="submit"
+                                class="btn btn-success active" (click)="update()">Update</button>
+                            <button routerLink="/teacher/teachers-list" mat-button type="button"
+                                class="btn btn-secondary active">Cancel</button>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+</div>

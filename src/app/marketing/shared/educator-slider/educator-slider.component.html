@@ -1,0 +1,63 @@
+<div class="minus-margin">
+  <h6 *ngIf="teacherList.length == 0">No educators found!</h6>
+  <div *ngIf="teacherList.length !== 0"
+    class="educator-active gap-35 slider_shadow gray arw-design slick-initialized slick-slider right_shadow_active">
+    <!-- <button type="button" class="slick-prev slick-arrow" (click)="prev()">
+      <i class="far fa-angle-left"></i>
+    </button> -->
+    <button type="button" class="slick-prev slick-arrow " aria-disabled="true" (click)="prev()">
+      <i class="far fa-angle-left"></i>
+    </button>
+    <div class="slick-list draggable">
+      <div class="slick-track">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+          (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+          <div ngxSlickItem *ngFor="let teacher of teacherList" class="course-item " data-slick-index="0"
+            aria-hidden="false" tabindex="0">
+            <div class="cmn-wrap educator point" [routerLink]="['/marketing/teacher-profile']"
+              [queryParams]="{ id:teacher.id,name:teacher.name }">
+              <div class="edu-left">
+                <img *ngIf="teacher?.teacherImage !== null " class="img-fluid w-100 h-75" style="border-radius: 15px;"
+                  [attr.src]="teacher?.teacherImage" alt="" />
+              </div>
+              <div class="edu-right">
+                <h5 *ngIf="(teacher?.name+ '').length <= 24">{{teacher?.name}}</h5>
+                <h5 *ngIf="(teacher?.name + '').length > 24">{{teacher?.name | slice : 0 : 21}}...</h5>
+                <p *ngIf="(teacher?.description + '').length <= 120" class="short-description">{{teacher?.description}}
+                </p>
+                <p *ngIf="(teacher?.description + '').length > 120" class="short-description">{{teacher?.description |
+                  slice : 0 : 120 }}...</p>
+                <a class="btn vew-profiles" tabindex="0">view profiles<i class="far fa-arrow-right"></i></a>
+
+                <div class="details">
+                  <div class="single">
+                    <!-- <h6>
+                      <img class="follower img-fluid" src="assets/img/follower.png" alt="" />121
+                    </h6> -->
+                    <h6>
+                      <img class="follower img-fluid" src="assets/img/h-1.png" alt="" />{{teacher?.experience ?
+                      teacher?.experience : '-'}}
+                    </h6>
+                    <p>Experience</p>
+                  </div>
+                  <div class="single">
+                    <h6>
+                      <img class="watch-time img-fluid" src="assets/img/star-5.png"
+                        alt="" />{{teacher.weightedAverage==null ? '0.0' : teacher.weightedAverage}}
+                    </h6>
+                    <p>Reviews</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+
+      </div>
+    </div>
+
+    <button type="button" (click)="next()" class="slick-next slick-arrow" style="display: block" aria-disabled="false">
+      <i class="far fa-angle-right"></i>
+    </button>
+  </div>
+</div>

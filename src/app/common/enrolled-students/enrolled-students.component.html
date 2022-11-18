@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Enrolled Students Listing</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table">
+                    <div class="row justify-content-between d-flex">
+                        <div class="col-sm-12 col-md-6">
+                            <input class="form-control" #searchStudents type="text" placeholder="Search....">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <select (change)="onBatchChange($event)" class="form-select"
+                                aria-label="Default select example">
+                                <option [value]="element.key" *ngFor="let element of batches | keyvalue">
+                                    {{element.value}}</option>
+                                <option value="null" selected>All Batches</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table class="files-lists table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="studentList.length==0">
+                            <td colspan="6">No Students Found</td>
+                        </tr>
+                        <tr *ngFor="let element of studentList;let i=index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{element.first_name}} {{element.last_name ? element.last_name : ''}}
+                            </td>
+                            <td>
+                                {{element.email}}
+                            </td>
+                            <td>
+                                <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example home icon">menu
+                                </mat-icon>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item style="cursor: pointer" data-toggle="tooltip"
+                                        title="Un-Enroll Student" (click)="unEnrollStudent(element.id_student_enrollment)">
+                                        Un-Enroll Student
+                                    </button>
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <app-table-paginator [size]="size" [totalElements]="totalStudents" (pageChange)="pageChange($event)"
+                    (changeSize)="changeSize($event)"></app-table-paginator>
+            </div>
+        </div>
+    </div>
+</div>

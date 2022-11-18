@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">Add/Edit User</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="userForm">
+                    <div class="row mb-3">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 text-center">
+                                <div style="position: relative; left: 0; top: 0;">
+                                    <img [src]="imageSrc ? imageSrc :  '../../../assets/images/profile.png'"
+                                        class="rounded-circle profilePos"  width="150" height="150">
+                                    <a class="iq-icons-list" (click)="fileSelect.click()">
+                                        <i class="fa fa-camera Pos rounded-circle" style="color: #CBE2FF;"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                    <input style="display: none" #fileSelect type="file" accept=".jpg,.jpeg" class="custom-file-input"
+                                        (change)="onFileChange($event)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Name<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="name" autocomplete="off" placeholder="Your Name"
+                                class="form-control ">
+                            <div *ngIf="(isSubmit && controls['name'].invalid) || controls['name']?.touched">
+                                <div *ngIf="controls['name'].errors?.['required']" class="text-danger">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Gender<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" formControlName="gender">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                            <div *ngIf="isSubmit && controls['gender'].invalid">
+                                <div *ngIf="controls['gender'].errors?.['required']" class="text-danger">
+                                    Gender is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Email<span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" formControlName="email"
+                                [readonly]="disableField">
+
+                            <div *ngIf="isSubmit && controls['email'].invalid">
+                                <div *ngIf="controls['email'].errors?.['required']" class="text-danger">
+                                    Email is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Phone Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="exampleInputEmail3" placeholder=""
+                                formControlName="mobileNumber" (keydown)="onlyNumeric($event)" autocomplete="off"
+                                [readonly]="disableField">
+                            <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+                                <div *ngIf="controls['mobileNumber'].errors?.['required']" class="text-danger">
+                                    Mobile Number is required
+                                </div>
+                            </div>
+                            <div *ngIf="isSubmit && controls['mobileNumber'].invalid">
+                                <div class="text-danger"
+                                    *ngIf="controls['mobileNumber'].errors?.['maxlength'] || controls['mobileNumber'].errors?.['minlength']">
+                                    Mobile Number should be of 10 numbers.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label" for="exampleFormControlSelect1">Role<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" formControlName="role">
+                                <option *ngFor="let roleName of roles" [value]="roleName">{{roleName}}
+                                </option>
+                            </select>
+                            <div *ngIf="isSubmit && controls['role'].invalid">
+                                <div *ngIf="controls['role'].errors?.['required']" class="text-danger">
+                                    Role is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button *ngIf="!disableField" type="button" style="margin-right: 5px;" type="submit"
+                            class="btn btn-primary active" (click)="onSubmit()">Submit</button>
+                        <button *ngIf="disableField" type="button" style="margin-right: 5px;" type="submit"
+                            class="btn btn-success active" (click)="update()">Update</button>
+                        <button mat-button type="button" (click)="goBack()"
+                            class="btn btn-secondary active">Back</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+<div class="section-cover" id="explore-area"  *ngIf="blogsList.length!=0">
+    <div class="explore-area position-relative">
+        <img src="assets/img/tile-1.png" alt="" class="tile-1 img-fluid position-absolute">
+        <img src="assets/img/tile-2.png" alt="" class="tile-2 img-fluid position-absolute">
+        <div class="container cs-padding z-index-1">
+            <div class="title-wrap">
+                <div class="section-title">
+                    <h2>Explore <br>
+                        <span class="title-pole sign position-relative">
+                            Latest Insights</span>
+                    </h2>
+                </div>
+                <a routerLink="/marketing/blog-list" class="link_w_icon">View All Blogs<i class="far fa-arrow-right"></i></a>
+            </div>
+
+            <div class="showcase-g-wrapper" *ngIf="blogsList.length!=0">
+                <div class="showcase-g-left">
+                    <div class="showcase-item one position-relative mb-20">
+                        <img class="img-fluid w-100" src="assets/img/sk-1.png" alt="">
+                        <div class="overlay-content position-absolute start-0">
+                            <h6><span class="showcase-cat">EDUCATION</span>{{blogsList[0].subject}}</h6>
+                            <a  class="btn style-2 blue-bg" [routerLink]="['/marketing/blog-details']"
+                            [queryParams]="{id: blogsList[0].idBlog}">Read More</a>
+                        </div>
+                    </div>
+
+                    <div class="twin">
+                        <div class="showcase-item position-relative">
+                            <img class="img-fluid w-100" src="assets/img/sk-3.png" alt="">
+                            <div class="overlay-content position-absolute start-0 top-0">
+                                <h6><span class="showcase-cat">EDUCATION</span>{{blogsList[1].subject}}</h6>
+                                <a  class="btn style-2" [routerLink]="['/marketing/blog-details']"
+                                [queryParams]="{id: blogsList[1].idBlog}">Read More</a>
+                            </div>
+                        </div>
+                        <div class="showcase-item position-relative">
+                            <img class="img-fluid w-100" src="assets/img/sk-4.png" alt="">
+                            <div class="overlay-content position-absolute start-0 top-0">
+                                <h6><span class="showcase-cat">EDUCATION</span>{{blogsList[2].subject}}</h6>
+                                <a class="btn style-2" [routerLink]="['/marketing/blog-details']"
+                                [queryParams]="{id: blogsList[2].idBlog}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase-g-right">
+                    <div class="showcase-item position-relative mb-20">
+                        <img class="img-fluid w-100" src="assets/img/sk-2.png" alt="">
+                        <div class="overlay-content black position-absolute start-0 top-0">
+                            <h6><span class="showcase-cat">EDUCATION</span>{{blogsList[3].subject}}</h6>
+                            <a class="btn style-2 blue-bg" [routerLink]="['/marketing/blog-details']"
+                            [queryParams]="{id: blogsList[3].idBlog}">Read More</a>
+                        </div>
+                    </div>
+                    <div class="showcase-item position-relative">
+                        <img class="img-fluid w-100" src="assets/img/sk-5.png" alt="">
+                        <div class="overlay-content position-absolute start-0 top-0">
+                            <h6><span class="showcase-cat">EDUCATION</span> {{blogsList[4].subject}}</h6>
+                            <a class="btn style-2" [routerLink]="['/marketing/blog-details']"
+                            [queryParams]="{id: blogsList[4].idBlog}">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="blogsList.length==0">
+                <h6>No Blogs found!</h6>
+            </div>
+        </div>
+    </div> <!-- ./explore-area -->
+</div>

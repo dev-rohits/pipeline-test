@@ -1,0 +1,124 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-header d-flex justify-content-between bg-primary">
+            <div class="header-title">
+               <h4 class="card-title text-white">Submit Assignment</h4>
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="table">
+               <div class="row justify-content-between d-flex">
+                  <div class="col-sm-12 col-md-6">
+                     <div id="user_list_datatable_info" class="dataTables_filter">
+                        <form class="me-3 position-relative">
+                           <div class="form-group mb-0">
+
+                              <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                                 placeholder="Search....">
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+                     </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                     <div class="user-list-files d-flex justify-content-end">
+
+
+
+                     </div>
+                  </div>
+               </div>
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+
+                        <th>Sr.</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Submitted On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="completedAssignmentList?.length == 0">
+                        <td colspan="6">No Record Found.</td>
+                     </tr>
+                     <tr class="" *ngFor="let assignment of completedAssignmentList ; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{assignment.userObj.firstName}}</td>
+                        <td>{{assignment.userObj.email}}</td>
+                        <td>{{assignment.createdDate | date}}</td>
+                        <td><span class="badge bg-success"
+                              [ngClass]="{'badge badge-success':assignment.marks || assignment.grade || assignment.marks == 0,
+                                 'badge badge-danger':!assignment.marks || !assignment.grade || assignment.marks != 0}">
+                              {{ assignment.marks || assignment.grade || assignment.marks == 0? "EVALUATED" :
+                              "PENDING" }}</span></td>
+                        <td>
+                           <mat-icon aria-hidden="false" mat-button [matMenuTriggerFor]="menu"
+                              aria-label="Example home icon">
+                              menu
+                           </mat-icon>
+                           <mat-menu #menu="matMenu">
+                              <button mat-menu-item style="cursor: pointer" (click)="evaluateAssignment(assignment)"
+                                 data-toggle="tooltip" title="Evaluate"
+                                 [disabled]="assignment.requestStatus=='Evaluated'">
+                                 {{assignment.requestStatus=="Requested"? "Re-Evaluate":"Evaluate"}}
+                              </button>
+
+
+                           </mat-menu>
+                        </td>
+                     </tr>
+
+                  </tbody>
+               </table>
+            </div>
+            <div class="col-md-12">
+               <div class="d-flex justify-content-end">
+                  <nav aria-label="...">
+                     <ul class="pagination">
+                        <li class="page-item"><span class="page-link bg-primary">
+                              <select class="form-select-sm" style="padding-top: 0; padding-bottom:0" [(ngModel)]="size"
+                                 (change)="onChange()">
+                                 <option value="5">5</option>
+                                 <option value="10">10</option>
+                                 <option value="15">15</option>
+                                 <option value="20">20</option>
+                              </select>
+                           </span>
+                        </li>
+                        <li class="page-item ">
+                           <button class="page-link" (click)="previous()" [disabled]="page <= 0">Previous</button>
+                        </li>
+                        <li [ngClass]="page==0? 'active':''" (click)="page = 0 ; onChange()" class="page-item">
+                           <button class="page-link">1</button>
+                        </li>
+                        <li *ngIf=" totalCount > size" [ngClass]="page==1 ? 'active':''" (click)="page = 1 ; onChange()"
+                           class="page-item">
+                           <button class="page-link">2</button>
+                        </li>
+                        <li *ngIf="totalCount > 3*size" [ngClass]="page==2  ? 'active':''"
+                           (click)="page = 2 ; onChange()" class="page-item">
+                           <button class="page-link">3</button>
+                        </li>
+                        <li *ngIf="page >= 3" [ngClass]="page>=3? 'active':''" class="page-item">
+                           <button class="page-link">{{page + 1}}</button>
+                        </li>
+                        <li class="page-item">
+                           <button class="page-link" (click)="onTableDataChange()"
+                              [disabled]="(((page + 1) * size) >= totalCount)">Next</button>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+</div>

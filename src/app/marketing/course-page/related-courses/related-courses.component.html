@@ -1,0 +1,22 @@
+<div class="cmn-box">
+    <h3 class="tertiary-title">Related Course</h3>
+    <div *ngFor="let course of relatedCourses;let i = index;" class="sd-wrapper">
+        <div *ngIf=" i < 3" class="single-sd">
+            <div class="sd-img">
+                <img [src]="course?.courseImage" class="img-fluid w-100" alt="">
+            </div>
+            <div class="sd-content">
+                <h6>{{course?.courseName}}</h6>
+                <div class="rt">
+                    <img src="assets/img/Rating.png" alt="">
+                </div>
+                <a routerLink="/marketing/course-info" [queryParams]="{id: course.idCourse,name:course?.courseTitle}"
+                   class="link_w_icon">View Courses<i class="far fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="relatedCourses.length <= 0" class="sd-wrapper">
+        <h6>No related courses found!</h6>
+    </div>
+    <a *ngIf="relatedCourses.length > 3" class="btn box-btn w-100" (click)="viewRelatedCourses()">view all courses</a>
+</div>

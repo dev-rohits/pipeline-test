@@ -1,0 +1,48 @@
+<div class="review-slider-box">
+  <h3 class="tertiary-title" *ngIf="reviewFrom !== 'teacher'">Reviews</h3>
+  <div *ngIf="reviewAndRatings.length > 0"
+    class="review-active arw-design slider_shadow gray right_shadow_active vertical slick-initialized slick-slider slick-vertical">
+    <button *ngIf="reviewAndRatings.length > 3" type="button" class="slick-prev slick-arrow" (click)="prev()">
+      <i class="far fa-angle-up"></i>
+    </button><br>
+    <div class="slick-list draggable" style="height: 309px">
+      <div class="slick-track" style="
+          opacity: 1;
+          height: 515px;
+          transform: translate3d(0px, 0px, 0px);
+        ">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+          (init)="slickInit($event)" (breakpoint)="breakpoint($event)">
+          <div ngxSlickItem *ngFor="let review of reviewAndRatings"
+            class="course-item slick-slide slick-current slick-active" tabindex="0" data-slick-index="0"
+            aria-hidden="false">
+            <div class="review-item point">
+              <div class="review-card">
+                <div class="reviewer-thumb">
+                  <img src="assets/img/reviewer-thumb.png" alt="" />
+                </div>
+                <p>
+                  <strong class="d-block reviewer-name">{{review.userName}}</strong>
+                  {{review.review}}
+                </p>
+                <div class="rating-wrap type-2">
+                  <img class="img-fluid" src="assets/img/sss.png" alt="" />
+                  <div class="rat-o">{{review.rating}}<span>/5</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+
+    <button *ngIf="reviewAndRatings.length > 3" type="button" class="slick-next slick-arrow" style="display: block"
+      aria-disabled="false" (click)="next()">
+      <i class="far fa-angle-down"></i>
+    </button>
+  </div>
+  <div *ngIf="reviewAndRatings.length <= 0">
+    <h6>No reviews found!</h6>
+  </div>
+</div>

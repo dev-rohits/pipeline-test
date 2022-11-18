@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+
+                <div class="header-title">
+                    <h4 class="card-title text-white">Exam ends in {{counter | examClock}}</h4>
+                </div>
+                <div class="header-title">
+                    <h4 class="card-title text-white">Total Marks : {{totalMarks}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div *ngFor="let section of preview?.sections">
+                    <div class="d-flex justify-content-center">
+                        <h3>
+                            {{ section?.sectionTitle }}
+                        </h3>
+                    </div>
+                    <div class="d-flex justify-content-lg-start">
+                        <p [innerHtml]="section?.sectionDescription"></p>
+                    </div>
+                    <hr />
+                    <div *ngFor="let question of section?.questions; let qIndex = index">
+                        <div class="d-flex justify-content-between">
+                            <div class="badge badge-secondary mt-2" *ngIf="question?.questionType"
+                                style="background: #50B5FF;">
+                                Q {{qIndex + 1 }}
+                            </div>
+                            <div class="badge badge-secondary mt-2" style="background: #50B5FF;">
+                                {{ question?.questionType=='subjective' ? 'subjective' : 'objective' }}
+                            </div>
+                        </div>
+                        <br />
+                        <div [innerHtml]="question?.questionTitle" class="font-weight-bold"></div>
+                        <div class="mt-2" *ngIf="question?.questionType=='image'">
+                            <img class="img-fluid img-thumbnail" style="border: none;"
+                                [attr.src]="question?.questionImage">
+                        </div>
+                        <br />
+                        <div *ngFor="let option of question?.options; let oIndex = index" class="mb-2">
+                            <div class="d-flex"
+                                *ngIf="question?.questionType=='objective' || question?.questionType=='image'">
+                                <div class="mr-2">
+                                    {{ oIndex + 1 }} &nbsp;
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="{{'option' + option.id}}"
+                                        name="{{'question' + question.id}}" value="{{option.id}}"
+                                        [(ngModel)]="question.answer" />
+                                    <label class="form-check-label" *ngIf="option?.optionTitle"
+                                        for="{{'flexRadioDefault1' + option.id}}">
+                                        {{ option?.optionTitle }}
+                                    </label>
+                                    <div *ngIf="option?.optionTitle=='image'">
+                                        <img class="img-fluid img-thumbnail" style="border: none;"
+                                            [attr.src]="option.optionImage">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="question?.questionType=='subjective'">
+                            <label for="" class="form-label">Write Your Answer</label>
+                            <textarea rows="3" [(ngModel)]="question.answer" class="form-control"
+                                data-kt-autosize="true"></textarea>
+                        </div>
+                        <button type="submit" (click)="saveAnswers(question.id,question.questionType)"
+                            class="btn btn-primary" style="margin-right: 2px;">Save</button>
+                        <button type="reset" (click)="resetAnswer(question.id,question.answer)"
+                            class="btn btn-warning ml-2 text-white">Reset</button>
+                    </div>
+                </div>
+                <button (click)="onSubmit()" class="btn btn-primary mr-2 mt-2 mb-3"> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>

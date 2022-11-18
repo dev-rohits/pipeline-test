@@ -1,0 +1,46 @@
+<div class="section-cover fix" style="overflow-x: hide;" id="hero-area">
+    <div>
+        <a routerLink="/marketing" class="logo"><img style="  margin-left:20px; margin-top:20px"
+                src="assets/img/logo.png" alt="" class="img-fluid"></a>
+    </div>
+    <div>
+        <img src="assets/img/g-1.svg" alt="" class="g-1 position-absolute">
+        <img src="assets/img/g-2.svg" alt="" class="g-2 position-absolute">
+    </div>
+
+    <div class="container cs-padding">
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <img src="../../../assets/images/Login Image.png" style="height: 100%; width:100% ; " alt="">
+
+            </div> <!-- ./hero-left-wrapper -->
+
+            <div class="col-md-6">
+                <div>
+                    <div class="section-title">
+                        <h2>
+                            <span class="title-pole position-relative">Sign Up Otp</span>
+                        </h2>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Enter Otp</label>
+                            <ng-otp-input (onInputChange)="onOtpChange($event)" [ngStyle]="{'border-radius':borderradius}"
+                                [config]="{length:4}"></ng-otp-input>
+                        </div>
+                        <button type="submit" (click)="submit()" style="margin-right: 3px;" class="btn btn-primary mt-3 mr-1" [disabled]="clicked">Submit
+                        </button>
+                        <!-- <button *ngIf="timeLeft == 0" class="btn btn-info text-white mt-3" (click)="resendOtp()">Resend OTP</button> 
+                        <button *ngIf="timeLeft > 0" class="btn mt-3" style="background: darkgrey;">Resend OTP after {{timeLeft}}</button> -->
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 10px;"> Register Your <span style="color: #008CE4;"> Institute/School </span>With Us!</p>
+        <div class="d-flex justify-content-end"><a> <i></i> Go Back</a></div>
+    </div>
+    <img src="assets/img/tile-2.png" alt="" class="tile-2 img-fluid position-absolute">
+</div> <!-- ./hero-area -->

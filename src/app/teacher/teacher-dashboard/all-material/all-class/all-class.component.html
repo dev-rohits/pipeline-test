@@ -1,0 +1,162 @@
+<mat-tab-group mat-align-tabs="vertical">
+   <mat-tab label="Live Classes">
+      <div class="card">
+         <div class="card-body">
+            <div id="table" class="table-editable">
+
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+                        <th>Class Title</th>
+                        <th>Teacher Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="liveClassesVO?.length==0">
+                        <td colspan="5">No Record Found.</td>
+                     </tr>
+                     <tr class="" *ngFor="let live of liveClassesVO">
+                        <td>{{ live?.name }}</td>
+                        <td>{{ live?.teacher_name }}</td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ live?.start_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ live?.start_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ live?.end_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ live?.end_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+
+
+                        <td>
+                           <span class="table-remove"><button type="button"
+                                 class="btn btn-danger btn-rounded btn-sm my-0"
+                                 (click)="joinClass(live.id)">Join</button></span>
+                        </td>
+                     </tr>
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+   <mat-tab label="Future Classes">
+      <div class="card">
+
+         <div class="card-body">
+            <div id="table" class="table-editable">
+
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+                        <th>Class Title</th>
+                        <th>Teacher Name</th>
+                        <th>Start Date & Time</th>
+                        <!-- <th>Start Time</th> -->
+                        <th>End Date & Time</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngIf="futureClassesVO?.length==0">
+                        <td colspan="5">No Record Found.</td>
+                     </tr>
+                     <tr class="" *ngFor="let element of futureClassesVO">
+                        <td>{{ element?.name }}</td>
+                        <td>{{ element?.teacher_name }}</td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.start_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.start_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.end_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.end_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+               <app-table-paginator [size]="FutureSize" [totalElements]="FutureTotalCount"
+                  (pageChange)="changeFutureClassesPage($event)" (changeSize)="changeFutureClassesSize($event)">
+               </app-table-paginator>
+            </div>
+         </div>
+      </div>
+   </mat-tab>
+   <mat-tab label="Past Classes">
+      <div class="card">
+
+         <div class="card-body">
+            <div id="table" class="table-editable">
+
+               <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <thead>
+                     <tr>
+                        <th>Class Title</th>
+                        <th>Teacher Name</th>
+                        <th>Start Date & Time</th>
+                        <th>End Date & Time</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+
+                     <tr *ngIf="recordedClassesVO?.length==0">
+                        <td colspan="5">No Record Found.</td>
+                     </tr>
+                     <tr class="" *ngFor="let element of recordedClassesVO">
+                        <td>{{ element?.name }}</td>
+                        <td>{{ element?.teacher_name }}</td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.start_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.start_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td>
+                           <div class="font-weight-bolder font-size-lg mb-0">
+                              {{ element?.end_date | date }}
+                           </div>
+                           <div class="font-weight-bold text-muted">
+                              {{ element?.end_date | date: "h:mm a" }}
+                           </div>
+                        </td>
+                        <td><span class="table-remove"><a [routerLink]="['/teacher/class-details',element.id]">SHOW
+                                 DETAILS</a></span></td>
+                     </tr>
+                  </tbody>
+               </table>
+               <app-table-paginator [size]="size" [totalElements]="totalCount"
+                  (pageChange)="changeRecordedClassesPage($event)" (changeSize)="changeRecordedClassesSize($event)">
+               </app-table-paginator>
+            </div>
+         </div>
+
+      </div>
+   </mat-tab>
+
+</mat-tab-group>

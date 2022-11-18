@@ -1,0 +1,62 @@
+<aside [ngClass]="sidebaropen==true? 'sidebar-mini':''" class="sidebar sidebar-default navs-pill-all " id="first-tour"
+   data-toggle="main-sidebar" data-sidebar="responsive">
+   <div class="sidebar-body pt-0 data-scrollbar">
+      <div class="sidebar-list">
+         <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
+            <li class="nav-item" *ngFor="let section of menu">
+               <a class="nav-link" data-bs-toggle="collapse" *ngIf="section.screenUrl!=null"
+                  [routerLink]="section.screenUrl"  routerLinkActive="active1" [routerLinkActiveOptions]="{exact: true}" role="button" aria-expanded="false" aria-controls="subSection">
+                  <i class="icon material-symbols-outlined">
+                     person
+                  </i>
+                  <span class="item-name">{{section.sectionName}}</span>
+               </a>
+               <a class="nav-link" data-bs-toggle="collapse" [href]="'#subSection'+section.moduleSectionId"
+                  *ngIf="section.screenUrl==null" href="#subSection" role="button" aria-expanded="false"
+                  aria-controls="subSection">
+                  <i class="icon material-symbols-outlined">
+                     person
+                  </i>
+                  <span class="item-name">{{section.sectionName}}</span>
+                  <i class="right-icon material-symbols-outlined">chevron_right</i>
+               </a>
+               <ul class="sub-nav collapse" [id]="'subSection'+section.moduleSectionId" data-bs-parent="#sidebar-menu"
+                  *ngIf="section.screenUrl==null">
+                  <li class="nav-item" *ngFor="let subSection of section.moduleSubSectionList">
+                     <a class="nav-link" data-bs-toggle="collapse" *ngIf="subSection.screenUrl!=null"
+                        [routerLink]="[subSection.screenUrl]" routerLinkActive="active1" [routerLinkActiveOptions]="{exact: true}"  role="button" aria-expanded="false"
+                        aria-controls="screenNames">
+                        <i class="icon material-symbols-outlined filled">
+                           fiber_manual_record
+                        </i>
+                        <span class="item-name">{{subSection.subSectionName}}</span>
+                     </a>
+
+                     <a class="nav-link" data-bs-toggle="collapse" *ngIf="subSection.screenUrl==null"
+                        [href]="'#screenNames'+subSection.moduleSubSectionId" role="button" aria-expanded="false"
+                        aria-controls="screenNames">
+                        <i class="icon material-symbols-outlined">
+                           person
+                        </i>
+                        <span class="item-name">{{subSection.subSectionName}}</span>
+                        <i class="right-icon material-symbols-outlined">chevron_right</i>
+                     </a>
+                     <ul class="sub-nav collapse" [id]="'screenNames'+subSection.moduleSubSectionId"
+                        *ngIf="subSection.screenUrl==null">
+                        <li class="nav-item" *ngFor="let screenNames of subSection.screenList">
+                           <a class="nav-link" [routerLink]="screenNames.screenUrl" aria-current="page">
+                              <i class="icon material-symbols-outlined filled">
+                                 fiber_manual_record
+                              </i>
+                              <span class="item-name">{{screenNames.screenName}}</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="sidebar-footer"></div>
+</aside>

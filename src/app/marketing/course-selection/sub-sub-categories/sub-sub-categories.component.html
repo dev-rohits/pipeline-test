@@ -1,0 +1,29 @@
+<div *ngIf="subSubCategories.length > 0" class="all-classes-g-wrapper">
+    <a *ngFor="let category of subSubCategories" [routerLink]="['/marketing/categories/categoryCourses']"
+        [queryParams]="{id:category?.id,name:category?.categoryName}">
+        <div class="single-class">
+            <div class="class-thumb">
+                {{ getFirstChar(category?.categoryName) }}
+            </div>
+            <div class="class-intro-content">
+                <h6>{{category?.categoryName}}</h6>
+                <!-- <p>We are happy to pass on the spiritual culture to the next </p> -->
+            </div>
+        </div>
+    </a>
+</div>
+<p *ngIf="subSubCategories.length==0 && isCategoryLoaded">No Record Found.</p>
+<div class="col-md-12" *ngIf="!isCategoryLoaded" style="text-align:center ;">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- <div class="pagination-align" *ngIf="subSubCategories.length > 10">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div> -->
+<app-paginations *ngIf="config > 10" [totalItems]="config" [pageSize]="10" [maxPages]="maxPages"
+    (click)="nextPage($event)">
+</app-paginations>

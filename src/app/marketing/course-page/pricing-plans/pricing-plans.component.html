@@ -1,0 +1,55 @@
+<div class="gap-38">
+    <div class="pricing-wrapper">
+        <h2 class="fourth-title">Batch  <span class="pesh">Pricing </span></h2>
+
+        <div class="row">
+            <div class="col-md-4"  *ngFor="let plan of pricingPlan">
+        <div class="pricing-g-wrapper">
+            <div class="pricing-item yearly" >
+                <span class="position-absolute plan">YEARLY</span>
+                <!-- <span class="position-absolute badge cat-btn discount">₹10,500</span> -->
+                <div class="t-part">
+                    <h2>
+                        <!-- <span class="d-block">Full Course</span> -->
+                        {{plan?.pricingPlanName}}
+                    </h2>
+                    <div class="plan-price">
+                        <h6><span class="g-text text-gradient">₹{{plan?.discountPrice!=null ? plan?.discountPrice :
+                                plan?.price}}/-</span>
+                            <del class="prev-price" *ngIf="plan?.discountPrice!=null">₹{{plan?.price}}</del>
+                        </h6>
+                    </div>
+                    <a *ngIf="!isLogin" class="btn box-btn enroll-btn" (click)="login()">Enroll Now</a>
+                    <a *ngIf="isLogin" class="btn box-btn enroll-btn" (click)="pricingPlanInfo(plan)">Enroll Now</a>
+                </div>
+                <!-- <ul class="pricing-list">
+                    <li> Course Fee - Rs. 10500/-
+                    </li>
+                    <li>Course Duration - 7 Months</li> -->
+                <!-- </ul> -->
+            </div>
+            <!-- <div class="pricing-item monthly">
+                <span class="position-absolute plan">MONTHLY</span>
+                <div class="t-part">
+                    <h2><span class="d-block">Crash Course
+                        </span>
+                        Monthly Plan</h2>
+                    <div class="plan-price">
+                        <h6>₹1,500/-</h6>
+                    </div>
+                    <a href="#" class="btn box-btn enroll-btn">Enroll Now</a>
+                </div>
+                <ul class="pricing-list">
+                    <li> Course Fee - Rs. 10500/-
+                    </li>
+                    <li>Course Duration - 7 Months</li>
+                </ul>
+            </div> -->
+        </div></div>
+        </div>
+
+        <div *ngIf="pricingPlan.length <= 0" class="pricing-g-wrapper">
+            <p>No pricing plan found!</p>
+        </div>
+    </div>
+</div>

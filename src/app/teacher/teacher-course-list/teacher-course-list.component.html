@@ -1,0 +1,81 @@
+<div>
+  <div class="position-relative">
+  </div>
+  <div id="content-page" class="content-page">
+    <div class="container">
+      <div class="
+    d-flex
+    align-items-center
+    justify-content-between
+    flex-wrap flex-sm-nowrap
+    container
+  " ng-reflect-ng-class="container">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+          <!--bindings={}-->
+          <div class="d-flex flex-column">
+            <!-- <h2 class="stud-dashboard text-white font-weight-bold my-2 mr-5">
+                Material Listing
+            </h2> -->
+            <div class="stud-dashboard d-flex align-items-center font-weight-bold my-2">
+              <a class="opacity-75 hover-opacity-100"><i class="flaticon2-shelter text-white icon-1x"></i></a><span
+                class="label label-dot label-sm bg-white opacity-75 mx-3"></span><a routerlinkactive="active" class="
+            text-white text-hover-white
+            opacity-75
+            hover-opacity-100
+            active
+          " ng-reflect-router-link-active="active" ng-reflect-router-link="/dashboard">
+                Course Request List
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-table">
+        <div class="card card-custom gutter-b">
+          <div class="card-header">
+            <div class="card-title" style="width: 50%">
+              <h3 class="card-label">Course Request List</h3>
+            </div>
+            <div class="mt-1">
+              <button class="btn btn-primary btn-sm" routerLink="/teacher/create-course-request"
+                queryParamsHandling="preserve">
+                Send Course Request To Admin
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="width: 100%" class="scroll-custom-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Course Description</th>
+                    <th scope="col">DisplayOrder</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let element of res; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                      {{ element?.requestedCourse?.courseName }}
+                    </td>
+                    <td>
+                      <div [innerHTML]="element?.requestedCourse?.courseDescription"></div>
+                    </td>
+                    <td>{{ element?.requestedCourse?.displayOrder }}</td>
+                  </tr>
+                  <tr *ngIf="res?.requests?.length == 0">
+                    No Records Found.
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

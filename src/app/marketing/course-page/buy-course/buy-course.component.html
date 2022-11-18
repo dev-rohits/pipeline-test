@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Enroll Now </h1>
+<div mat-dialog-content>
+  <table class="table">
+    <thead>
+      <tr>
+      
+        <th scope="col">Batch Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+     
+        <th scope="col">Total Seats</th>
+     
+        <th scope="col">vacant Seats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of batches">
+        <td>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                (click)="selectedBatch(element)"
+                class="form-check-input"
+                name="{{ element }}"
+              />
+              {{ element?.batchName }}
+            </label>
+          </div>
+        </td>
+        <td>{{ element?.startDate | date }}</td>
+        <td>{{ element?.endDate | date }}</td>
+        <td>{{ element?.maxNoOfEnrollments ?  element?.maxNoOfEnrollments : 0}}</td>
+        <td>{{ element?.vacentSeats }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button type="button" (click)="buyNow()" class="btn btn-primary">Buy Now</button>
+  <button mat-raised-button mat-dialog-close class="btn btn-danger ms-2"  type="button">Close</button>
+  <!-- <button *ngIf="!enrollDisable"
+    mat-raised-button
+    [disabled]="buyNow"
+    color="primary"
+    (click)="onPayClick()"
+  >
+    {{batchData?.price==0 && !buyNow ? 'Enroll Now' : 'Buy Now'}}
+  </button>&nbsp;&nbsp;&nbsp; -->
+<!-- <div *ngIf="enrollDisable">Enrollment for this batch is no longer Active.</div> -->
+</div>

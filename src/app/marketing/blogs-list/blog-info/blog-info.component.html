@@ -1,0 +1,121 @@
+<main>
+  <div class="teachers-area course-listing-area header-size-adjust gray-bg position-relative fix">
+    <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute" />
+    <div class="container cs-padding">
+      <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Blogs</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Blogs List</li>
+        </ol>
+      </nav>
+
+      <div class="row align-items-center">
+        <div class="col-md-6 col-4">
+          <h4>
+            {{blogDetails.subject}}
+          </h4>
+        </div>
+        <div class="col-md-6 col-8">
+          <div class="ft-top-right ">
+            <span>
+              <p style="color: black;"><img src="assets/img/h-4.png" alt=""><span class="text-muted">Language</span>
+                &nbsp; English
+              </p>
+            </span><span>
+              <p style="color: black;"><img src="../../../../assets/images/eye.png" alt=""> 5 min &nbsp;<span
+                  class="text-muted">Read Time</span>
+              </p>
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <img src="../../../../assets/images/Rectangle 1.png" style="width: 100%; height:100%" />
+
+      </div>
+      <div class="row align-items-center" style="margin-top: 40px">
+        <div class="col-md-6 col-4">
+          <div class="artist-wrapper d-flex align-items-center">
+            <div class="artist-thumb">
+              <img src="assets/img/artist.png" alt="">
+            </div>
+            <h5 class="author"><span class="d-block">Writer</span>{{blogDetails.firstName}} {{blogDetails.lastName}}
+            </h5>
+            <h5 class="author"><span class="d-block">Last Update</span> {{blogDetails.createdDate | date }}
+            </h5>
+            <div style="margin-left: 20px;">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-8">
+          <div class="ft-top-right ">
+            <ul class="social-links d-flex align-items-center justify-content-end">
+              <li><a><i class="fab fa-facebook-f" style="color:  #7A7A7A"></i></a></li>
+              <li><a><i class="fab fa-twitter" style="color:  #7A7A7A"></i></a></li>
+              <li><a><i class="fab fa-instagram" style="color:  #7A7A7A"></i></a></li>
+              <li><a><i class="fab fa-linkedin-in" style="color:  #7A7A7A"></i></a></li>
+              <li><a><i class="fa fa-share-alt" style="color:  #7A7A7A"></i></a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 30px;">
+      </div>
+      <div style="margin-top: 40px;">
+        <p class="text-desgin">
+        <h6>{{blogDetails.description}}</h6>
+      </div>
+
+      <div class="row" style="margin-top: 40px" >
+
+
+
+        <div class="col-lg-4" style="margin-top: 20px" *ngFor="let blog of blogsList">
+          <div class="course-item">
+            <div class="card single-course"  [routerLink]="['/marketing/blog-details']"
+            [queryParams]="{id: blog.idBlog}">
+              <div class="thumb-part position-relative" style="background-image: url(assets/img/v-1.png)">
+                <!-- <button class="badge cat-btn popular" tabindex="0">Popular<img class="img-fluid" src="assets/img/badge.svg" alt=""></button> -->
+                <a class="position-absolute play" tabindex="0"><img src="assets/img/play.svg" alt=""
+                    class="img-fluid" /></a>
+              </div>
+              <div class="content-part">
+                <div class="up-bar">
+                  <p class="status">
+                    <img class="img-fluid" src="assets/img/beginner-graph.svg" alt="" />
+                    Beginner
+                  </p>
+                  <p>
+                    <img src="../../../assets/images/Vector (2).png" alt="" />
+                  </p>
+                </div>
+                <div class="middle-content">
+                  <div class="ttl-content">
+                    <h4>{{blog.subject}}</h4>
+                  </div>
+                  <p *ngIf="(blog?.description + '').length <= 120" class="short-description">
+                    {{blog?.description }}</p>
+                <p *ngIf="(blog?.description + '').length > 120" class="short-description">
+                    {{blog?.description | slice : 0 : 120 }}...</p>
+                </div>
+
+                <div class="bottom-content">
+                  <h5 class="author">
+                    <span class="d-block">Author</span>{{blog.firstName}} {{blog.lastName}}
+                  </h5>
+                  <a class="know-more" tabindex="0">Know More<i class="far fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>

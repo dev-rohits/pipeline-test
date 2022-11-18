@@ -1,0 +1,129 @@
+<div class="card">
+   <div class="card-header d-flex justify-content-between bg-primary">
+      <div class="header-title">
+         <h4 class="card-title text-white">Student's Requests Management</h4>
+      </div>
+   </div>
+   <div class="card-body">
+      <div class="table-responsive">
+         <div class="row justify-content-between d-flex">
+            <div class="col-sm-12 col-md-6">
+               <div id="user_list_datatable_info" class="dataTables_filter">
+                  <form class="me-3 position-relative">
+                     <div class="form-group mb-0">
+                        <input class="form-control" (keyup)="search($event)" [(ngModel)]="searchParam" type="text"
+                           placeholder="Search....">
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+            </div>
+         </div>
+         <table class="files-lists table table-striped mt-4">
+            <thead>
+               <tr>
+                  <th scope="col">
+                     <div class=" text-center">
+                        <input type="checkbox" class="form-check-input" (change)="$event ? masterToggle() : null"
+                           [checked]="selection.hasValue() && isAllSelected()"
+                           [indeterminate]="selection.hasValue() && !isAllSelected()" (change)="checkboxLabel()">
+                     </div>
+                  </th>
+                  <th scope="col">Coures Name</th>
+                  <th scope="col">Class Name</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Description</th>
+
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let demoClass of demoClassRequests; let i = index">
+                  <td>
+                     <div class=" text-center">
+                        <input type="checkbox" class="form-check-input" (click)="$event.stopPropagation()"
+                           (change)="$event ? selection.toggle(demoClass) : null"
+                           [checked]="selection.isSelected(demoClass)" (change)="checkboxLabel(demoClass, i)">
+                     </div>
+                  </td>
+                  <td>
+                     {{demoClass.courseName}}
+                  </td>
+                  <td>{{demoClass.className}}</td>
+
+                  <td>{{demoClass.studentName}}</td>
+                  <td>{{demoClass.description}}</td>
+
+                  <td>
+                     {{
+                     demoClass.createdDate | date: "short"
+                     }}
+                  </td>
+                  <td>
+                     <span class="badge bg-info"
+                        [ngClass]="demoClass.status=='pending' ? 'badge-warning' : demoClass.status=='rejected' ? 'badge-danger' : 'badge-success'">{{
+                        demoClass.status }}</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="row mt-6">
+            <div class="col-md-3"></div>
+            <div class="text-center col-md-6">
+               <button type="button" class="btn btn-primary active" (click)="accept()"
+                  [disabled]="selection.selected.length == 0">
+                  Accept
+               </button>
+               &nbsp;
+               <button type="button" class="btn btn-secondary active" (click)="reject()"
+                  [disabled]="selection.selected.length == 0">
+                  Reject
+               </button>
+            </div>
+            <div class="col-md-3">
+               <div class="d-flex justify-content-end">
+                  <nav aria-label="...">
+                     <ul class="pagination">
+                        <li class="page-item"><span class="page-link bg-primary">
+                              <select class="form-select-sm" style="padding-top: 0; padding-bottom:0" [(ngModel)]="size"
+                                 (change)="onChange()">
+                                 <option value="5">5</option>
+                                 <option value="10">10</option>
+                                 <option value="15">15</option>
+                                 <option value="20">20</option>
+                              </select>
+                           </span>
+                        </li>
+                        <li class="page-item ">
+                           <button class="page-link" (click)="previous()" [disabled]="page <= 0">Previous</button>
+                        </li>
+                        <li [ngClass]="page==0? 'active':''" (click)="page = 0 ; onChange()" class="page-item">
+                           <button class="page-link">1</button>
+                        </li>
+                        <li *ngIf=" requestCount > size" [ngClass]="page==1 ? 'active':''"
+                           (click)="page = 1 ; onChange()" class="page-item">
+                           <button class="page-link">2</button>
+                        </li>
+                        <li *ngIf="requestCount > 3*size" [ngClass]="page==2  ? 'active':''"
+                           (click)="page = 2 ; onChange()" class="page-item">
+                           <button class="page-link">3</button>
+                        </li>
+                        <li *ngIf="page >= 3" [ngClass]="page>=3? 'active':''" class="page-item">
+                           <button class="page-link">{{page + 1}}</button>
+                        </li>
+                        <li class="page-item">
+                           <button class="page-link" (click)="onTableDataChange()"
+                              [disabled]="(((page + 1) * size) >= requestCount)">Next</button>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</div>

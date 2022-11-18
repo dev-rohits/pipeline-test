@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between bg-primary">
+                <div class="header-title">
+                    <h4 class="card-title text-white">File Management</h4>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger ml-2 setHeight" style="margin-right: 3px"
+                        [disabled]="selectedFiles.length==0" (click)="deleteFiles()">
+                        <mat-icon aria-hidden="false">delete_forever</mat-icon>
+                        Delete ({{selectedFiles.length}}) Files ({{selectedSize | convertSizeIntoReadableFormat }})
+                    </button>
+                    <button class="btn btn-light ml-2 setHeight" style="margin-right: 3px">
+                        <mat-icon aria-hidden="false">
+                            <span class="material-symbols-outlined">
+                                cloud_circle
+                            </span>
+                        </mat-icon>
+                        Used Space {{usedSpace | number:'.1-2'}} GB
+                    </button>
+                    <button class="btn btn-secondary ml-2 setHeight">
+                        <mat-icon aria-hidden="false">
+                            <span class="material-symbols-outlined">
+                                cloud_circle
+                            </span>
+                        </mat-icon>
+                        Total Space {{bucketSize}} GB
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="row justify-content-between d-flex">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="user_list_datatable_info" class="dataTables_filter">
+                                <form class="me-3 position-relative">
+                                    <div class="form-group mb-0">
+                                        <input class="form-control" (keyup)="searchFile($event)"
+                                            [(ngModel)]="searchParam" type="text" placeholder="Search....">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="files-lists table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col"><b>#</b></th>
+                                <th scope="col">No.</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Preview</th>
+                                <th scope="col">Download</th>
+                                <th scope="col">Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="files?.length == 0">
+                                <td colspan="8">No data found!</td>
+                            </tr>
+                            <tr *ngFor="let element of dataObs$ | async; let i = index">
+                                <td>
+                                    <input type="checkbox" (click)="addToSelected(element,$event)"
+                                        [(ngModel)]="element.selected">
+                                </td>
+                                <td>
+                                    {{i+1}}
+                                </td>
+                                <td>
+                                    {{ element?.key }}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        style="border-radius: 50%;height: 40px;" (click)="showPreview(element.filePath)">
+                                        <mat-icon>
+                                            {{imageTypes.includes(element.key.substring(element.key.lastIndexOf(".")+1))
+                                            ?
+                                            'image':videoTypes.includes(element.key.substring(element.key.lastIndexOf(".")+1))?
+                                            'play_circle':'file_copy'
+                                            }}
+                                        </mat-icon>
+                                    </button>
+                                </td>
+                                <td>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                        data-bs-original-title="Download"
+                                        (click)="downloadFile(element.etag,element.key,element.bucketName)">
+                                        <i class="material-symbols-outlined text-primary">file_download</i>
+                                    </a>
+                                </td>
+                                <td>
+                                    {{element.size | convertSizeIntoReadableFormat}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

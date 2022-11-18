@@ -1,0 +1,353 @@
+<main class="fix institue-pge">
+  <div class="institue-page-area gray-bg position-relative">
+    <div class="gradient-banner" style="background-image: url(assets/img/banner.webp)"></div>
+    <img src="assets/img/gg-3.png" alt="" class="gg-3 position-absolute" />
+    <div class="container cs-padding">
+      <div class="one-third-g-wrapper">
+        <div class="one-third-left">
+          <div class="gap-38">
+            <div class="teacher-short-info-wrap">
+              <div class="theader-thumb">
+                <img class="img-fluid w-100" [src]="instituteDetails.image" alt="" />
+              </div>
+              <div class="teacher-short-info">
+                <h2 class="teacher-name">
+                  <span class="desination d-block">Institute</span>{{instituteName}}
+                </h2>
+                <div class="badge-showcase d-flex align-items-center">
+                
+                </div>
+
+                <div class="info-rw">
+                  <div class="details plc-2">
+                    <div class="single">
+                      <h6>
+                        <img class="follower img-fluid" src="assets/img/te.svg" alt="" />15+
+                      </h6>
+                      <p>Teachers</p>
+                    </div>
+                    <div class="single">
+                      <h6>
+                        <img class="watch-time img-fluid" src="assets/img/star-5.png" alt="" />24
+                      </h6>
+                      <p>Reviews</p>
+                    </div>
+                  </div>
+
+                  <a (click)="scroll(target)" class="btn box-btn border-style-medium blue">View Courses</a>
+                  <!-- <a class="btn box-btn border-style-medium blue">View Courses</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gap-38">
+            <div class="bio">
+              <h3 class="tertiary-title text-start">About Me</h3>
+              <p>
+                {{instituteDetails.institutionDescription}}
+              </p>
+
+              <div class="experties">
+                <button *ngFor="let tag of instituteDetails.tags; let i = index"
+                  [ngClass]="{'' : (i < 4 ? i : i%4) == 0, 'blue' : (i < 4 ? i : i%4) == 1, 'red' : (i < 4 ? i : i%4) == 2, 'yellow' : (i < 4 ? i : i%4) == 3}">{{tag}}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gap-38">
+            <div class="one-third-blk">
+              <div class="flex-title">
+                <h3 class="tertiary-title m-0">My Methodology</h3>
+                <a (click)="scroll(target)" class="btn box-btn border-style-small blue">Book A Demo</a>
+              </div>
+
+              <p>
+                Hello students! I am a self-driven, motivated entrepreneur with
+                a proven track record of success with extraordinary
+                achievements.
+              </p>
+
+              <div class="video position-relative">
+                <img src="assets/img/v-bg.jpg" alt="" class="v-bg img-fluid w-100" />
+                <a href="https://www.youtube.com/watch?v=olboi3ttUi8&amp;ab_channel=4EverGreen"
+                  class="play-video position-absolute top-50 start-50"><i class="fas fa-play"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-blk type-2 orange">
+            <h5>
+              Still Confused About <br />
+              What To Do ?
+            </h5>
+            <a (click)="scroll(target)" class="btn box-btn fill-blue small">GRAB A FREE DEMO</a>
+          </div>
+        </div>
+        <div class="one-third-right">
+          <div class="helper-div position-relative margin-top">
+            <app-inquiry-form [type]="'institute'" [courses]="courseList"></app-inquiry-form>
+          </div>
+          <app-highlights [instituteDetails]="instituteDetails" ></app-highlights>
+
+          <app-review-slider></app-review-slider>
+
+          <app-achievers-slider></app-achievers-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./instructor-area -->
+
+  <div #target class="section-cover" id="course-area">
+    <div class="teachers-course-area gray-bg position-relative">
+      <div class="container cs-padding">
+        <div class="title-wrap">
+          <h3 class="secondary-title mb-0">Our Courses</h3>
+          <a (click)="viewAllCourses()" class="link_w_icon">View All Courses<i class="far fa-arrow-right"></i></a>
+        </div>
+        <app-course-slider [courses]="courseList"></app-course-slider>
+      </div>
+    </div>
+    <!-- ./teachers-course-area -->
+  </div>
+
+  <div class="section-cover fix" id="educator-area">
+    <div class="educator-area gray-bg">
+      <div class="container cs-padding">
+        <div class="title-wrap">
+          <h3 class="secondary-title mb-0">Our Tutors</h3>
+          <a (click)="viewAllTutors()" class="link_w_icon">View All Tutors<i class="far fa-arrow-right"></i></a>
+        </div>
+        <app-educator-slider [teacherList]="teacherlist"></app-educator-slider>
+      </div>
+    </div>
+    <!-- ./educator-area -->
+  </div>
+
+  <div class="explore-area position-relative">
+    <img src="assets/img/tile-1.png" alt="" class="tile-1 img-fluid position-absolute" />
+    <img src="assets/img/tile-2.png" alt="" class="tile-2 img-fluid position-absolute" />
+    <div class="container cs-padding z-index-1">
+      <div class="title-wrap">
+        <div class="section-title">
+          <h2>
+            Explore <br />
+            <span class="title-pole sign position-relative">
+              Latest Insights</span>
+          </h2>
+        </div>
+
+        <a href="#" class="link_w_icon">View All Blogs<i class="far fa-arrow-right"></i></a>
+      </div>
+
+      <div class="showcase-g-wrapper">
+        <div class="showcase-g-left">
+          <div class="showcase-item one position-relative mb-20">
+            <img class="img-fluid w-100" src="assets/img/sk-1.png" alt="" />
+            <div class="overlay-content position-absolute start-0">
+              <h6>
+                <span class="showcase-cat">EDUCATION</span> How To Come <br />
+                Up With New Ideas ?
+              </h6>
+              <a href="#" class="btn style-2 blue-bg">Read More</a>
+            </div>
+          </div>
+
+          <div class="twin">
+            <div class="showcase-item position-relative">
+              <img class="img-fluid w-100" src="assets/img/sk-3.png" alt="" />
+              <div class="overlay-content position-absolute start-0 top-0">
+                <h6>
+                  <span class="showcase-cat">EDUCATION</span> How To Come <br />
+                  Up With New Ideas ?
+                </h6>
+                <a href="#" class="btn style-2">Read More</a>
+              </div>
+            </div>
+            <div class="showcase-item position-relative">
+              <img class="img-fluid w-100" src="assets/img/sk-4.png" alt="" />
+              <div class="overlay-content position-absolute start-0 top-0">
+                <h6>
+                  <span class="showcase-cat">EDUCATION</span> How To Come <br />
+                  Up With New Ideas ?
+                </h6>
+                <a href="#" class="btn style-2">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-g-right">
+          <div class="showcase-item position-relative mb-20">
+            <img class="img-fluid w-100" src="assets/img/sk-2.png" alt="" />
+            <div class="overlay-content black position-absolute start-0 top-0">
+              <h6>
+                <span class="showcase-cat">EDUCATION</span> How To Come <br />
+                Up With New Ideas ?
+              </h6>
+              <a href="#" class="btn style-2 blue-bg">Read More</a>
+            </div>
+          </div>
+          <div class="showcase-item position-relative">
+            <img class="img-fluid w-100" src="assets/img/sk-5.png" alt="" />
+            <div class="overlay-content position-absolute start-0 top-0">
+              <h6>
+                <span class="showcase-cat">EDUCATION</span> How To Come <br />
+                Up With New Ideas ?
+              </h6>
+              <a href="#" class="btn style-2">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./explore-area -->
+
+  <div class="faq-area gray-bg">
+    <div class="container cs-padding z-index-1">
+      <div class="section-title">
+        <h2>
+          Frequently Asked Questions
+          <span class="title-pole sign position-relative">( FAQ’s )</span>
+        </h2>
+      </div>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item border-0">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            How can I clear my doubts?
+          </button>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the first item's accordion body.</strong> It is
+              shown by default, until the collapse plugin adds the appropriate
+              classes that we use to style each element. These classes control
+              the overall appearance, as well as the showing and hiding via CSS
+              transitions. You can modify any of this with custom CSS or
+              overriding our default variables. It's also worth noting that just
+              about any HTML can go within the <code>.accordion-body</code>,
+              though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border-0">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Can I Enroll In Multiple Courses
+          </button>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is
+              hidden by default, until the collapse plugin adds the appropriate
+              classes that we use to style each element. These classes control
+              the overall appearance, as well as the showing and hiding via CSS
+              transitions. You can modify any of this with custom CSS or
+              overriding our default variables. It's also worth noting that just
+              about any HTML can go within the <code>.accordion-body</code>,
+              though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border-0">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            How can I clear my doubts?
+          </button>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam autem, consectetur eum minima dicta aliquid ducimus,
+                itaque illum iste aliquam illo esse accusantium commodi
+                exercitationem magnam deserunt. Est non, aspernatur repellat
+                sunt, rerum iste quibusdam suscipit commodi exercitationem
+                incidunt possimus perspiciatis. Sint dolores sed doloribus
+                tenetur neque qui quis debitis!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border-0">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            How can I clear my doubts?
+          </button>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam autem, consectetur eum minima dicta aliquid ducimus,
+                itaque illum iste aliquam illo esse accusantium commodi
+                exercitationem magnam deserunt. Est non, aspernatur repellat
+                sunt, rerum iste quibusdam suscipit commodi exercitationem
+                incidunt possimus perspiciatis. Sint dolores sed doloribus
+                tenetur neque qui quis debitis!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border-0">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            How can I clear my doubts?
+          </button>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam autem, consectetur eum minima dicta aliquid ducimus,
+                itaque illum iste aliquam illo esse accusantium commodi
+                exercitationem magnam deserunt. Est non, aspernatur repellat
+                sunt, rerum iste quibusdam suscipit commodi exercitationem
+                incidunt possimus perspiciatis. Sint dolores sed doloribus
+                tenetur neque qui quis debitis!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./faq-area -->
+
+  <div class="ins-area fix bg-white">
+    <div class="container type-2 cs-padding">
+      <div class="ins-row-type-one">
+        <div class="ins-el-box position-relative">
+          <img class="img-fluid position-absolute bottom-0 ins-t-1" src="assets/img/ins-t-1.png" alt="" />
+          <div class="ins-element blue">
+            <div class="ins-el-inner">
+              <h5>Become An Instructor</h5>
+              <p>
+                Unable decide the curated courses for your skillset? <br />
+                Grab a free demo right now !
+              </p>
+              <a href="#" class="btn box-btn fill-white small round-60"><i class="far fa-plus-circle"></i>Apply Now</a>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="ins-img d-block"><img src="assets/img/ins-1.png" alt="" class="img-fluid w-100" /></a>
+      </div>
+
+      <div class="ins-row-type-two">
+        <a href="#" class="ins-img d-block"><img src="assets/img/ins-1.png" alt="" class="img-fluid w-100" /></a>
+        <div class="ins-el-box position-relative">
+          <img class="img-fluid position-absolute bottom-0 ins-t-1 two" src="assets/img/ins-t-2.png" alt="" />
+          <div class="ins-element green">
+            <div class="ins-el-inner">
+              <h5>Become An Instructor</h5>
+              <p>
+                Unable decide the curated courses for your skillset? <br />
+                Grab a free demo right now !
+              </p>
+              <a href="#" class="btn box-btn fill-white small round-60"><i class="far fa-plus-circle"></i>Register
+                Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ./ins-area -->
+</main>

@@ -1,0 +1,91 @@
+<div class="card" style="text-align: left !important;">
+    <div class="card-header d-flex justify-content-between">
+        <div class="header-title">
+            <h4 class="card-title">{{getControls['idPricingPlan'].value==undefined ? 'Add Plan':'Edit Plan'}}</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="pricingPlanForm" class="form needs-validation" novalidate>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Plan Label<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" formControlName="planLabel" aria-label="Default select example">
+                        <option value="yearly" selected>Yearly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="weekly">Weakly</option>
+                    </select>
+                    <div *ngIf="isSubmit && getControls['planLabel'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['planLabel'].errors?.['required']">
+                                Payment Type is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Plan Name<span
+                            class="text-danger">*</span></label>
+                    <input type="text" formControlName="pricingPlanName" id="validationCustom02" class="form-control"
+                        required>
+                    <div *ngIf="isSubmit && getControls['pricingPlanName'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['pricingPlanName'].errors?.['required']">
+                                Plan Name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom04">Is Plan Active ?<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" formControlName="isPlanActive" aria-label="Default select example"
+                        id="validationCustom04" required>
+                        <option value="" selected disabled>Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select> -->
+                <!-- </div> -->
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Plan Price<span
+                            class="text-danger">*</span></label>
+                    <input type="number" formControlName="price" id="validationCustom02" class="form-control" required>
+                    <div *ngIf="isSubmit && getControls['price'].invalid">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger" *ngIf="getControls['price'].errors?.['required']">
+                                Pricing Plan is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Discounted Price</label>
+                    <input type="number" formControlName="discountPrice" id="validationCustom02" class="form-control">
+                    <div *ngIf="priceError">
+                        <div class="alert-custom alert-light-danger alert-dismissible">
+                            <div class="text-danger">
+                                Discounted Price should be less than Plan Price.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="form-label" for="validationCustom02">Plan Offer</label>
+                    <input type="text" formControlName="discountOfferName" id="validationCustom02" class="form-control">
+                </div>
+                <!-- <div class="form-group col-md-12">
+                    <label class="form-label" for="validationCustom02">Plan Description<span
+                            class="text-danger">*</span></label>
+                    <textarea formControlName="planDescription" id="validationCustom02" class="form-control"
+                        required></textarea>
+                </div> -->
+            </div>
+        </form>
+        <div mat-dialog-actions>
+            <button type="button" (click)="onSubmit()" style="margin-right: 5px;" type="submit"
+                class="btn btn-primary active">{{getControls['idPricingPlan'].value==undefined ?
+                'Submit':'Edit'}}</button>
+            <button type="button" (click)="showPlanList()" class="btn btn-secondary active">Cancel</button>
+        </div>
+
+        <hr>

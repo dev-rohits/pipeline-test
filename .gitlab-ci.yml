@@ -1,0 +1,27 @@
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  
+build:
+  only:
+    refs:
+      - main
+  stage: build
+  
+  image: node
+  
+  allow_failure: false
+  before_script:
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/load-secure-files/-/raw/main/installer" | bash
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - 'mkdir -p ~/.ssh'
+    - 'mv .secure_files/KEY0.pem ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa'
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - apt update
+    - npm install
+    - npm build --prod
+    - echo "BUILD SUCCESSFUL"
+  after_script:
+    - scp -rq ./build/* $SSH_TARGET_DEMO:/var/www/html/

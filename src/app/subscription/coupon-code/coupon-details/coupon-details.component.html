@@ -1,0 +1,48 @@
+<div class="row" style="overflow: auto;">
+   <div class="col-sm-12">
+      <h4 class="card-title"> Coupons Details</h4>
+   </div>
+   <div class="col-sm-12" >
+      <div class="card" *ngFor="let coupon of coupons">
+         <div class="card-body">
+            <ul class="notification-list m-0 p-0">
+               <li class="d-flex align-items-center justify-content-between">
+                  <div class="user-img img-fluid"></div>
+                  <div class="w-100">
+                     <div class="d-flex justify-content-between">
+                        <div class=" ms-3">
+                           <h4> <b>Coupon Code :</b>&nbsp;<span>{{coupon?.code}}</span></h4>
+                           <p class="mb-0" *ngIf="coupon?.usedCount"><b>Used Coupons :</b>&nbsp;
+                              <span>{{coupon?.usedCount}}</span></p>
+                           <p class="mb-0" *ngIf="coupon?.activeCount"><b>Active Coupons :</b>&nbsp;
+                              <span>{{coupon?.activeCount}}</span></p>
+                        </div>
+                        <div class="d-flex align-items-center">
+
+
+                           Coupon status :<span>{{coupon?.status}}</span>
+
+
+                        </div>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </div>
+</div>
