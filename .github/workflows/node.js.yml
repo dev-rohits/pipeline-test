@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+   name: test to build
      runs-on: ubuntu-latest
 
     strategy:
