@@ -4,7 +4,7 @@ stages:          # List of stages for jobs, and their order of execution
 build:
   only:
     refs:
-      - development
+      - main
   stage: build
   image: node
   
@@ -19,7 +19,7 @@ build:
   script:
     #- export NODE_OPTIONS=--max_old_space_size=8048
     - npm install -g @angular/cli
-    - npm i --legacy-peer-deps
+   # - npm i --legacy-peer-deps
    # - node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng build
     - npm run ng build --prod       
    
