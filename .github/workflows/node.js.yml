@@ -1,28 +1,28 @@
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  
-build:
-  only:
-    refs:
-      - main
-  stage: build
-  image: node
-  
-  allow_failure: false
-  before_script:
-    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/load-secure-files/-/raw/main/installer" | bash
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - 'mkdir -p ~/.ssh'
-    - 'mv .secure_files/KEY0.pem ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa'
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  script:
-    #- export NODE_OPTIONS=--max_old_space_size=8048
-    - npm install -g @angular/cli
-   # - npm i --legacy-peer-deps
-   # - node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng build
-    - npm run ng build --prod       
-   
-  after_script:
-     - npm --version
-     - echo "BUILD SUCCESSFUL"
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+   #   runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
