@@ -22,6 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install -g @angular/cli
+    - run: npm cache clean --force
     - run: npm i --legacy-peer-deps
     - run: npm run ng build
     - run: npm test
