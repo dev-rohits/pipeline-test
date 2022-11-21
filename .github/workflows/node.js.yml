@@ -25,6 +25,7 @@ jobs:
     - run: npm cache clean --force
     - run: npm i --legacy-peer-deps
     - run: npx browserslist --update-db
+    - run: npm i @ngtools/webpack
     - run: npm run ng build
     - run: npm test
       env:
