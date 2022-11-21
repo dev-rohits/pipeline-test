@@ -26,7 +26,7 @@ jobs:
     - run: npm i --legacy-peer-deps
     - run: npx browserslist --update-db
    # - run: npm i @ngtools/webpack --legacy-peer-deps
-    - run: npm install @angular-devkit/build-webpack
+    - run: npm install @angular-devkit/build-webpack --legacy-peer-deps
     - run: node --max_old_space_size=804955 ./node_modules/@angular/cli/bin/ng build
     - run: npm test
       env:
