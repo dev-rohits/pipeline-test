@@ -9,7 +9,7 @@ on:
 jobs:
   my_job:
     name: build
-    runs-on: ubuntu-18.04
+   # runs-on: ubuntu-18.04
 
     strategy:
       matrix:
@@ -26,4 +26,3 @@ jobs:
     - run: npm install -g @angular/cli
     - run: npm i --legacy-peer-deps
     - run: npm run ng build
-    - run: npm test
